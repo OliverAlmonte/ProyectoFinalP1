@@ -6,6 +6,12 @@ public class Principal {
 
 	public Principal() {
 	}
+    
+	public Principal(String testing, String nombre) {
+		super();
+		this.testing = testing;
+		this.nombre = nombre;
+	}
 
 	public String getTesting() {
 		return testing;
