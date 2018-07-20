@@ -8,7 +8,7 @@ public abstract class Empleado {
 	private char sexo;
 	private int edad;
 	private float salario;
-	//private Contrato contratoActual;
+	private Contrato contratoActual;
 
 	public Empleado(String id, String nombre, String direccion, String evaluacion, char sexo, int edad, float salario) {
 		super();
@@ -79,6 +79,18 @@ public abstract class Empleado {
 
 	public void setSalario(float salario) {
 		this.salario = salario;
+	}
+
+
+
+	public Contrato getContratoActual() {
+		return contratoActual;
+	}
+
+
+
+	public void setContratoActual(Contrato contratoActual) {
+		this.contratoActual = contratoActual;
 	}
 
 }
