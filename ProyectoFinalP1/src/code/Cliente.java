@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public class Cliente {
 	private String id;
-	   private String nombre;
-	   private String direccion;
-	   private int CantProyectos;
+	  private String nombre;
+	  private String direccion;
+	  private int CantProyectos = 0;
 	  private ArrayList<Proyecto> misProyectos;
 	  
-	public Cliente(String id, String nombre, String direccion, int cantProyectos, ArrayList<Proyecto> misProyectos) {
+	public Cliente(String id, String nombre, String direccion, int cantProyectos) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		CantProyectos = cantProyectos;
-		this.misProyectos = misProyectos;
+		
 	}
 
 	public String getId() {

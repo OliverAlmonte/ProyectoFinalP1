@@ -2,7 +2,9 @@ package code;
 
 import java.sql.Array;
 import java.util.ArrayList;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class Empresa {
@@ -90,6 +92,19 @@ public class Empresa {
 		}
 		return emp;
 	}
+	public Contrato findContratoById(String id) {
+		Contrato contract =null;
+		boolean find = false;
+		int i=0;
+		while (i<misContratos.size()&&!find) {
+			if(misContratos.get(i).getId().equalsIgnoreCase(id)){
+				contract = misContratos.get(i);
+				find = true;
+			}
+			i++;
+		}
+		return contract;
+	}
 	private int buscarIndexClien(Cliente clien){
 		int index = -1;
 		boolean encontrado = false;
@@ -127,5 +142,32 @@ public class Empresa {
 		int index = buscarIndexProyecto(pro);
 		misProyectos.set(index, pro);
 	}
+	
+	private int buscarIndexContrato(Contrato contract){
+		int index = -1;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i<misContratos.size()){
+			if(misContratos.get(i).getId().equalsIgnoreCase(contract.getId())){
+				index = i;
+				encontrado = true;
+			}
+			i++;
+		}
+		
+		return index;
+	}
+	public void ModificarContrato(Contrato contract){
+		int index = buscarIndexContrato(contract);
+		misContratos.set(index, contract);
+	}
+
+	public boolean Prorroga(String codigo, String newFechaFin){
+		boolean doProrroga = false;
+		
+		return doProrroga;
+		
+	}
+	
 	
 }

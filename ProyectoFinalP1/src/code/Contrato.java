@@ -13,7 +13,7 @@ public class Contrato {
 		this.proyecto = proyecto;
 		this.cliente = cliente;
 	}
-
+    
 	public String getId() {
 		return id;
 	}
