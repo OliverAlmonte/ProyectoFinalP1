@@ -5,10 +5,11 @@ public class Programador extends Empleado {
 
 	
 
-	public Programador(String id, String nombre, String direccion, String evaluacion, char sexo, int edad,
-			float salario, String lenguaje) {
-		super(id, nombre, direccion, evaluacion, sexo, edad, salario);
-		this.setLenguaje(lenguaje);
+	
+	public Programador(String id, String nombre, String direccion, char sexo, int edad, float salario,
+			String lenguaje) {
+		super(id, nombre, direccion, sexo, edad, salario);
+		this.lenguaje = lenguaje;
 	}
 
 

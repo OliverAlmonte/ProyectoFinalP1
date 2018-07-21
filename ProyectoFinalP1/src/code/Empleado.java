@@ -1,21 +1,21 @@
 package code;
 
 public abstract class Empleado {
-	private String id;
-	private String nombre;
-	private String direccion;
-	private String evaluacion;
-	private char sexo;
-	private int edad;
-	private float salario;
+	protected String id;
+	protected String nombre;
+	protected String direccion;
+	protected String evaluacion;
+	protected char sexo;
+	protected int edad;
+	protected float salario;
 	private Contrato contratoActual;
+	protected String proyecto;
 
-	public Empleado(String id, String nombre, String direccion, String evaluacion, char sexo, int edad, float salario) {
+	public Empleado(String id, String nombre, String direccion, char sexo, int edad, float salario) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.direccion = direccion;
-		this.evaluacion = evaluacion;
 		this.sexo = sexo;
 		this.edad = edad;
 		this.salario = salario;

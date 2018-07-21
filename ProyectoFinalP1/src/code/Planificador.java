@@ -3,10 +3,12 @@ package code;
 public class Planificador extends Empleado {
 	private int frecuencia;
 
-	public Planificador(String id, String nombre, String direccion, String evaluacion, char sexo, int edad,
-			float salario, int frecuencia) {
-		super(id, nombre, direccion, evaluacion, sexo, edad, salario);
-		this.setFrecuencia(frecuencia);
+	
+
+	public Planificador(String id, String nombre, String direccion, char sexo, int edad, float salario,
+			int frecuencia) {
+		super(id, nombre, direccion, sexo, edad, salario);
+		this.frecuencia = frecuencia;
 	}
 
 	public int getFrecuencia() {

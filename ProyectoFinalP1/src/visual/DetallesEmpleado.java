@@ -122,11 +122,11 @@ public class DetallesEmpleado extends JFrame {
 		panelJefe.setLayout(null);
 		panelJefe.setVisible(true);
 		
-		JLabel lblTrabajadoresASu = new JLabel("Trabajadores a su cargo actualmente:");
-		lblTrabajadoresASu.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblTrabajadoresASu.setEnabled(true);
-		lblTrabajadoresASu.setBounds(10, 21, 269, 14);
-		panelJefe.add(lblTrabajadoresASu);
+		JLabel lblTrabajadores = new JLabel("Trabajadores a su cargo actualmente:");
+		lblTrabajadores.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblTrabajadores.setEnabled(true);
+		lblTrabajadores.setBounds(10, 21, 269, 14);
+		panelJefe.add(lblTrabajadores);
 		
 		txtTrbajadores = new JTextField();
 		txtTrbajadores.setEditable(false);

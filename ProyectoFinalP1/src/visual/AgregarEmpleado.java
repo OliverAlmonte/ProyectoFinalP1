@@ -19,6 +19,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class AgregarEmpleado extends JFrame {
 
@@ -53,9 +54,12 @@ public class AgregarEmpleado extends JFrame {
 	 * Create the frame.
 	 */
 	public AgregarEmpleado() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\OliverEduardo\\Downloads\\WEB_DEVELOPMENT_02-512.png"));
+		setBackground(Color.BLACK);
+		setForeground(Color.BLACK);
 		setTitle("Registrar Nuevo Empleado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 531, 283);
+		setBounds(100, 100, 534, 308);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -63,6 +67,7 @@ public class AgregarEmpleado extends JFrame {
 		
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
@@ -156,7 +161,7 @@ public class AgregarEmpleado extends JFrame {
 		
 		
 		JPanel buttonPane = new JPanel();
-		buttonPane.setBounds(0, 201, 504, 33);
+		buttonPane.setBounds(0, 226, 504, 33);
 		panel.add(buttonPane);
 		buttonPane.setLayout(null);
 		
@@ -179,7 +184,7 @@ public class AgregarEmpleado extends JFrame {
 		buttonPane.add(lblCamposObligatorios);
 		
 		
-		DynamicPanel.setBounds(0, 136, 505, 65);
+		DynamicPanel.setBounds(0, 152, 505, 65);
 		panel.add(DynamicPanel);
 		DynamicPanel.setLayout(null);
 		
