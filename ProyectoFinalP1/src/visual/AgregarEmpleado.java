@@ -3,7 +3,7 @@ package visual;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
@@ -13,15 +13,15 @@ import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SpinnerListModel;
-import java.awt.FlowLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
 import java.awt.Toolkit;
 
-public class AgregarEmpleado extends JFrame {
+public class AgregarEmpleado extends JDialog {
 
 	
 	private static final long serialVersionUID = 1L;
@@ -41,8 +41,8 @@ public class AgregarEmpleado extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AgregarEmpleado frame = new AgregarEmpleado();
-					frame.setVisible(true);
+					AgregarEmpleado dialog = new AgregarEmpleado();
+					dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -58,7 +58,7 @@ public class AgregarEmpleado extends JFrame {
 		setBackground(Color.BLACK);
 		setForeground(Color.BLACK);
 		setTitle("Registrar Nuevo Empleado");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
 		setBounds(100, 100, 534, 308);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
