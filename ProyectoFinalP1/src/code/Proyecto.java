@@ -1,15 +1,16 @@
 package code;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Proyecto {
 	//private Cliente miCliente;
 	private ArrayList<Empleado> misEmpleados;
 	private String nombre;
 	private boolean status;
-	private String fechaInicial;
-	private String fechaFinal;
+	private Date fechaInicial;
+	private Date fechaFinal;
 
-	public Proyecto(ArrayList<Empleado> misEmpleados, boolean status, String fechaInicial, String fechaFinal) {
+	public Proyecto(ArrayList<Empleado> misEmpleados, boolean status, Date fechaInicial, Date fechaFinal) {
 		super();
 		this.misEmpleados = misEmpleados;
 		this.status = status;
@@ -41,19 +42,19 @@ public class Proyecto {
 		this.status = status;
 	}
 
-	public String getFechaInicial() {
+	public Date getFechaInicial() {
 		return fechaInicial;
 	}
 
-	public void setFechaInicial(String fechaInicial) {
+	public void setFechaInicial(Date fechaInicial) {
 		this.fechaInicial = fechaInicial;
 	}
 
-	public String getFechaFinal() {
+	public Date getFechaFinal() {
 		return fechaFinal;
 	}
 
-	public void setFechaFinal(String fechaFinal) {
+	public void setFechaFinal(Date fechaFinal) {
 		this.fechaFinal = fechaFinal;
 	}
 
