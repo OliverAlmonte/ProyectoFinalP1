@@ -9,7 +9,8 @@ public class Proyecto {
 	private boolean status;
 	private Date fechaInicial;
 	private Date fechaFinal;
-	//comentario
+	//nuevo comentario
+	
 
 	public Proyecto(ArrayList<Empleado> misEmpleados, boolean status, Date fechaInicial, Date fechaFinal) {
 		super();
