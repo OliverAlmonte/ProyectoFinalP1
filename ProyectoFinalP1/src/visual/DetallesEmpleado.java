@@ -1,214 +1,162 @@
 package visual;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import java.awt.Font;
-import java.awt.FlowLayout;
-import javax.swing.JButton;
-import javax.swing.JDialog;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
+
 
 public class DetallesEmpleado extends JDialog {
 
-	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private final JPanel contentPanel = new JPanel();
 	private JTextField txtID;
 	private JTextField txtNombre;
 	private JTextField txtDireccion;
+	@SuppressWarnings("unused")
 	private String cargo;
-	private JTextField txtCargo;
+	JPanel panelInfo = new JPanel();
 	private JTextField txtEdad;
 	private JTextField txtSexo;
-	private JTextField txtEvaluacion;
-	private JTextField txtFrecuencia;
+	private JTextField txtCargo;
 	private JTextField txtLenguaje;
-	private JTextField txtTrbajadores;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DetallesEmpleado dialog = new DetallesEmpleado();
-					dialog.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		try {
+			DetallesEmpleado dialog = new DetallesEmpleado();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the dialog.
 	 */
 	public DetallesEmpleado() {
-		setTitle("Detalles Del Empleado");
-		setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
-		setBounds(100, 100, 556, 347);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-		txtFrecuencia = new JTextField();
+		setBounds(100, 100, 509, 389);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
 		
 		JLabel lblID = new JLabel("ID:");
 		lblID.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblID.setBounds(10, 24, 46, 14);
-		panel.add(lblID);
+		contentPanel.add(lblID);
 		
 		txtID = new JTextField();
 		txtID.setEditable(false);
-		txtID.setBounds(34, 21, 104, 20);
-		panel.add(txtID);
+		txtID.setBounds(37, 22, 86, 20);
+		contentPanel.add(txtID);
 		txtID.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNombre.setBounds(159, 24, 64, 14);
-		panel.add(lblNombre);
+		lblNombre.setBounds(10, 115, 68, 14);
+		contentPanel.add(lblNombre);
 		
 		txtNombre = new JTextField();
 		txtNombre.setEditable(false);
-		txtNombre.setBounds(212, 22, 286, 20);
-		panel.add(txtNombre);
+		txtNombre.setBounds(75, 113, 408, 20);
+		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblDireccion = new JLabel("Direcci\u00F3n:");
 		lblDireccion.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDireccion.setBounds(10, 65, 80, 14);
-		panel.add(lblDireccion);
+		lblDireccion.setBounds(10, 159, 68, 14);
+		contentPanel.add(lblDireccion);
 		
 		txtDireccion = new JTextField();
 		txtDireccion.setEditable(false);
-		txtDireccion.setBounds(75, 63, 423, 20);
-		panel.add(txtDireccion);
+		txtDireccion.setBounds(75, 156, 408, 20);
+		contentPanel.add(txtDireccion);
 		txtDireccion.setColumns(10);
-		
-		JLabel lblSexo = new JLabel("Sexo:");
-		lblSexo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSexo.setBounds(10, 107, 46, 14);
-		panel.add(lblSexo);
 		
 		JLabel lblEdad = new JLabel("Edad:");
 		lblEdad.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblEdad.setBounds(177, 107, 46, 14);
-		panel.add(lblEdad);
+		lblEdad.setBounds(10, 209, 46, 14);
+		contentPanel.add(lblEdad);
+		
+		JLabel lblSexo = new JLabel("Sexo:");
+		lblSexo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblSexo.setBounds(171, 210, 46, 14);
+		contentPanel.add(lblSexo);
 		
 		JLabel lblCargo = new JLabel("Cargo:");
 		lblCargo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblCargo.setBounds(336, 107, 46, 14);
-		panel.add(lblCargo);
-		
-		JPanel panelJefe = new JPanel();
-		panelJefe.setBounds(10, 194, 523, 70);
-		panel.add(panelJefe);
-		panelJefe.setLayout(null);
-		panelJefe.setVisible(true);
-		
-		JLabel lblTrabajadores = new JLabel("Trabajadores a su cargo actualmente:");
-		lblTrabajadores.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblTrabajadores.setEnabled(true);
-		lblTrabajadores.setBounds(10, 21, 269, 14);
-		panelJefe.add(lblTrabajadores);
-		
-		txtTrbajadores = new JTextField();
-		txtTrbajadores.setEditable(false);
-		txtTrbajadores.setBounds(237, 19, 86, 20);
-		panelJefe.add(txtTrbajadores);
-		txtTrbajadores.setColumns(10);
+		lblCargo.setBounds(316, 210, 46, 14);
+		contentPanel.add(lblCargo);
 		
 		
-		JPanel buttonPane = new JPanel();
-		buttonPane.setBounds(0, 265, 530, 33);
-		panel.add(buttonPane);
-		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		panelInfo.setBorder(new TitledBorder(null, "Informaci\u00F3n Espec\u00EDfica", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelInfo.setBounds(0, 253, 493, 67);
+		panelInfo.setVisible(false);
+		contentPanel.add(panelInfo);
+		panelInfo.setLayout(null);
 		
-		JButton btnSalir = new JButton("Salir");
-		btnSalir.setActionCommand("Cancel");
-		buttonPane.add(btnSalir);
+		JLabel lblLenguaje = new JLabel("Lenguaje:");
+		lblLenguaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblLenguaje.setBounds(10, 26, 78, 14);
+		panelInfo.add(lblLenguaje);
 		
-		txtCargo = new JTextField();
-		txtCargo.setEditable(false);
-		txtCargo.setBounds(378, 105, 117, 20);
-		panel.add(txtCargo);
-		txtCargo.setColumns(10);
+		txtLenguaje = new JTextField();
+		txtLenguaje.setEditable(false);
+		txtLenguaje.setBounds(78, 24, 86, 20);
+		panelInfo.add(txtLenguaje);
+		txtLenguaje.setColumns(10);
 		
 		txtEdad = new JTextField();
+		txtEdad.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtEdad.setEditable(false);
-		txtEdad.setBounds(215, 105, 64, 20);
-		panel.add(txtEdad);
+		txtEdad.setBounds(49, 207, 68, 20);
+		contentPanel.add(txtEdad);
 		txtEdad.setColumns(10);
 		
 		txtSexo = new JTextField();
 		txtSexo.setEditable(false);
-		txtSexo.setBounds(48, 105, 46, 20);
-		panel.add(txtSexo);
+		txtSexo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txtSexo.setBounds(205, 207, 40, 20);
+		contentPanel.add(txtSexo);
 		txtSexo.setColumns(10);
 		
-		JLabel lblEvaluacion = new JLabel("Evaluaci\u00F3n:");
-		lblEvaluacion.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblEvaluacion.setBounds(10, 144, 80, 14);
-		panel.add(lblEvaluacion);
+		txtCargo = new JTextField();
+		txtCargo.setEditable(false);
+		txtCargo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txtCargo.setBounds(358, 207, 86, 20);
+		contentPanel.add(txtCargo);
+		txtCargo.setColumns(10);
 		
-		JPanel PanelProgramador = new JPanel();
-		PanelProgramador.setBounds(0, 184, 498, 70);
-		panel.add(PanelProgramador);
-		PanelProgramador.setLayout(null);
-		
-		JLabel lblLenguaje_1 = new JLabel("Lenguaje:");
-		lblLenguaje_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblLenguaje_1.setBounds(10, 11, 80, 20);
-		PanelProgramador.add(lblLenguaje_1);
-		
-		txtLenguaje = new JTextField();
-		txtLenguaje.setEditable(false);
-		txtLenguaje.setBounds(88, 12, 86, 20);
-		PanelProgramador.add(txtLenguaje);
-		txtLenguaje.setColumns(10);
-		PanelProgramador.setVisible(false);
-		
-		txtEvaluacion = new JTextField();
-		txtEvaluacion.setEditable(false);
-		txtEvaluacion.setBounds(75, 142, 86, 20);
-		panel.add(txtEvaluacion);
-		txtEvaluacion.setColumns(10);
-		
-		JPanel PanelPlanificador = new JPanel();
-		PanelPlanificador.setBounds(0, 184, 504, 59);
-		panel.add(PanelPlanificador);
-		PanelPlanificador.setLayout(null);
-		PanelPlanificador.setVisible(false);
-		
-		txtFrecuencia.setEditable(false);
-		txtFrecuencia.setBounds(86, 13, 86, 20);
-		PanelPlanificador.add(txtFrecuencia);
-		txtFrecuencia.setColumns(10);
-		
-		JLabel lblFrecuencia = new JLabel("Frecuencia");
-		lblFrecuencia.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblFrecuencia.setBounds(10, 16, 66, 14);
-		PanelPlanificador.add(lblFrecuencia);
-		
-		
-		
-	}
-
-	public String getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
+		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			{
+				JButton okButton = new JButton("Registrar");
+				okButton.setActionCommand("OK");
+				buttonPane.add(okButton);
+				getRootPane().setDefaultButton(okButton);
+			}
+			{
+				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setActionCommand("Cancel");
+				buttonPane.add(cancelButton);
+			}
+		}
 	}
 }
