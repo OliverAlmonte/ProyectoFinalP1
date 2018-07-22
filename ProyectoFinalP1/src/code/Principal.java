@@ -11,6 +11,7 @@ public class Principal {
 		super();
 		this.testing = testing;
 		this.nombre = nombre;
+		
 	}
 
 	public String getTesting() {

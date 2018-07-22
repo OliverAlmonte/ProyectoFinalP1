@@ -5,9 +5,10 @@ public class Jefe extends Empleado {
 
 
 
-	public Jefe(String id, String nombre, String direccion, char sexo, int edad, float salario, int cantTrabajadores) {
-		super(id, nombre, direccion, sexo, edad, salario);
-		this.cantTrabajadores = cantTrabajadores;
+
+	public Jefe(String id, String nombre, String direccion, char sexo, int edad, float salario, String cargo) {
+		super(id, nombre, direccion, sexo, edad, salario, cargo);
+		this.cargo="Jefe de Proyecto";
 	}
 
 	public int getCantTrabajadores() {

@@ -14,11 +14,20 @@ import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.TitledBorder;
+
+import code.Programador;
+import code.Disenador;
+import code.Empleado;
+import code.Empresa;
+import code.Jefe;
+import code.Planificador;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("rawtypes")
 public class AgregarEmpleado extends JDialog {
@@ -34,6 +43,12 @@ public class AgregarEmpleado extends JDialog {
 	private String cargo;
 	JPanel panelInfo = new JPanel();
 	JComboBox cbxCargo = new JComboBox();
+	JSpinner spnEdad = new JSpinner();
+	JRadioButton rdbtnM = new JRadioButton("M");
+	JRadioButton rdbtnF = new JRadioButton("F");
+	JComboBox cbxLenguaje = new JComboBox();
+	JButton okButton = new JButton("Registrar");
+	private JTextField txtSalario;
 
 	/**
 	 * Launch the application.
@@ -45,8 +60,10 @@ public class AgregarEmpleado extends JDialog {
 	 */
 	@SuppressWarnings("unchecked")
 	public AgregarEmpleado() {
+		setTitle("Registrar Nuevo Empleado");
 		setBounds(100, 100, 507, 440);
 		getContentPane().setLayout(new BorderLayout());
+		
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -65,21 +82,21 @@ public class AgregarEmpleado extends JDialog {
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNombre.setBounds(10, 115, 68, 14);
+		lblNombre.setBounds(10, 81, 68, 14);
 		contentPanel.add(lblNombre);
 		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(75, 113, 408, 20);
+		txtNombre.setBounds(75, 79, 408, 20);
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblDireccion = new JLabel("Direcci\u00F3n:");
 		lblDireccion.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDireccion.setBounds(10, 159, 68, 14);
+		lblDireccion.setBounds(10, 125, 68, 14);
 		contentPanel.add(lblDireccion);
 		
 		txtDireccion = new JTextField();
-		txtDireccion.setBounds(75, 156, 408, 20);
+		txtDireccion.setBounds(75, 122, 408, 20);
 		contentPanel.add(txtDireccion);
 		txtDireccion.setColumns(10);
 		
@@ -88,20 +105,24 @@ public class AgregarEmpleado extends JDialog {
 		lblEdad.setBounds(10, 209, 46, 14);
 		contentPanel.add(lblEdad);
 		
-		JRadioButton rdbtnM = new JRadioButton("M");
+		
 		rdbtnM.setBounds(208, 206, 39, 23);
 		contentPanel.add(rdbtnM);
+		if(rdbtnM.isSelected())
+			rdbtnF.setSelected(false);
 		
-		JRadioButton rdbtnF = new JRadioButton("F");
+		
 		rdbtnF.setBounds(248, 206, 33, 23);
 		contentPanel.add(rdbtnF);
+		if(rdbtnF.isSelected())
+			rdbtnM.setSelected(false);
 		
 		JLabel lblSexo = new JLabel("Sexo:");
 		lblSexo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblSexo.setBounds(171, 210, 46, 14);
 		contentPanel.add(lblSexo);
 		
-		JSpinner spnEdad = new JSpinner();
+		
 		spnEdad.setModel(new SpinnerNumberModel(new Integer(18), new Integer(18), null, new Integer(1)));
 		spnEdad.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		spnEdad.setBounds(49, 207, 56, 20);
@@ -141,18 +162,63 @@ public class AgregarEmpleado extends JDialog {
 		lblLenguaje.setBounds(10, 26, 78, 14);
 		panelInfo.add(lblLenguaje);
 		
-		JComboBox cbxLenguaje = new JComboBox();
+		
 		cbxLenguaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		cbxLenguaje.setModel(new DefaultComboBoxModel(new String[] {"<Elegir>", "C", "C++", "Java", "Python", "Web"}));
 		cbxLenguaje.setBounds(82, 24, 91, 20);
 		panelInfo.add(cbxLenguaje);
+		
+		JLabel lblTodosLosCampos = new JLabel("Todos los campos son obligatorios.");
+		lblTodosLosCampos.setBounds(0, 346, 172, 11);
+		contentPanel.add(lblTodosLosCampos);
+		lblTodosLosCampos.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTodosLosCampos.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 9));
+		
+		JLabel lblSalario = new JLabel("Salario:  RD$");
+		lblSalario.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblSalario.setBounds(10, 169, 68, 14);
+		contentPanel.add(lblSalario);
+		
+		txtSalario = new JTextField();
+		txtSalario.setBounds(86, 167, 86, 20);
+		contentPanel.add(txtSalario);
+		txtSalario.setColumns(10);
 		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Registrar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Empleado emp=null;
+						String id=null;
+						String nombre = txtNombre.getText();
+						String direccion = txtDireccion.getText();
+						String cargo="";
+						String lenguaje=(String) cbxLenguaje.getSelectedItem();
+						int edad = (int) spnEdad.getValue();
+						float salario = Float.valueOf(txtSalario.getText());
+						
+						char sexo='x';
+						if(rdbtnM.isSelected())
+							sexo='M';
+						if(rdbtnF.isSelected())
+							sexo='F';
+						
+						if(cbxCargo.getSelectedItem()=="Programador")
+							emp = new Programador(id, nombre, direccion, sexo, edad, salario, cargo, lenguaje);
+						if(cbxCargo.getSelectedItem()=="Diseñador")
+							emp = new Disenador(id, nombre, direccion, sexo, edad, salario, cargo);	
+						if(cbxCargo.getSelectedItem()=="Planificador")
+							emp = new Planificador(id, nombre, direccion, sexo, edad, salario, cargo);
+						if(cbxCargo.getSelectedItem()=="Jefe de Proyecto")
+							emp = new Jefe(id, nombre, direccion, sexo, edad, salario, cargo);
+						
+						Empresa.getInstance().insertEmpleado(emp);
+					}
+				});
+				
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
