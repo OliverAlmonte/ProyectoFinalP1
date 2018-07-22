@@ -6,9 +6,9 @@ public class Cliente {
 	private String id;
 	  private String nombre;
 	  private String direccion;
-	  private boolean disponibilidad = true;
 	  
-	public Cliente(String id, String nombre, String direccion, boolean disponibilidad) {
+	  
+	public Cliente(String id, String nombre, String direccion) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -41,13 +41,7 @@ public class Cliente {
 		this.direccion = direccion;
 	}
 
-	public boolean isDisponibilidad() {
-		return disponibilidad;
-	}
-
-	public void setDisponibilidad(boolean disponibilidad) {
-		this.disponibilidad = disponibilidad;
-	}
+	
 
 	
 

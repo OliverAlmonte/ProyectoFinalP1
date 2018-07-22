@@ -79,15 +79,15 @@ public class RegistrarProyecto extends JDialog {
 		scrollPane.setBounds(12, 222, 206, 182);
 		panel.add(scrollPane);
 		
-		JList list = new JList();
-		scrollPane.setColumnHeaderView(list);
+		JList listEmpDisp = new JList();
+		scrollPane.setViewportView(listEmpDisp);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(308, 221, 206, 181);
 		panel.add(scrollPane_1);
 		
-		JList list_1 = new JList();
-		scrollPane_1.setColumnHeaderView(list_1);
+		JList listEmpInv = new JList();
+		scrollPane_1.setViewportView(listEmpInv);
 		
 		JLabel label_12 = new JLabel("*");
 		label_12.setForeground(Color.RED);
