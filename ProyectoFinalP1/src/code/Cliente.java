@@ -6,15 +6,14 @@ public class Cliente {
 	private String id;
 	  private String nombre;
 	  private String direccion;
-	  private int CantProyectos = 0;
-	  private ArrayList<Proyecto> misProyectos;
+	  private boolean disponibilidad = true;
 	  
-	public Cliente(String id, String nombre, String direccion, int cantProyectos) {
+	public Cliente(String id, String nombre, String direccion, boolean disponibilidad) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.direccion = direccion;
-		CantProyectos = cantProyectos;
+		
 		
 	}
 
@@ -42,20 +41,16 @@ public class Cliente {
 		this.direccion = direccion;
 	}
 
-	public int getCantProyectos() {
-		return CantProyectos;
+	public boolean isDisponibilidad() {
+		return disponibilidad;
 	}
 
-	public void setCantProyectos(int cantProyectos) {
-		CantProyectos = cantProyectos;
+	public void setDisponibilidad(boolean disponibilidad) {
+		this.disponibilidad = disponibilidad;
 	}
 
-	public ArrayList<Proyecto> getMisProyectos() {
-		return misProyectos;
-	}
+	
 
-	public void setMisProyectos(ArrayList<Proyecto> misProyectos) {
-		this.misProyectos = misProyectos;
-	}
+	
 	
 }
