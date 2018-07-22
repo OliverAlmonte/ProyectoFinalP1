@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 
 public class ListarEmpleados extends JDialog {
-
+//
 	/**
 	 * 
 	 */
