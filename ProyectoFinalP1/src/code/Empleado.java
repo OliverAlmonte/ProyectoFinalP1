@@ -9,31 +9,26 @@ public abstract class Empleado {
 	protected int edad;
 	protected float salario;
 	private Contrato contratoActual;
-	protected String proyecto;
+    
 	protected String cargo;
 	protected int proyectosTardios;
-	private int Idcount=0;
+	private static int Idcount=0;
 
 	public Empleado(String id, String nombre, String direccion, char sexo, int edad, float salario, String cargo) {
 		super();
-		this.id = GenerateId();
+		this.id = id;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.sexo = sexo;
 		this.edad = edad;
 		this.salario = salario;
 		this.cargo = cargo;
-		
+		Idcount++;
 	}
 
 
 	
-	public String GenerateId(){
-		 String newId="EMP-"+Idcount;
-		 Idcount++;
-		return newId;
-		 
-		}
+
 
 	public String getID() {
 		return id;
@@ -103,6 +98,22 @@ public abstract class Empleado {
 
 	public void setContratoActual(Contrato contratoActual) {
 		this.contratoActual = contratoActual;
+	}
+
+
+
+
+
+	public static int getIdcount() {
+		return Idcount;
+	}
+
+
+
+
+
+	public static void setIdcount(int idcount) {
+		Idcount = idcount;
 	}
 
 }

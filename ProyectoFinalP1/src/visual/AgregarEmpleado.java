@@ -75,6 +75,7 @@ public class AgregarEmpleado extends JDialog {
 		contentPanel.add(lblID);
 		
 		txtID = new JTextField();
+		txtID.setText("EMP-"+(Empleado.getIdcount()+1));
 		txtID.setEditable(false);
 		txtID.setBounds(37, 22, 86, 20);
 		contentPanel.add(txtID);
@@ -192,7 +193,7 @@ public class AgregarEmpleado extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Empleado emp=null;
-						String id=null;
+						String id=txtID.getText();
 						String nombre = txtNombre.getText();
 						String direccion = txtDireccion.getText();
 						String cargo="";
@@ -216,7 +217,7 @@ public class AgregarEmpleado extends JDialog {
 							emp = new Jefe(id, nombre, direccion, sexo, edad, salario, cargo);
 						
 						Empresa.getInstance().insertEmpleado(emp);
-						
+						clean();
 					}
 				});
 				
@@ -231,4 +232,10 @@ public class AgregarEmpleado extends JDialog {
 			}
 		}
 	}
+	public void clean(){
+		txtID.setText("EMP-"+(Empleado.getIdcount()+1));
+		
+		
+	}
+	
 }
