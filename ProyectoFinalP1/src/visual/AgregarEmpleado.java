@@ -105,12 +105,17 @@ public class AgregarEmpleado extends JDialog {
 		lblEdad.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblEdad.setBounds(10, 209, 46, 14);
 		contentPanel.add(lblEdad);
+		rdbtnM.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(rdbtnM.isSelected())
+					rdbtnF.setSelected(false);
+			}
+		});
 		
 		
 		rdbtnM.setBounds(208, 206, 39, 23);
 		contentPanel.add(rdbtnM);
-		if(rdbtnM.isSelected())
-			rdbtnF.setSelected(false);
+		
 		
 		
 		rdbtnF.setBounds(248, 206, 33, 23);
@@ -234,7 +239,13 @@ public class AgregarEmpleado extends JDialog {
 	}
 	public void clean(){
 		txtID.setText("EMP-"+(Empleado.getIdcount()+1));
-		
+		txtNombre.setText("");
+		txtDireccion.setText("");
+		txtSalario.setText("");
+		spnEdad.setValue(18);
+		rdbtnM.setSelected(false);
+		rdbtnF.setSelected(false);
+		cbxCargo.setSelectedIndex(0);
 		
 	}
 	
