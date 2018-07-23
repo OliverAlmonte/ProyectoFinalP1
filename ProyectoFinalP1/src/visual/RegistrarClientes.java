@@ -78,9 +78,9 @@ public class RegistrarClientes extends JDialog {
 		txt_cedula.setBounds(160, 41, 226, 20);
 		panel_1.add(txt_cedula);
 		
-		JLabel label_2 = new JLabel("Nombre:");
-		label_2.setBounds(20, 72, 76, 14);
-		panel_1.add(label_2);
+		JLabel lblName = new JLabel("Name:");
+		lblName.setBounds(20, 72, 76, 14);
+		panel_1.add(lblName);
 		
 		txt_Nombre = new JTextField();
 		txt_Nombre.setColumns(10);
