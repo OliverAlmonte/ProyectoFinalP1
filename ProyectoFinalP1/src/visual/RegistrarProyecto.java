@@ -39,11 +39,13 @@ public class RegistrarProyecto extends JDialog {
 	private JButton btnReg;
 	private JButton btnEspecial;
 	private JButton btnA;
-	private JComboBox cbxCliente;
 	private JTextField txtIdContrato;
 	private JTextField txtEntrega;
 	private JPanel panelC;
 	private JPanel panelP;
+	private JTextField txtName;
+	private JTextField txtDireccion;
+	private JButton btnBuscar;
   //
 	/**
 	 * Launch the application.
@@ -79,7 +81,7 @@ public class RegistrarProyecto extends JDialog {
 		panelC.setVisible(false);
 		panelC.setLayout(null);
 		panelC.setBorder(new TitledBorder(null, "Informaci\u00F3n General", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelC.setBounds(10, 25, 543, 189);
+		panelC.setBounds(10, 25, 543, 276);
 		contentPanel.add(panelC);
 		
 		JLabel label_3 = new JLabel("Id Proyecto:");
@@ -92,27 +94,53 @@ public class RegistrarProyecto extends JDialog {
 		txtIdContrato.setBounds(97, 21, 145, 20);
 		panelC.add(txtIdContrato);
 		
-		JLabel lblClintesDisponibles = new JLabel("Clintes Disponibles:");
-		lblClintesDisponibles.setBounds(22, 76, 129, 14);
-		panelC.add(lblClintesDisponibles);
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBorder(new TitledBorder(null, "Informaci\u00F3n para buscar al cliente para el contrato", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(10, 88, 523, 113);
+		panelC.add(panel);
 		
-		cbxCliente = new JComboBox();
-		cbxCliente.setBounds(27, 101, 124, 20);
-		panelC.add(cbxCliente);
+		txtName = new JTextField();
+		txtName.setColumns(10);
+		txtName.setBounds(73, 22, 354, 20);
+		panel.add(txtName);
 		
-		JLabel label_5 = new JLabel("*");
-		label_5.setForeground(Color.RED);
-		label_5.setBounds(10, 76, 11, 14);
-		panelC.add(label_5);
+		txtDireccion = new JTextField();
+		txtDireccion.setEnabled(false);
+		txtDireccion.setColumns(10);
+		txtDireccion.setBounds(73, 51, 354, 20);
+		panel.add(txtDireccion);
 		
-		txtEntrega = new JTextField();
-		txtEntrega.setBounds(221, 101, 124, 20);
-		panelC.add(txtEntrega);
-		txtEntrega.setColumns(10);
+		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setBounds(21, 25, 55, 14);
+		panel.add(lblNombre);
+		
+		JLabel lblDireccion = new JLabel("Direccion:");
+		lblDireccion.setBounds(21, 54, 52, 14);
+		panel.add(lblDireccion);
+		
+	    btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(437, 21, 76, 23);
+		panel.add(btnBuscar);
+		
+		JLabel label_8 = new JLabel("*");
+		label_8.setForeground(Color.RED);
+		label_8.setBounds(11, 25, 11, 14);
+		panel.add(label_8);
+		
+		JLabel label_9 = new JLabel("*");
+		label_9.setForeground(Color.RED);
+		label_9.setBounds(11, 54, 11, 14);
+		panel.add(label_9);
 		
 		JLabel lblNewLabel_1 = new JLabel("Dias para Entregar:");
-		lblNewLabel_1.setBounds(221, 76, 124, 14);
+		lblNewLabel_1.setBounds(361, 24, 124, 14);
 		panelC.add(lblNewLabel_1);
+		
+		txtEntrega = new JTextField();
+		txtEntrega.setBounds(361, 49, 124, 20);
+		panelC.add(txtEntrega);
+		txtEntrega.setColumns(10);
 		
 		panelP = new JPanel();
 		panelP.setBounds(10, 25, 543, 416);

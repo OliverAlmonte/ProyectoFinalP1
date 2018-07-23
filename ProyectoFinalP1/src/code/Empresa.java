@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
+
+
 public class Empresa {
     private ArrayList<Proyecto> misProyectos;
     private ArrayList<Empleado> misEmpleados;
@@ -72,6 +74,19 @@ public class Empresa {
 		int i=0;
 		while (i<misClientes.size()&&!find) {
 			if(misClientes.get(i).getId().equalsIgnoreCase(id)){
+				clien = misClientes.get(i);
+				find = true;
+			}
+			i++;
+		}
+		return clien;
+	}
+	public Cliente findClienteByName(String name) {
+		Cliente clien =null;
+		boolean find = false;
+		int i=0;
+		while (i<misClientes.size()&&!find) {
+			if(misClientes.get(i).getId().equalsIgnoreCase(name)){
 				clien = misClientes.get(i);
 				find = true;
 			}
