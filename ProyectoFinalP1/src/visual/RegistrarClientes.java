@@ -117,9 +117,19 @@ public class RegistrarClientes extends JDialog {
 		panel_2.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		JButton btnRegistrar = new JButton("Registar");
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//registra aqui
+			}
+		});
 		panel_2.add(btnRegistrar);
 		
 		JButton button_1 = new JButton("Cancelar");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		button_1.setActionCommand("Cancel");
 		panel_2.add(button_1);
 		
