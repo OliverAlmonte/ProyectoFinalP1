@@ -13,13 +13,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
+import java.awt.Font;
 
 public class RegistrarClientes extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txt_nombre;
-	private JTextField txt_id;
-	private JTextField txt_direccion;
+	private JTextField txt_Id;
+	private JTextField txt_cedula;
+	private JTextField txt_Nombre;
+	private JTextField txt_Direccion;
 
 	/**
 	 * Launch the application.
@@ -39,76 +42,100 @@ public class RegistrarClientes extends JDialog {
 	 */
 	public RegistrarClientes() {
 		setTitle("Registrar Cliente");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 358);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(UIManager.getColor("Button.background"));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JLabel lblnombre = new JLabel("Nombre:");
-		lblnombre.setBounds(27, 27, 43, 19);
-		contentPanel.add(lblnombre);
-		
-		txt_nombre = new JTextField();
-		txt_nombre.setBounds(80, 26, 173, 20);
-		contentPanel.add(txt_nombre);
-		txt_nombre.setColumns(10);
-		
-		JLabel lblid = new JLabel(" ID:");
-		lblid.setBounds(25, 78, 45, 14);
-		contentPanel.add(lblid);
-		
-		txt_id = new JTextField();
-		txt_id.setBounds(80, 75, 116, 20);
-		contentPanel.add(txt_id);
-		txt_id.setColumns(10);
-		
-		JLabel lblDireccion = new JLabel("Direccion:");
-		lblDireccion.setBounds(27, 124, 55, 14);
-		contentPanel.add(lblDireccion);
-		
-		txt_direccion = new JTextField();
-		txt_direccion.setBounds(80, 121, 173, 20);
-		contentPanel.add(txt_direccion);
-		txt_direccion.setColumns(10);
-		{
-			JButton okButton = new JButton("Registrar");
-			okButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					String mensaje;
-					mensaje=txt_nombre.getText()+"Su id es "+txt_id.getText()+"Y su direccion es"+txt_direccion.getText();
-					System.out.println(mensaje);
-				}
-			});
-			okButton.setBounds(241, 205, 77, 23);
-			contentPanel.add(okButton);
-			okButton.setActionCommand("OK");
-			getRootPane().setDefaultButton(okButton);
-		}
-		{
-			JButton cancelButton = new JButton("Cancel");
-			cancelButton.setBounds(328, 205, 80, 23);
-			contentPanel.add(cancelButton);
-			cancelButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					System.exit(0);
-				}
-			});
-			cancelButton.setActionCommand("Cancel");
-		}
-		
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 27, 10, -10);
 		contentPanel.add(panel);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 6, 414, 188);
+		panel_1.setLayout(null);
+		panel_1.setBorder(new TitledBorder(null, "Informaci\u00F3n General", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(10, 25, 413, 240);
 		contentPanel.add(panel_1);
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-		}
+		
+		JLabel label = new JLabel("Identificador:");
+		label.setBounds(20, 21, 87, 20);
+		panel_1.add(label);
+		
+		txt_Id = new JTextField();
+		txt_Id.setEditable(false);
+		txt_Id.setColumns(10);
+		txt_Id.setBounds(10, 41, 109, 20);
+		panel_1.add(txt_Id);
+		
+		JLabel label_1 = new JLabel("cedula:");
+		label_1.setBounds(168, 24, 55, 14);
+		panel_1.add(label_1);
+		
+		txt_cedula = new JTextField();
+		txt_cedula.setColumns(10);
+		txt_cedula.setBounds(160, 41, 226, 20);
+		panel_1.add(txt_cedula);
+		
+		JLabel label_2 = new JLabel("Nombre:");
+		label_2.setBounds(20, 72, 76, 14);
+		panel_1.add(label_2);
+		
+		txt_Nombre = new JTextField();
+		txt_Nombre.setColumns(10);
+		txt_Nombre.setBounds(10, 88, 376, 20);
+		panel_1.add(txt_Nombre);
+		
+		JLabel label_3 = new JLabel("Direccion:");
+		label_3.setBounds(20, 135, 76, 14);
+		panel_1.add(label_3);
+		
+		JLabel label_4 = new JLabel("*");
+		label_4.setForeground(Color.RED);
+		label_4.setBounds(160, 24, 11, 14);
+		panel_1.add(label_4);
+		
+		JLabel label_5 = new JLabel("*");
+		label_5.setForeground(Color.RED);
+		label_5.setBounds(10, 72, 11, 14);
+		panel_1.add(label_5);
+		
+		JLabel label_6 = new JLabel("*");
+		label_6.setForeground(Color.RED);
+		label_6.setBounds(10, 135, 11, 14);
+		panel_1.add(label_6);
+		
+		txt_Direccion = new JTextField();
+		txt_Direccion.setColumns(10);
+		txt_Direccion.setBounds(10, 155, 376, 20);
+		panel_1.add(txt_Direccion);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(0, 286, 433, 33);
+		contentPanel.add(panel_2);
+		panel_2.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		
+		JButton btnRegistrar = new JButton("Registar");
+		panel_2.add(btnRegistrar);
+		
+		JButton button_1 = new JButton("Cancelar");
+		button_1.setActionCommand("Cancel");
+		panel_2.add(button_1);
+		
+		JLabel label_7 = new JLabel("Los");
+		label_7.setFont(new Font("Tahoma", Font.ITALIC, 9));
+		label_7.setBounds(279, 11, 22, 14);
+		contentPanel.add(label_7);
+		
+		JLabel label_8 = new JLabel("*");
+		label_8.setForeground(Color.RED);
+		label_8.setBounds(294, 11, 11, 14);
+		contentPanel.add(label_8);
+		
+		JLabel label_9 = new JLabel("indican campos obligatorios");
+		label_9.setFont(new Font("Tahoma", Font.ITALIC, 9));
+		label_9.setBounds(298, 11, 146, 14);
+		contentPanel.add(label_9);
 	}
 }
