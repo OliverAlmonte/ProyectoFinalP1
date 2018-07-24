@@ -2,53 +2,56 @@ package code;
 
 import java.util.ArrayList;
 
+
+
 public class Cliente {
-	private String id;
-	  private String nombre;
-	  private String direccion;
+	private String Id;
+	  private String Nombre;
+	  private String Direccion;
 	  private boolean disponibilidad = true;
-	  private  String cedula;
+	  private  String Cedula;
+	  private static int cantClien = 0;
 	  
-	public Cliente(String id, String cedula, String nombre, String direccion, boolean disponibilidad) {
+	public Cliente(String id, String cedula, String nombre, String direccion) {
 		super();
-		this.id = id;
-		this.cedula = cedula;
-		this.nombre = nombre;
-		this.direccion = direccion;
+		this.Id = id;
+		this.Cedula = cedula;
+		this.Nombre = nombre;
+		this.Direccion = direccion;
 		this.disponibilidad = disponibilidad;
-		
+		cantClien++;
 	}
 
 	public String getId() {
-		return id;
+		return Id;
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		this.Id = id;
 	}
 
 	public String getCedula() {
-		return cedula;
+		return Cedula;
 	}
 
 	public void setCedula(String cedula) {
-		this.cedula = cedula;
+		this.Cedula = cedula;
 	}
 
 	public String getNombre() {
-		return nombre;
+		return Nombre;
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.Nombre = nombre;
 	}
 
 	public String getDireccion() {
-		return direccion;
+		return Direccion;
 	}
 
 	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+		this.Direccion = direccion;
 	}
 
 	public boolean isDisponibilidad() {
@@ -59,7 +62,13 @@ public class Cliente {
 		this.disponibilidad = disponibilidad;
 	}
 
-	
+	public static int getCantClien() {
+		return cantClien;
+	}
+
+	public static void setCantClien(int cantClien) {
+		Cliente.cantClien = cantClien;
+	}
 
 	
 
