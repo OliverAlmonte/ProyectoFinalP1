@@ -71,7 +71,7 @@ public class ListarCliente extends JDialog {
 								btnModificar.setEnabled(true);
 								int index = table.getSelectedRow();
 								identificador = (String)table.getModel().getValueAt(index, 0);
-								//System.out.println(identificador);
+								
 							}
 						}
 					});
