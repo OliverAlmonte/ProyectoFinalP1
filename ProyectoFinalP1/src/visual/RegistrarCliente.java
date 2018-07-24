@@ -141,7 +141,7 @@ public class RegistrarCliente extends JDialog {
 					String direccion = txtDireccion.getText();
 					Cliente cliente = new Cliente(Id, cedula, nombre, direccion);
 					Empresa.getInstance().insertCliente(cliente);
-					//System.out.println(cedula);
+					
 					JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 					clean();
 				}else{
