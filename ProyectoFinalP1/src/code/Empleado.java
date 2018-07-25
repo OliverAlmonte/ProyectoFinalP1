@@ -27,7 +27,13 @@ public abstract class Empleado {
 	}
 
 
-	
+	public String getDisponibilidad() {
+		String Disponibilidad="";
+		if (this.contratoActual==null)
+			Disponibilidad="Disponible";
+		else Disponibilidad="Ocupado";
+		return Disponibilidad;
+	}
 
 
 	public String getID() {
@@ -114,6 +120,36 @@ public abstract class Empleado {
 
 	public static void setIdcount(int idcount) {
 		Idcount = idcount;
+	}
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+	public String getCargo() {
+		return cargo;
+	}
+
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+
+	public int getProyectosTardios() {
+		return proyectosTardios;
+	}
+
+
+	public void setProyectosTardios(int proyectosTardios) {
+		this.proyectosTardios = proyectosTardios;
 	}
 
 }
