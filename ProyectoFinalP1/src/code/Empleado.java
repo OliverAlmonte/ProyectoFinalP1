@@ -8,8 +8,8 @@ public abstract class Empleado {
 	protected char sexo;
 	protected int edad;
 	protected float salario;
-	private Contrato contratoActual;
-    
+	//private Contrato contratoActual;
+    private boolean disp =  false;
 	protected String cargo;
 	protected int proyectosTardios;
 	private static int Idcount=0;
@@ -26,15 +26,21 @@ public abstract class Empleado {
 		Idcount++;
 	}
 
-
-	public String getDisponibilidad() {
+    
+	/*public String getDisponibilidad() {
 		String Disponibilidad="";
 		if (this.contratoActual==null)
 			Disponibilidad="Disponible";
 		else Disponibilidad="Ocupado";
 		return Disponibilidad;
+	}*/
+	public String getDisponibilidad() {
+		String Disponibilidad="";
+		if (this.disp == true)
+			Disponibilidad="Disponible";
+		else Disponibilidad="Ocupado";
+		return Disponibilidad;
 	}
-
 
 	public String getID() {
 		return id;
@@ -96,7 +102,7 @@ public abstract class Empleado {
 
 
 
-	public Contrato getContratoActual() {
+	/*public Contrato getContratoActual() {
 		return contratoActual;
 	}
 
@@ -104,7 +110,7 @@ public abstract class Empleado {
 
 	public void setContratoActual(Contrato contratoActual) {
 		this.contratoActual = contratoActual;
-	}
+	}*/
 
 
 
@@ -150,6 +156,16 @@ public abstract class Empleado {
 
 	public void setProyectosTardios(int proyectosTardios) {
 		this.proyectosTardios = proyectosTardios;
+	}
+
+
+	public boolean isDisp() {
+		return disp;
+	}
+
+
+	public void setDisp(boolean disp) {
+		this.disp = disp;
 	}
 
 }
