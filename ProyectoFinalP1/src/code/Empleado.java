@@ -9,7 +9,7 @@ public abstract class Empleado {
 	protected int edad;
 	protected float salario;
 	//private Contrato contratoActual;
-    private boolean disp =  false;
+    private boolean disp =  true;
 	protected String cargo;
 	protected int proyectosTardios;
 	private static int Idcount=0;
