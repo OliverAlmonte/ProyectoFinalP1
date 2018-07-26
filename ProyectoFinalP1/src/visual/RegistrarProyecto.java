@@ -19,7 +19,12 @@ import java.util.Date;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+
 import com.toedter.calendar.JDateChooser;
+
+import code.Cliente;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -33,9 +38,14 @@ public class RegistrarProyecto extends JDialog {
 	private JComboBox cbxEncargo;
 	private JDateChooser dateChooserI;
 	private JDateChooser dateChooserF;
-	private JList listEmpDisp;
-	private JList listEmpInv;
+	private static JList<Object> listEmpDisp;
+	private static JList<Object> listEmpInv;
+	private static DefaultListModel<Object> modeloDisp = new DefaultListModel<>();
+	private static DefaultListModel<Object> modeloInv = new DefaultListModel<>();
+	private static float precioContrato = 0;
+	private String datos;
 	
+	private Cliente cliente = null;
 	private JButton btnReg;
 	private JButton btnEspecial;
 	private JButton btnA;
@@ -46,6 +56,7 @@ public class RegistrarProyecto extends JDialog {
 	private JTextField txtName;
 	private JTextField txtDireccion;
 	private JButton btnBuscar;
+	private JTextField txtCedula;
   //
 	/**
 	 * Launch the application.
@@ -81,12 +92,12 @@ public class RegistrarProyecto extends JDialog {
 		panelC.setVisible(false);
 		panelC.setLayout(null);
 		panelC.setBorder(new TitledBorder(null, "Informaci\u00F3n General", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelC.setBounds(10, 25, 543, 276);
+		panelC.setBounds(10, 25, 543, 237);
 		contentPanel.add(panelC);
 		
-		JLabel label_3 = new JLabel("Id Proyecto:");
-		label_3.setBounds(10, 24, 65, 14);
-		panelC.add(label_3);
+		JLabel lblIdContrato = new JLabel("Id Contrato:");
+		lblIdContrato.setBounds(10, 24, 77, 14);
+		panelC.add(lblIdContrato);
 		
 		txtIdContrato = new JTextField();
 		txtIdContrato.setEnabled(false);
@@ -97,41 +108,56 @@ public class RegistrarProyecto extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(null, "Informaci\u00F3n para buscar al cliente para el contrato", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 88, 523, 113);
+		panel.setBounds(10, 88, 523, 126);
 		panelC.add(panel);
 		
 		txtName = new JTextField();
+		txtName.setEnabled(false);
 		txtName.setColumns(10);
-		txtName.setBounds(73, 22, 354, 20);
+		txtName.setBounds(73, 58, 354, 20);
 		panel.add(txtName);
 		
 		txtDireccion = new JTextField();
 		txtDireccion.setEnabled(false);
 		txtDireccion.setColumns(10);
-		txtDireccion.setBounds(73, 51, 354, 20);
+		txtDireccion.setBounds(96, 95, 331, 20);
 		panel.add(txtDireccion);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(21, 25, 55, 14);
+		lblNombre.setBounds(24, 61, 55, 14);
 		panel.add(lblNombre);
 		
 		JLabel lblDireccion = new JLabel("Direccion:");
-		lblDireccion.setBounds(21, 54, 52, 14);
+		lblDireccion.setBounds(24, 98, 67, 14);
 		panel.add(lblDireccion);
 		
 	    btnBuscar = new JButton("Buscar");
 		btnBuscar.setBounds(437, 21, 76, 23);
 		panel.add(btnBuscar);
 		
-		JLabel label_8 = new JLabel("*");
-		label_8.setForeground(Color.RED);
-		label_8.setBounds(11, 25, 11, 14);
-		panel.add(label_8);
+		JLabel label_4 = new JLabel("*");
+		label_4.setForeground(Color.RED);
+		label_4.setBounds(11, 98, 11, 14);
+		panel.add(label_4);
 		
-		JLabel label_9 = new JLabel("*");
-		label_9.setForeground(Color.RED);
-		label_9.setBounds(11, 54, 11, 14);
-		panel.add(label_9);
+		txtCedula = new JTextField();
+		txtCedula.setBounds(73, 22, 354, 20);
+		panel.add(txtCedula);
+		txtCedula.setColumns(10);
+		
+		JLabel label_5 = new JLabel("*");
+		label_5.setForeground(Color.RED);
+		label_5.setBounds(11, 61, 11, 14);
+		panel.add(label_5);
+		
+		JLabel lblNewLabel_2 = new JLabel("Cedula:");
+		lblNewLabel_2.setBounds(24, 25, 46, 14);
+		panel.add(lblNewLabel_2);
+		
+		JLabel label_6 = new JLabel("*");
+		label_6.setForeground(Color.RED);
+		label_6.setBounds(11, 25, 11, 14);
+		panel.add(label_6);
 		
 		JLabel lblNewLabel_1 = new JLabel("Dias para Entregar:");
 		lblNewLabel_1.setBounds(361, 24, 124, 14);
@@ -149,7 +175,7 @@ public class RegistrarProyecto extends JDialog {
 		panelP.setBorder(new TitledBorder(null, "Informaci\u00F3n General", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		JLabel lblIdProyecto = new JLabel("Id Proyecto:");
-		lblIdProyecto.setBounds(10, 24, 65, 14);
+		lblIdProyecto.setBounds(10, 24, 77, 14);
 		panelP.add(lblIdProyecto);
 		
 		txtId = new JTextField();
@@ -160,11 +186,11 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(txtId);
 		
 		JLabel lblEmpleadosDisp = new JLabel("Empleados Disponibles:");
-		lblEmpleadosDisp.setBounds(20, 164, 129, 14);
+		lblEmpleadosDisp.setBounds(20, 164, 151, 14);
 		panelP.add(lblEmpleadosDisp);
 		
 		JLabel lblEmpleadosInvolucrados = new JLabel("Empleados involucrados:");
-		lblEmpleadosInvolucrados.setBounds(318, 164, 129, 14);
+		lblEmpleadosInvolucrados.setBounds(318, 164, 172, 14);
 		panelP.add(lblEmpleadosInvolucrados);
 		
 		btnDer = new JButton(">>");
@@ -181,14 +207,14 @@ public class RegistrarProyecto extends JDialog {
 		scrollPane.setBounds(12, 222, 206, 182);
 		panelP.add(scrollPane);
 		
-		listEmpDisp = new JList();
+		listEmpDisp = new JList<Object>();
 		scrollPane.setViewportView(listEmpDisp);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(308, 221, 206, 181);
 		panelP.add(scrollPane_1);
 		
-		listEmpInv = new JList();
+		listEmpInv = new JList<Object>();
 		scrollPane_1.setViewportView(listEmpInv);
 		
 		JLabel label_12 = new JLabel("*");
@@ -201,7 +227,7 @@ public class RegistrarProyecto extends JDialog {
 		label_13.setBounds(306, 164, 11, 14);
 		panelP.add(label_13);
 		
-		JLabel lblNombreDelProyect = new JLabel("Nombre del Proyecto:");
+		JLabel lblNombreDelProyect = new JLabel("Nombre:");
 		lblNombreDelProyect.setBounds(20, 54, 111, 14);
 		panelP.add(lblNombreDelProyect);
 		
@@ -216,7 +242,7 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(label);
 		
 		JLabel lblFechaInicio = new JLabel("Fecha Inicio:");
-		lblFechaInicio.setBounds(20, 90, 81, 14);
+		lblFechaInicio.setBounds(20, 90, 107, 14);
 		panelP.add(lblFechaInicio);
 		
 		JLabel label_1 = new JLabel("*");
@@ -225,7 +251,7 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(label_1);
 		
 		JLabel lblNewLabel = new JLabel("Fecha Final:");
-		lblNewLabel.setBounds(20, 121, 74, 14);
+		lblNewLabel.setBounds(20, 121, 111, 14);
 		panelP.add(lblNewLabel);
 		
 		JLabel label_2 = new JLabel("*");
@@ -256,7 +282,7 @@ public class RegistrarProyecto extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						Date f1;
 						f1 = dateChooserI.getDate();
-						System.out.println(formatoFechaInicio(f1));
+						//System.out.println(formatoFechaInicio(f1));
 					}
 				});
 				
@@ -279,7 +305,7 @@ public class RegistrarProyecto extends JDialog {
 						btnA.setEnabled(true);
 						panelP.setVisible(false);
 						panelC.setVisible(true);
-						btnReg.setEnabled(true);
+						//btnReg.setEnabled(true);
 					}
 				});
 				buttonPane.add(btnEspecial);

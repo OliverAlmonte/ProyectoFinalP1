@@ -36,7 +36,7 @@ public class ListarCliente extends JDialog {
 	private JButton btnModificar;
 	
 	/**
-	 * 
+	 
 	 */
 	
 	

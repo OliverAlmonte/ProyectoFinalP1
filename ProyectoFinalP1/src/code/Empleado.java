@@ -8,32 +8,39 @@ public abstract class Empleado {
 	protected char sexo;
 	protected int edad;
 	protected float salario;
-	private Contrato contratoActual;
-	protected String proyecto;
+	//private Contrato contratoActual;
+    private boolean disp =  true;
 	protected String cargo;
 	protected int proyectosTardios;
-	private int Idcount=0;
+	private static int Idcount=0;
 
 	public Empleado(String id, String nombre, String direccion, char sexo, int edad, float salario, String cargo) {
 		super();
-		this.id = GenerateId();
+		this.id = id;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.sexo = sexo;
 		this.edad = edad;
 		this.salario = salario;
 		this.cargo = cargo;
-		
+		Idcount++;
 	}
 
-
-	
-	public String GenerateId(){
-		 String newId="EMP-"+Idcount;
-		 Idcount++;
-		return newId;
-		 
-		}
+    
+	/*public String getDisponibilidad() {
+		String Disponibilidad="";
+		if (this.contratoActual==null)
+			Disponibilidad="Disponible";
+		else Disponibilidad="Ocupado";
+		return Disponibilidad;
+	}*/
+	public String getDisponibilidad() {
+		String Disponibilidad="";
+		if (this.disp == true)
+			Disponibilidad="Disponible";
+		else Disponibilidad="Ocupado";
+		return Disponibilidad;
+	}
 
 	public String getID() {
 		return id;
@@ -95,7 +102,7 @@ public abstract class Empleado {
 
 
 
-	public Contrato getContratoActual() {
+	/*public Contrato getContratoActual() {
 		return contratoActual;
 	}
 
@@ -103,6 +110,62 @@ public abstract class Empleado {
 
 	public void setContratoActual(Contrato contratoActual) {
 		this.contratoActual = contratoActual;
+	}*/
+
+
+
+
+
+	public static int getIdcount() {
+		return Idcount;
+	}
+
+
+
+
+
+	public static void setIdcount(int idcount) {
+		Idcount = idcount;
+	}
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+	public String getCargo() {
+		return cargo;
+	}
+
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+
+	public int getProyectosTardios() {
+		return proyectosTardios;
+	}
+
+
+	public void setProyectosTardios(int proyectosTardios) {
+		this.proyectosTardios = proyectosTardios;
+	}
+
+
+	public boolean isDisp() {
+		return disp;
+	}
+
+
+	public void setDisp(boolean disp) {
+		this.disp = disp;
 	}
 
 }

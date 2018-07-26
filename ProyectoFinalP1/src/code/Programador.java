@@ -10,7 +10,7 @@ public class Programador extends Empleado {
 		super(id, nombre, direccion, sexo, edad, salario, cargo);
 		this.lenguaje = lenguaje;
 		this.cargo="Programador";
-		this.id=this.GenerateId();
+	
 	}
 
 

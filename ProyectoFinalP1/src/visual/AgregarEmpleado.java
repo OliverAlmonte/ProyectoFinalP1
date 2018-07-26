@@ -75,6 +75,7 @@ public class AgregarEmpleado extends JDialog {
 		contentPanel.add(lblID);
 		
 		txtID = new JTextField();
+		txtID.setText("EMP-"+(Empleado.getIdcount()+1));
 		txtID.setEditable(false);
 		txtID.setBounds(37, 22, 86, 20);
 		contentPanel.add(txtID);
@@ -104,12 +105,17 @@ public class AgregarEmpleado extends JDialog {
 		lblEdad.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblEdad.setBounds(10, 209, 46, 14);
 		contentPanel.add(lblEdad);
+		rdbtnM.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(rdbtnM.isSelected())
+					rdbtnF.setSelected(false);
+			}
+		});
 		
 		
 		rdbtnM.setBounds(208, 206, 39, 23);
 		contentPanel.add(rdbtnM);
-		if(rdbtnM.isSelected())
-			rdbtnF.setSelected(false);
+		
 		
 		
 		rdbtnF.setBounds(248, 206, 33, 23);
@@ -192,7 +198,7 @@ public class AgregarEmpleado extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Empleado emp=null;
-						String id=null;
+						String id=txtID.getText();
 						String nombre = txtNombre.getText();
 						String direccion = txtDireccion.getText();
 						String cargo="";
@@ -216,7 +222,7 @@ public class AgregarEmpleado extends JDialog {
 							emp = new Jefe(id, nombre, direccion, sexo, edad, salario, cargo);
 						
 						Empresa.getInstance().insertEmpleado(emp);
-						
+						clean();
 					}
 				});
 				
@@ -226,9 +232,26 @@ public class AgregarEmpleado extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
+	public void clean(){
+		txtID.setText("EMP-"+(Empleado.getIdcount()+1));
+		txtNombre.setText("");
+		txtDireccion.setText("");
+		txtSalario.setText("");
+		spnEdad.setValue(18);
+		rdbtnM.setSelected(false);
+		rdbtnF.setSelected(false);
+		cbxCargo.setSelectedIndex(0);
+		
+	}
+	
 }

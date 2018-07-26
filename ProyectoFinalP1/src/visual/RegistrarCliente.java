@@ -36,7 +36,7 @@ public class RegistrarCliente extends JDialog {
 	private JTextField textField;
 	private JTextField txtCedula;
 
-	/**
+	/*
 
 	 */
 
