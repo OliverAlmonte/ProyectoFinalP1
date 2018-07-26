@@ -37,7 +37,7 @@ public class RegistrarCliente extends JDialog {
 	private JTextField txtCedula;
 
 	/**
-	 * Launch the application.
+
 	 */
 
 	
