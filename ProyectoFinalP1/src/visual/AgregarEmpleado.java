@@ -2,11 +2,9 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -30,8 +28,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import java.awt.Color;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.MatteBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.UIManager;
 
@@ -66,16 +62,16 @@ public class AgregarEmpleado extends JDialog {
 	 */
 	@SuppressWarnings("unchecked")
 	public AgregarEmpleado() {
-		getContentPane().setBackground(new Color(0, 102, 204));
-		setBackground(new Color(0, 102, 204));
+		getContentPane().setBackground(new Color(51, 153, 255));
+		setBackground(new Color(51, 153, 255));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarEmpleado.class.getResource("/visual/empleado.png")));
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setFont(new Font("Dialog", Font.PLAIN, 14));
 		setForeground(Color.BLACK);
 		setTitle("Registrar Nuevo Empleado");
-		setBounds(100, 100, 507, 440);
+		setBounds(100, 100, 505, 360);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(0, 102, 204));
+		contentPanel.setBackground(new Color(51, 153, 255));
 		contentPanel.setForeground(Color.BLACK);
 		
 		contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -84,10 +80,10 @@ public class AgregarEmpleado extends JDialog {
 		
 		
 		JLabel lblID = new JLabel("ID:");
-		lblID.setBackground(new Color(0, 102, 204));
+		lblID.setBackground(new Color(51, 153, 255));
 		lblID.setForeground(Color.BLACK);
-		lblID.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
-		lblID.setBounds(10, 24, 46, 14);
+		lblID.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblID.setBounds(10, 32, 46, 14);
 		contentPanel.add(lblID);
 		
 		txtID = new JTextField();
@@ -96,49 +92,49 @@ public class AgregarEmpleado extends JDialog {
 		txtID.setBackground(Color.WHITE);
 		txtID.setText("EMP-"+(Empleado.getIdcount()+1));
 		txtID.setEditable(false);
-		txtID.setBounds(37, 22, 86, 20);
+		txtID.setBounds(83, 29, 86, 20);
 		contentPanel.add(txtID);
 		txtID.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBackground(new Color(0, 102, 204));
+		lblNombre.setBackground(new Color(51, 153, 255));
 		lblNombre.setForeground(Color.BLACK);
-		lblNombre.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
-		lblNombre.setBounds(10, 81, 68, 14);
+		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNombre.setBounds(10, 67, 68, 14);
 		contentPanel.add(lblNombre);
 		
 		txtNombre = new JTextField();
 		txtNombre.setFont(new Font("Dialog", Font.BOLD, 13));
 		txtNombre.setBackground(Color.WHITE);
 		txtNombre.setForeground(Color.BLACK);
-		txtNombre.setBounds(75, 79, 408, 20);
+		txtNombre.setBounds(83, 65, 400, 20);
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblDireccion = new JLabel("Direcci\u00F3n:");
-		lblDireccion.setBackground(new Color(0, 102, 204));
+		lblDireccion.setBackground(new Color(51, 153, 255));
 		lblDireccion.setForeground(Color.BLACK);
-		lblDireccion.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
-		lblDireccion.setBounds(10, 125, 68, 14);
+		lblDireccion.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblDireccion.setBounds(10, 111, 68, 14);
 		contentPanel.add(lblDireccion);
 		
 		txtDireccion = new JTextField();
 		txtDireccion.setFont(new Font("Dialog", Font.BOLD, 13));
 		txtDireccion.setBackground(Color.WHITE);
 		txtDireccion.setForeground(Color.BLACK);
-		txtDireccion.setBounds(75, 122, 408, 20);
+		txtDireccion.setBounds(83, 108, 400, 20);
 		contentPanel.add(txtDireccion);
 		txtDireccion.setColumns(10);
 		
 		JLabel lblEdad = new JLabel("Edad:");
-		lblEdad.setBackground(new Color(0, 102, 204));
+		lblEdad.setBackground(new Color(51, 153, 255));
 		lblEdad.setForeground(Color.BLACK);
-		lblEdad.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
-		lblEdad.setBounds(10, 209, 46, 14);
+		lblEdad.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblEdad.setBounds(10, 196, 46, 14);
 		contentPanel.add(lblEdad);
 		rdbtnM.setFont(new Font("Dialog", Font.BOLD, 13));
 		rdbtnM.setForeground(Color.BLACK);
-		rdbtnM.setBackground(new Color(0, 102, 204));
+		rdbtnM.setBackground(new Color(51, 153, 255));
 		rdbtnM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(rdbtnM.isSelected())
@@ -147,46 +143,51 @@ public class AgregarEmpleado extends JDialog {
 		});
 		
 		
-		rdbtnM.setBounds(208, 206, 39, 23);
+		rdbtnM.setBounds(208, 192, 39, 23);
 		contentPanel.add(rdbtnM);
+		rdbtnF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(rdbtnF.isSelected())
+					rdbtnM.setSelected(false);
+			}
+		});
 		rdbtnF.setFont(new Font("Dialog", Font.BOLD, 13));
 		rdbtnF.setForeground(Color.BLACK);
-		rdbtnF.setBackground(new Color(0, 102, 204));
+		rdbtnF.setBackground(new Color(51, 153, 255));
 		
 		
 		
-		rdbtnF.setBounds(248, 206, 33, 23);
+		rdbtnF.setBounds(248, 192, 33, 23);
 		contentPanel.add(rdbtnF);
-		if(rdbtnF.isSelected())
-			rdbtnM.setSelected(false);
+		
 		
 		JLabel lblSexo = new JLabel("Sexo:");
-		lblSexo.setBackground(new Color(0, 102, 204));
+		lblSexo.setBackground(new Color(51, 153, 255));
 		lblSexo.setForeground(Color.BLACK);
-		lblSexo.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
-		lblSexo.setBounds(171, 210, 46, 14);
+		lblSexo.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblSexo.setBounds(171, 196, 46, 14);
 		contentPanel.add(lblSexo);
-		spnEdad.setBackground(Color.WHITE);
+		spnEdad.setBackground(new Color(51, 153, 255));
 		spnEdad.setForeground(Color.BLACK);
 		
 		
 		spnEdad.setModel(new SpinnerNumberModel(new Integer(18), new Integer(18), null, new Integer(1)));
 		spnEdad.setFont(new Font("Dialog", Font.BOLD, 13));
-		spnEdad.setBounds(49, 207, 56, 20);
+		spnEdad.setBounds(50, 193, 56, 20);
 		contentPanel.add(spnEdad);
 		
 		JLabel lblCargo = new JLabel("Cargo:");
-		lblCargo.setBackground(new Color(0, 102, 204));
+		lblCargo.setBackground(new Color(51, 153, 255));
 		lblCargo.setForeground(Color.BLACK);
-		lblCargo.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
-		lblCargo.setBounds(316, 210, 46, 14);
+		lblCargo.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblCargo.setBounds(310, 193, 46, 20);
 		contentPanel.add(lblCargo);
 		panelInfo.setForeground(Color.BLACK);
-		panelInfo.setBackground(new Color(0, 102, 204));
+		panelInfo.setBackground(new Color(51, 153, 255));
 		
 		
 		panelInfo.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n Espec\u00EDfica", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
-		panelInfo.setBounds(0, 253, 493, 67);
+		panelInfo.setBounds(0, 221, 493, 67);
 		panelInfo.setVisible(false);
 		cbxCargo.setBackground(Color.WHITE);
 		cbxCargo.setForeground(Color.BLACK);
@@ -205,16 +206,16 @@ public class AgregarEmpleado extends JDialog {
 		});
 		cbxCargo.setModel(new DefaultComboBoxModel(new String[] {"<Elegir>", "Programador", "Jefe de Proyecto", "Planificador", "Dise\u00F1ador"}));
 		cbxCargo.setFont(new Font("Dialog", Font.BOLD, 12));
-		cbxCargo.setBounds(360, 207, 123, 20);
+		cbxCargo.setBounds(360, 193, 123, 20);
 		contentPanel.add(cbxCargo);
 		contentPanel.add(panelInfo);
 		panelInfo.setLayout(null);
 		
 		JLabel lblLenguaje = new JLabel("Lenguaje:");
-		lblLenguaje.setBackground(new Color(0, 102, 204));
+		lblLenguaje.setBackground(new Color(51, 153, 255));
 		lblLenguaje.setForeground(Color.BLACK);
-		lblLenguaje.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
-		lblLenguaje.setBounds(10, 26, 78, 14);
+		lblLenguaje.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblLenguaje.setBounds(10, 26, 78, 18);
 		panelInfo.add(lblLenguaje);
 		cbxLenguaje.setBackground(Color.WHITE);
 		cbxLenguaje.setForeground(Color.BLACK);
@@ -222,35 +223,34 @@ public class AgregarEmpleado extends JDialog {
 		
 		cbxLenguaje.setFont(new Font("Dialog", Font.BOLD, 12));
 		cbxLenguaje.setModel(new DefaultComboBoxModel(new String[] {"<Elegir>", "C", "C++", "Java", "Python", "Web"}));
-		cbxLenguaje.setBounds(82, 24, 91, 20);
+		cbxLenguaje.setBounds(82, 25, 91, 20);
 		panelInfo.add(cbxLenguaje);
 		
-		JLabel lblTodosLosCampos = new JLabel("Todos los campos son obligatorios.");
-		lblTodosLosCampos.setBackground(new Color(0, 102, 204));
-		lblTodosLosCampos.setForeground(Color.BLACK);
-		lblTodosLosCampos.setBounds(10, 346, 172, 11);
-		contentPanel.add(lblTodosLosCampos);
-		lblTodosLosCampos.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTodosLosCampos.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 9));
-		
-		JLabel lblSalario = new JLabel("Salario:  RD$");
-		lblSalario.setBackground(new Color(0, 102, 204));
+		JLabel lblSalario = new JLabel("Salario:  $");
+		lblSalario.setBackground(new Color(51, 153, 255));
 		lblSalario.setForeground(Color.BLACK);
-		lblSalario.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
-		lblSalario.setBounds(10, 169, 91, 14);
+		lblSalario.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblSalario.setBounds(10, 155, 91, 14);
 		contentPanel.add(lblSalario);
 		
 		txtSalario = new JTextField();
 		txtSalario.setBackground(Color.WHITE);
 		txtSalario.setForeground(Color.BLACK);
-		txtSalario.setBounds(93, 166, 86, 20);
+		txtSalario.setBounds(83, 152, 120, 20);
 		contentPanel.add(txtSalario);
 		txtSalario.setColumns(10);
+		
+		JLabel lblTodosLosCampos = new JLabel("*Todos los campos son obligatorios.");
+		lblTodosLosCampos.setBounds(271, 11, 203, 14);
+		contentPanel.add(lblTodosLosCampos);
+		lblTodosLosCampos.setBackground(new Color(51, 153, 255));
+		lblTodosLosCampos.setForeground(Color.BLACK);
+		lblTodosLosCampos.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
 		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			buttonPane.setBackground(new Color(0, 102, 204));
+			buttonPane.setBackground(new Color(51, 153, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -318,5 +318,4 @@ public class AgregarEmpleado extends JDialog {
 		cbxCargo.setSelectedIndex(0);
 		
 	}
-	
 }
