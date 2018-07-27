@@ -142,7 +142,7 @@ public class RegistrarCliente extends JDialog {
 					okButton.setText("Modificar");
 				}
 				okButton.setBounds(242, 348, 98, 23);
-				contentPanel.add(okButton);
+				//contentPanel.add(okButton);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(cliente == null){
@@ -178,7 +178,7 @@ public class RegistrarCliente extends JDialog {
 			{
 				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.setBounds(363, 348, 92, 23);
-				contentPanel.add(cancelButton);
+				//contentPanel.add(cancelButton);
 				
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
