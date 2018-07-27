@@ -26,6 +26,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Toolkit;
 @SuppressWarnings("rawtypes")
 public class ListarEmpleados extends JDialog {
 
@@ -48,6 +49,7 @@ public class ListarEmpleados extends JDialog {
 	 */
 	@SuppressWarnings({ "unchecked"})
 	public ListarEmpleados() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListarEmpleados.class.getResource("/visual/lista.png")));
 		this.code = "";
 		setResizable(false);
 		setTitle("Listado de Empleados");

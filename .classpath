@@ -6,9 +6,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/SONIA MATEO/Desktop/lib/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/SONIA MATEO/Desktop/lib/jgoodies-common-1.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/SONIA MATEO/Desktop/lib/jgoodies-looks-2.4.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/SONIA MATEO/Desktop/lib/junit-4.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
