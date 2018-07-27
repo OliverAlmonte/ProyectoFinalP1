@@ -213,7 +213,7 @@ public class AgregarEmpleado extends JDialog {
 		JLabel lblLenguaje = new JLabel("Lenguaje:");
 		lblLenguaje.setBackground(new Color(0, 102, 204));
 		lblLenguaje.setForeground(Color.BLACK);
-		lblLenguaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblLenguaje.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
 		lblLenguaje.setBounds(10, 26, 78, 14);
 		panelInfo.add(lblLenguaje);
 		cbxLenguaje.setBackground(Color.WHITE);
