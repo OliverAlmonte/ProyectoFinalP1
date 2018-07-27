@@ -99,6 +99,7 @@ public class RegistrarCliente extends JDialog {
 		panel_1.add(lblid);
 		
 		textId = new JTextField();
+		textId.setEditable(false);
 		textId.setBounds(115, 122, 116, 20);
 		panel_1.add(textId);
 		textId.setColumns(10);
@@ -119,46 +120,7 @@ public class RegistrarCliente extends JDialog {
 		panel_1.add(txtNombre);
 		txtNombre.setColumns(10);
 		{
-			JButton cancelButton = new JButton("Cancelar");
-			cancelButton.setBounds(363, 348, 92, 23);
-			contentPanel.add(cancelButton);
-			cancelButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					dispose();
-				}
-			});
-			cancelButton.setActionCommand("Cancel");
-		}	
-		JButton okButton = new JButton("Registrar");
-		okButton.setBounds(242, 348, 98, 23);
-		contentPanel.add(okButton);
-		okButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(cliente == null){
-					String Id = textId.getText();
-					String cedula = txtCedula.getText();
-					String nombre = txtNombre.getText();
-					String direccion = txtDireccion.getText();
-					Cliente cliente = new Cliente(Id, cedula, nombre, direccion);
-					Empresa.getInstance().insertCliente(cliente);
-					
-					JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
-					clean();
-				}else{
-					cliente.setCedula(txtCedula.getText());
-					cliente.setNombre(txtNombre.getText());
-					cliente.setDireccion(txtDireccion.getText());
-					Empresa.getInstance().ModificarCliente(cliente);
-					JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
-					ListarCliente.loadTable();
-					dispose();
-					
-				}
-			}
-		});
-		
-		okButton.setActionCommand("OK");
-		getRootPane().setDefaultButton(okButton);
+	
 		
 		JTextArea txtrTodosLosCampos = new JTextArea();
 		txtrTodosLosCampos.setFont(new Font("Modern No. 20", Font.PLAIN, 11));
@@ -169,29 +131,84 @@ public class RegistrarCliente extends JDialog {
 		txtrTodosLosCampos.setText("* Todos los campos son obligatorios");
 		
 		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
+				JButton okButton = new JButton("");
 				if(cliente == null){
 					okButton.setText("Registrar");
 				}else{
 					okButton.setText("Modificar");
 				}
-			}}
-		}
+				okButton.setBounds(242, 348, 98, 23);
+				contentPanel.add(okButton);
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(cliente == null){
+							String Id = textId.getText();
+							String cedula = txtCedula.getText();
+							String nombre = txtNombre.getText();
+							String direccion = txtDireccion.getText();
+							Cliente cliente = new Cliente(Id, cedula, nombre, direccion);
+							Empresa.getInstance().insertCliente(cliente);
+							
+							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
+							clean();
+						}else{
+							cliente.setCedula(txtCedula.getText());
+							cliente.setNombre(txtNombre.getText());
+							cliente.setDireccion(txtDireccion.getText());
+							Empresa.getInstance().ModificarCliente(cliente);
+							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
+							ListarCliente.loadTable();
+							dispose();
+							
+						}
+					}
+				});
+				
+				okButton.setActionCommand("OK");
+				buttonPane.add(okButton);
+				getRootPane().setDefaultButton(okButton);
+			}
 			
-private void loadCliente(Cliente cliente){
-	if(cliente != null){
-		txtCedula.setText(cliente.getCedula());
-		txtNombre.setText(cliente.getNombre());
-		txtDireccion.setText(cliente.getDireccion());
+			
+			
+			{
+				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBounds(363, 348, 92, 23);
+				contentPanel.add(cancelButton);
+				
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
+				cancelButton.setActionCommand("Cancel");
+				buttonPane.add(cancelButton);
+			}	
+		}
+		
+	//loadCliente(cliente);
+	}
+		loadCliente(cliente);	
+
+	}
+	private void loadCliente(Cliente cliente){
+		if(cliente != null){
+			txtCedula.setText(cliente.getCedula());
+			txtNombre.setText(cliente.getNombre());
+			txtDireccion.setText(cliente.getDireccion());
+			
+		}
+	}
+	private void clean(){
+		txtCedula.setText("");
+		textId.setText("Clien-"+(Cliente.getCantClien()+1));
+		txtNombre.setText("");
+		txtDireccion.setText("");
 		
 	}
 }
-
-private void clean(){
-	txtCedula.setText("");
-	textId.setText("Clien-"+(Cliente.getCantClien()+1));
-	txtNombre.setText("");
-	txtDireccion.setText("");
 	
-}
-}
