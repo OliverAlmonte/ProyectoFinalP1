@@ -385,7 +385,7 @@ public class RegistrarProyecto extends JDialog {
 							Contrato contract = new Contrato(txtIdContrato.getText(), Contrato.numeroDiasEntreDosFechas(fechaInicial, fecha2), proyect, cliente);
 							Empresa.getInstance().insertContrato(contract);
 							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
-							System.out.println(contract.precioProyecto(proyect));
+							System.out.println(contract.precioProyecto(contract.getProyecto()));
 						}else{
 							cliente = new Cliente("Clien-"+(Cliente.getCantClien()+1), txtCedula.getText(), txtName.getText(), txtDireccion.getText());
 							Empresa.getInstance().insertCliente(cliente);
@@ -397,6 +397,9 @@ public class RegistrarProyecto extends JDialog {
 						}
                          
                          modeloInv.removeAllElements();
+                         for(int i = 0; i < empInvolucrados.size(); i++){
+                        	 Empresa.getInstance().verificarDisponible(empInvolucrados.get(i));//para cambiar la disponibilidad de los empleados
+                         }
                          for(int i = 0; i < empInvolucrados.size(); i++){
                         	 empInvolucrados.remove(i);
                          }
@@ -495,5 +498,8 @@ public class RegistrarProyecto extends JDialog {
 		txtIdContrato.setText("Contrato-"+(Contrato.getCantContratos()+1));
 		panelC.setVisible(false);
 		panelP.setVisible(true);
+		btnReg.setEnabled(false);
+		btnA.setEnabled(false);
+		btnEspecial.setEnabled(true);
 	}
 }

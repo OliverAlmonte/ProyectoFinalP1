@@ -68,6 +68,18 @@ public class Empresa {
 	public void insertContrato(Contrato aux){
 		misContratos.add(aux);
 	}
+	public void verificarDisponible(Empleado emp){
+		boolean find = false;
+		int i=0;
+		while (i<misEmpleados.size()&&!find) {
+			if(misEmpleados.get(i).getId().equalsIgnoreCase(emp.getId())){
+				misEmpleados.get(i).setDisp(false);
+				find = true;
+			}
+			i++;
+		}
+		
+	}
 	public Cliente findClienteById(String id) {
 		Cliente clien =null;
 		boolean find = false;
@@ -112,7 +124,7 @@ public class Empresa {
 		boolean find = false;
 		int i=0;
 		while (i<misEmpleados.size()&&!find) {
-			if(misEmpleados.get(i).getID().equalsIgnoreCase(id)){
+			if(misEmpleados.get(i).getId().equalsIgnoreCase(id)){
 				emp = misEmpleados.get(i);
 				find = true;
 			}
