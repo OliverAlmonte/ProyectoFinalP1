@@ -81,6 +81,19 @@ public class Empresa {
 		}
 		return clien;
 	}
+	public Cliente findClienteByCedula(String cedula) {
+		Cliente clien =null;
+		boolean find = false;
+		int i=0;
+		while (i<misClientes.size()&&!find) {
+			if(misClientes.get(i).getCedula().equalsIgnoreCase(cedula)){
+				clien = misClientes.get(i);
+				find = true;
+			}
+			i++;
+		}
+		return clien;
+	}
 	public Cliente findClienteByName(String name) {
 		Cliente clien =null;
 		boolean find = false;
@@ -176,7 +189,37 @@ public class Empresa {
 		int index = buscarIndexContrato(contract);
 		misContratos.set(index, contract);
 	}
-
+	private int buscarIndexEmpleadp(Empleado emp){
+		int index = -1;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i<misEmpleados.size()){
+			if(misEmpleados.get(i).getId().equalsIgnoreCase(emp.getId())){
+				index = i;
+				encontrado = true;
+			}
+			i++;
+		}
+		
+		return index;
+	}
+	public void ModificarEmpleado(Empleado emp){
+		int index = buscarIndexEmpleadp(emp);
+		misEmpleados.set(index, emp);
+	}
+	public Empleado findEmpleadoByIndex(int index){
+		Empleado emp = null;
+		boolean find = false;
+		int i = 0;
+		while(i < misEmpleados.size()&&!find){
+			if(i == index){
+				emp = misEmpleados.get(i);
+				find = true;
+			}
+			i++;
+		}
+		return emp;
+	}
 	public boolean Prorroga(String codigo, String newFechaFin){
 		boolean doProrroga = false;
 		

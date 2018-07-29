@@ -9,17 +9,31 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JCalendar;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JYearChooser;
+
+import code.Contrato;
+
 import com.toedter.calendar.JDateChooser;
+import javax.swing.JTextField;
 
 public class Prueba extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
     private JDateChooser dateChooser;
     private JDateChooser dateChooser2;
+    private Calendar c1 = Calendar.getInstance();
+	private Calendar c2 = new GregorianCalendar();
+    /**
+     * @wbp.nonvisual location=111,389
+     */
+    private final JCalendar calendar = new JCalendar();
+    private JTextField txtFechaI;
 	/**
 	 * Launch the application.
 	 */
@@ -44,12 +58,21 @@ public class Prueba extends JDialog {
 		contentPanel.setLayout(null);
 		
 		dateChooser = new JDateChooser();
+		dateChooser.setEnabled(false);
+		
 		dateChooser.setBounds(96, 68, 87, 20);
 		contentPanel.add(dateChooser);
 		
 		dateChooser2 = new JDateChooser();
 		dateChooser2.setBounds(229, 68, 87, 20);
 		contentPanel.add(dateChooser2);
+		
+		txtFechaI = new JTextField();
+		txtFechaI.setEnabled(false);
+		txtFechaI.setText(Integer.toString(c2.get(Calendar.DATE))+"/"+Integer.toString(c2.get(Calendar.MONTH)+1)+"/"+Integer.toString(c2.get(Calendar.YEAR)));
+		txtFechaI.setBounds(96, 99, 86, 20);
+		contentPanel.add(txtFechaI);
+		txtFechaI.setColumns(10);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -58,12 +81,20 @@ public class Prueba extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 						Date fecha, fecha2;
+						Date fechaInicial = null;
+						try {
+							fechaInicial = dateFormat.parse(txtFechaI.getText());
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						fecha = dateChooser.getDate();
 						fecha2 = dateChooser2.getDate();
-						System.out.println(formatoFechaInicio(fecha));
-						System.out.println(formatoFechaInicio(fecha2));
-						System.out.println(numeroDiasEntreDosFechas(fecha, fecha2));
+						System.out.println(Contrato.formatoFechaInicio(fechaInicial));
+						System.out.println(Contrato.formatoFechaInicio(fecha2));
+						System.out.println(Contrato.numeroDiasEntreDosFechas(fechaInicial, fecha2));
 					}
 				});
 				okButton.setActionCommand("OK");
