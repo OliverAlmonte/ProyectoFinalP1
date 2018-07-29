@@ -383,9 +383,11 @@ public class RegistrarProyecto extends JDialog {
                         	Proyecto proyect = new Proyecto(txtId.getText(), txtNombre.getText(), empInvolucrados, fechaInicial, fecha2);
 							Empresa.getInstance().insertProyecto(proyect);
 							Contrato contract = new Contrato(txtIdContrato.getText(), Contrato.numeroDiasEntreDosFechas(fechaInicial, fecha2), proyect, cliente);
+							contract.setPrecioP(contract.precioProyecto(contract.getProyecto()));
 							Empresa.getInstance().insertContrato(contract);
 							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
-							System.out.println(contract.precioProyecto(contract.getProyecto()));
+							//System.out.println(contract.precioProyecto(contract.getProyecto()));
+							System.out.println(contract.getPrecioP());
 						}else{
 							cliente = new Cliente("Clien-"+(Cliente.getCantClien()+1), txtCedula.getText(), txtName.getText(), txtDireccion.getText());
 							Empresa.getInstance().insertCliente(cliente);

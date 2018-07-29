@@ -12,6 +12,7 @@ public class Contrato {
 	private boolean Prorroga =  false;
 	private static int cantContratos = 0;
 	private boolean estado = true;
+	private double precioP = 0;
 	//private double precio;
 	public Contrato(String id, int tiempoEntrega, Proyecto proyecto, Cliente cliente) {
 		super();
@@ -100,6 +101,12 @@ public class Contrato {
 	}
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+	public double getPrecioP() {
+		return precioP;
+	}
+	public void setPrecioP(double precioP) {
+		this.precioP = precioP;
 	}
 
 }
