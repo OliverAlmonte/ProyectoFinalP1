@@ -68,12 +68,37 @@ public class Empresa {
 	public void insertContrato(Contrato aux){
 		misContratos.add(aux);
 	}
+	public void verificarDisponible(Empleado emp){
+		boolean find = false;
+		int i=0;
+		while (i<misEmpleados.size()&&!find) {
+			if(misEmpleados.get(i).getId().equalsIgnoreCase(emp.getId())){
+				misEmpleados.get(i).setDisp(false);
+				find = true;
+			}
+			i++;
+		}
+		
+	}
 	public Cliente findClienteById(String id) {
 		Cliente clien =null;
 		boolean find = false;
 		int i=0;
 		while (i<misClientes.size()&&!find) {
 			if(misClientes.get(i).getId().equalsIgnoreCase(id)){
+				clien = misClientes.get(i);
+				find = true;
+			}
+			i++;
+		}
+		return clien;
+	}
+	public Cliente findClienteByCedula(String cedula) {
+		Cliente clien =null;
+		boolean find = false;
+		int i=0;
+		while (i<misClientes.size()&&!find) {
+			if(misClientes.get(i).getCedula().equalsIgnoreCase(cedula)){
 				clien = misClientes.get(i);
 				find = true;
 			}
@@ -99,7 +124,7 @@ public class Empresa {
 		boolean find = false;
 		int i=0;
 		while (i<misEmpleados.size()&&!find) {
-			if(misEmpleados.get(i).getID().equalsIgnoreCase(id)){
+			if(misEmpleados.get(i).getId().equalsIgnoreCase(id)){
 				emp = misEmpleados.get(i);
 				find = true;
 			}
@@ -176,7 +201,37 @@ public class Empresa {
 		int index = buscarIndexContrato(contract);
 		misContratos.set(index, contract);
 	}
-
+	private int buscarIndexEmpleadp(Empleado emp){
+		int index = -1;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i<misEmpleados.size()){
+			if(misEmpleados.get(i).getId().equalsIgnoreCase(emp.getId())){
+				index = i;
+				encontrado = true;
+			}
+			i++;
+		}
+		
+		return index;
+	}
+	public void ModificarEmpleado(Empleado emp){
+		int index = buscarIndexEmpleadp(emp);
+		misEmpleados.set(index, emp);
+	}
+	public Empleado findEmpleadoByIndex(int index){
+		Empleado emp = null;
+		boolean find = false;
+		int i = 0;
+		while(i < misEmpleados.size()&&!find){
+			if(i == index){
+				emp = misEmpleados.get(i);
+				find = true;
+			}
+			i++;
+		}
+		return emp;
+	}
 	public boolean Prorroga(String codigo, String newFechaFin){
 		boolean doProrroga = false;
 		

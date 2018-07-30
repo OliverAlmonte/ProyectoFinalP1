@@ -13,10 +13,15 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import java.awt.Font;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -24,9 +29,15 @@ import javax.swing.DefaultListModel;
 import com.toedter.calendar.JDateChooser;
 
 import code.Cliente;
+import code.Contrato;
+import code.Empleado;
+import code.Empresa;
+import code.Proyecto;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class RegistrarProyecto extends JDialog {
 
@@ -36,7 +47,6 @@ public class RegistrarProyecto extends JDialog {
 	private JButton btnDer;
 	private JButton btnIzq;
 	private JComboBox cbxEncargo;
-	private JDateChooser dateChooserI;
 	private JDateChooser dateChooserF;
 	private static JList<Object> listEmpDisp;
 	private static JList<Object> listEmpInv;
@@ -44,6 +54,8 @@ public class RegistrarProyecto extends JDialog {
 	private static DefaultListModel<Object> modeloInv = new DefaultListModel<>();
 	private static float precioContrato = 0;
 	private String datos;
+	private static ArrayList<Empleado> empInvolucrados = new ArrayList<>();
+	private static ArrayList<Empleado> empDisponibles = new ArrayList<>();
 	
 	private Cliente cliente = null;
 	private JButton btnReg;
@@ -57,6 +69,10 @@ public class RegistrarProyecto extends JDialog {
 	private JTextField txtDireccion;
 	private JButton btnBuscar;
 	private JTextField txtCedula;
+	private JTextField txtFechaI;
+	
+	private Calendar c1 = Calendar.getInstance();
+	private Calendar c2 = new GregorianCalendar();
   //
 	/**
 	 * Launch the application.
@@ -88,86 +104,6 @@ public class RegistrarProyecto extends JDialog {
 		label_15.setBounds(355, 0, 146, 14);
 		contentPanel.add(label_15);
 		
-		panelC = new JPanel();
-		panelC.setVisible(false);
-		panelC.setLayout(null);
-		panelC.setBorder(new TitledBorder(null, "Informaci\u00F3n General", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelC.setBounds(10, 25, 543, 237);
-		contentPanel.add(panelC);
-		
-		JLabel lblIdContrato = new JLabel("Id Contrato:");
-		lblIdContrato.setBounds(10, 24, 77, 14);
-		panelC.add(lblIdContrato);
-		
-		txtIdContrato = new JTextField();
-		txtIdContrato.setEnabled(false);
-		txtIdContrato.setColumns(10);
-		txtIdContrato.setBounds(97, 21, 145, 20);
-		panelC.add(txtIdContrato);
-		
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBorder(new TitledBorder(null, "Informaci\u00F3n para buscar al cliente para el contrato", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 88, 523, 126);
-		panelC.add(panel);
-		
-		txtName = new JTextField();
-		txtName.setEnabled(false);
-		txtName.setColumns(10);
-		txtName.setBounds(73, 58, 354, 20);
-		panel.add(txtName);
-		
-		txtDireccion = new JTextField();
-		txtDireccion.setEnabled(false);
-		txtDireccion.setColumns(10);
-		txtDireccion.setBounds(96, 95, 331, 20);
-		panel.add(txtDireccion);
-		
-		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(24, 61, 55, 14);
-		panel.add(lblNombre);
-		
-		JLabel lblDireccion = new JLabel("Direccion:");
-		lblDireccion.setBounds(24, 98, 67, 14);
-		panel.add(lblDireccion);
-		
-	    btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(437, 21, 76, 23);
-		panel.add(btnBuscar);
-		
-		JLabel label_4 = new JLabel("*");
-		label_4.setForeground(Color.RED);
-		label_4.setBounds(11, 98, 11, 14);
-		panel.add(label_4);
-		
-		txtCedula = new JTextField();
-		txtCedula.setBounds(73, 22, 354, 20);
-		panel.add(txtCedula);
-		txtCedula.setColumns(10);
-		
-		JLabel label_5 = new JLabel("*");
-		label_5.setForeground(Color.RED);
-		label_5.setBounds(11, 61, 11, 14);
-		panel.add(label_5);
-		
-		JLabel lblNewLabel_2 = new JLabel("Cedula:");
-		lblNewLabel_2.setBounds(24, 25, 46, 14);
-		panel.add(lblNewLabel_2);
-		
-		JLabel label_6 = new JLabel("*");
-		label_6.setForeground(Color.RED);
-		label_6.setBounds(11, 25, 11, 14);
-		panel.add(label_6);
-		
-		JLabel lblNewLabel_1 = new JLabel("Dias para Entregar:");
-		lblNewLabel_1.setBounds(361, 24, 124, 14);
-		panelC.add(lblNewLabel_1);
-		
-		txtEntrega = new JTextField();
-		txtEntrega.setBounds(361, 49, 124, 20);
-		panelC.add(txtEntrega);
-		txtEntrega.setColumns(10);
-		
 		panelP = new JPanel();
 		panelP.setBounds(10, 25, 543, 416);
 		contentPanel.add(panelP);
@@ -179,8 +115,8 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(lblIdProyecto);
 		
 		txtId = new JTextField();
-		
 		txtId.setEnabled(false);
+		txtId.setText("Proyecto-"+(Proyecto.getCantProyects()+1));
 		txtId.setColumns(10);
 		txtId.setBounds(97, 21, 145, 20);
 		panelP.add(txtId);
@@ -194,11 +130,44 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(lblEmpleadosInvolucrados);
 		
 		btnDer = new JButton(">>");
+		btnDer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!datos.equalsIgnoreCase("")){
+					Empleado emp = buscarEmpDisp(listEmpDisp.getSelectedIndex());
+					empDisponibles.remove(emp);
+					loadEmpDisp();
+					empInvolucrados.add(emp);
+					modeloInv.addElement(emp.getId()+" "+emp.getClass().getSimpleName());
+					listEmpInv.setModel(modeloInv);
+					btnDer.setEnabled(false);
+					btnIzq.setEnabled(false);
+					
+					datos = "";
+				}
+			}
+		});
 		btnDer.setEnabled(false);
 		btnDer.setBounds(239, 227, 49, 23);
 		panelP.add(btnDer);
 		
 		btnIzq = new JButton("<<");
+		btnIzq.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!datos.equalsIgnoreCase("")){
+					Empleado emp = buscarEmpInv(listEmpInv.getSelectedIndex());
+					empInvolucrados.remove(emp);
+					modeloInv.removeElement(emp.getId()+" "+emp.getClass().getSimpleName());
+					listEmpInv.setModel(modeloInv);
+					empDisponibles.add(emp);
+					loadEmpDisp();
+					btnDer.setEnabled(false);
+					btnIzq.setEnabled(false);
+					
+					datos = "";
+				}
+				
+			}
+		});
 		btnIzq.setEnabled(false);
 		btnIzq.setBounds(236, 263, 51, 23);
 		panelP.add(btnIzq);
@@ -208,6 +177,13 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(scrollPane);
 		
 		listEmpDisp = new JList<Object>();
+		listEmpDisp.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				datos = (String)listEmpDisp.getModel().getElementAt(listEmpDisp.getSelectedIndex());
+				btnDer.setEnabled(true);
+			}
+		});
 		scrollPane.setViewportView(listEmpDisp);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -215,6 +191,13 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(scrollPane_1);
 		
 		listEmpInv = new JList<Object>();
+		listEmpInv.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				datos = (String)listEmpInv.getModel().getElementAt(listEmpInv.getSelectedIndex());
+				btnIzq.setEnabled(true);
+			}
+		});
 		scrollPane_1.setViewportView(listEmpInv);
 		
 		JLabel label_12 = new JLabel("*");
@@ -264,13 +247,114 @@ public class RegistrarProyecto extends JDialog {
 		cbxEncargo.setBounds(10, 188, 124, 20);
 		panelP.add(cbxEncargo);
 		
-		dateChooserI = new JDateChooser();
-		dateChooserI.setBounds(137, 90, 87, 20);
-		panelP.add(dateChooserI);
-		
 		dateChooserF = new JDateChooser();
 		dateChooserF.setBounds(137, 115, 87, 20);
 		panelP.add(dateChooserF);
+	    
+	    txtFechaI = new JTextField();
+	    txtFechaI.setEnabled(false);
+	    txtFechaI.setText(Integer.toString(c2.get(Calendar.DATE))+"/"+Integer.toString(c2.get(Calendar.MONTH)+1)+"/"+Integer.toString(c2.get(Calendar.YEAR)));
+	    txtFechaI.setBounds(137, 87, 86, 20);
+	    panelP.add(txtFechaI);
+	    txtFechaI.setColumns(10);
+	    
+	    panelC = new JPanel();
+	    panelC.setBounds(10, 25, 543, 237);
+	    contentPanel.add(panelC);
+	    panelC.setVisible(false);
+	    panelC.setLayout(null);
+	    panelC.setBorder(new TitledBorder(null, "Informaci\u00F3n General", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+	    
+	    JLabel lblIdContrato = new JLabel("Id Contrato:");
+	    lblIdContrato.setBounds(10, 24, 77, 14);
+	    panelC.add(lblIdContrato);
+	    
+	    txtIdContrato = new JTextField();
+	    txtIdContrato.setEnabled(false);
+	    txtIdContrato.setText("Contrato-"+(Contrato.getCantContratos()+1));
+	    txtIdContrato.setColumns(10);
+	    txtIdContrato.setBounds(97, 21, 145, 20);
+	    panelC.add(txtIdContrato);
+	    
+	    JPanel panel = new JPanel();
+	    panel.setLayout(null);
+	    panel.setBorder(new TitledBorder(null, "Informaci\u00F3n para buscar al cliente para el contrato", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+	    panel.setBounds(10, 88, 523, 126);
+	    panelC.add(panel);
+	    
+	    txtName = new JTextField();
+	    txtName.setEnabled(false);
+	    txtName.setColumns(10);
+	    txtName.setBounds(73, 58, 354, 20);
+	    panel.add(txtName);
+	    
+	    txtDireccion = new JTextField();
+	    txtDireccion.setEnabled(false);
+	    txtDireccion.setColumns(10);
+	    txtDireccion.setBounds(96, 95, 331, 20);
+	    panel.add(txtDireccion);
+	    
+	    JLabel lblNombre = new JLabel("Nombre:");
+	    lblNombre.setBounds(24, 61, 55, 14);
+	    panel.add(lblNombre);
+	    
+	    JLabel lblDireccion = new JLabel("Direccion:");
+	    lblDireccion.setBounds(24, 98, 67, 14);
+	    panel.add(lblDireccion);
+	    
+	    btnBuscar = new JButton("Buscar");
+	    btnBuscar.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		cliente = Empresa.getInstance().findClienteByCedula(txtCedula.getText());
+	    		if(cliente != null){
+	    			txtName.setText(cliente.getNombre());
+	    			txtDireccion.setText(cliente.getDireccion());
+	    			txtName.setEnabled(false);
+	    			txtDireccion.setEnabled(false);
+	
+	    		}else if(cliente == null || cliente.isDisponibilidad() == false){
+	    			txtNombre.setText("");
+					txtDireccion.setText("");
+					txtName.setEnabled(true);
+					txtDireccion.setEnabled(true);
+	    		}
+	    	}
+	    });
+	    btnBuscar.setBounds(437, 21, 76, 23);
+	    panel.add(btnBuscar);
+	    
+	    JLabel label_4 = new JLabel("*");
+	    label_4.setForeground(Color.RED);
+	    label_4.setBounds(11, 98, 11, 14);
+	    panel.add(label_4);
+	    
+	    txtCedula = new JTextField();
+	    txtCedula.setBounds(73, 22, 354, 20);
+	    panel.add(txtCedula);
+	    txtCedula.setColumns(10);
+	    
+	    JLabel label_5 = new JLabel("*");
+	    label_5.setForeground(Color.RED);
+	    label_5.setBounds(11, 61, 11, 14);
+	    panel.add(label_5);
+	    
+	    JLabel lblNewLabel_2 = new JLabel("Cedula:");
+	    lblNewLabel_2.setBounds(24, 25, 46, 14);
+	    panel.add(lblNewLabel_2);
+	    
+	    JLabel label_6 = new JLabel("*");
+	    label_6.setForeground(Color.RED);
+	    label_6.setBounds(11, 25, 11, 14);
+	    panel.add(label_6);
+	    
+	    JLabel lblNewLabel_1 = new JLabel("Dias para Entregar:");
+	    lblNewLabel_1.setBounds(361, 24, 124, 14);
+	    panelC.add(lblNewLabel_1);
+	    
+	    txtEntrega = new JTextField();
+	    txtEntrega.setBounds(361, 49, 124, 20);
+	    panelC.add(txtEntrega);
+	    txtEntrega.setColumns(10);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -280,9 +364,49 @@ public class RegistrarProyecto extends JDialog {
 				btnReg.setEnabled(false);
 				btnReg.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Date f1;
-						f1 = dateChooserI.getDate();
-						//System.out.println(formatoFechaInicio(f1));
+						
+						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+						Date  fecha2;
+						Date fechaInicial = null;
+						try {
+							fechaInicial = dateFormat.parse(txtFechaI.getText());
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						fecha2 = dateChooserF.getDate();
+						//System.out.println(Contrato.formatoFechaInicio(fechaInicial));
+						//System.out.println(Contrato.formatoFechaInicio(fecha2));
+						//System.out.println(Contrato.numeroDiasEntreDosFechas(fechaInicial, fecha2));
+                         if(cliente != null){
+                        	Proyecto proyect = new Proyecto(txtId.getText(), txtNombre.getText(), empInvolucrados, fechaInicial, fecha2);
+							Empresa.getInstance().insertProyecto(proyect);
+							Contrato contract = new Contrato(txtIdContrato.getText(), Contrato.numeroDiasEntreDosFechas(fechaInicial, fecha2), proyect, cliente);
+							contract.setPrecioP(contract.precioProyecto(contract.getProyecto()));
+							Empresa.getInstance().insertContrato(contract);
+							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
+							//System.out.println(contract.precioProyecto(contract.getProyecto()));
+							System.out.println(contract.getPrecioP());
+						}else{
+							cliente = new Cliente("Clien-"+(Cliente.getCantClien()+1), txtCedula.getText(), txtName.getText(), txtDireccion.getText());
+							Empresa.getInstance().insertCliente(cliente);
+							Proyecto proyect = new Proyecto(txtId.getText(), txtNombre.getText(), empInvolucrados, fechaInicial, fecha2);
+							Empresa.getInstance().insertProyecto(proyect);
+							Contrato contract = new Contrato(txtIdContrato.getText(), Contrato.numeroDiasEntreDosFechas(fechaInicial, fecha2), proyect, cliente);
+							Empresa.getInstance().insertContrato(contract);
+							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
+						}
+                         
+                         modeloInv.removeAllElements();
+                         for(int i = 0; i < empInvolucrados.size(); i++){
+                        	 Empresa.getInstance().verificarDisponible(empInvolucrados.get(i));//para cambiar la disponibilidad de los empleados
+                         }
+                         for(int i = 0; i < empInvolucrados.size(); i++){
+                        	 empInvolucrados.remove(i);
+                         }
+                         clean();
+                         cliente = null;
 					}
 				});
 				
@@ -293,6 +417,7 @@ public class RegistrarProyecto extends JDialog {
 						btnEspecial.setEnabled(true);
 						panelC.setVisible(false);
 						panelP.setVisible(true);
+						btnReg.setEnabled(false);
 					}
 				});
 				btnA.setEnabled(false);
@@ -305,6 +430,7 @@ public class RegistrarProyecto extends JDialog {
 						btnA.setEnabled(true);
 						panelP.setVisible(false);
 						panelC.setVisible(true);
+						btnReg.setEnabled(true);
 						//btnReg.setEnabled(true);
 					}
 				});
@@ -324,10 +450,58 @@ public class RegistrarProyecto extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	  loadEmpDisp();
 	}
-	public static String formatoFechaInicio(Date inicio){
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		String fechaFormateada = sdf.format(inicio);
-		return fechaFormateada;
+	public static void agregarEmpDisp(Empleado emp){
+		empDisponibles.add(emp);
+	}
+	public static void loadEmpDisp(){
+		modeloDisp = new DefaultListModel<>();
+		for(Empleado aux : empDisponibles){
+			if(aux.isDisp() == true){
+			modeloDisp.addElement(aux.getId()+" "+aux.getClass().getSimpleName());
+			}
+		}
+		listEmpDisp.setModel(modeloDisp);
+	}
+	private Empleado buscarEmpDisp(int index){
+		Empleado emp = null;
+		boolean find = false;
+		int i = 0;
+		while(i<empDisponibles.size()&&!find){
+			if(i == index){
+				emp = empDisponibles.get(i);
+				find = true;
+			}
+			i++;
+		}
+		return emp;
+	}
+	private Empleado buscarEmpInv(int index){
+		Empleado emp = null;
+		boolean find = false;
+		int i = 0;
+		while(i<empInvolucrados.size()&&!find){
+			if(i == index){
+				emp = empInvolucrados.get(i);
+				find = true;
+			}
+			i++;
+		}
+		return emp;
+	}
+	private void clean(){
+		txtId.setText("Proyecto-"+(Proyecto.getCantProyects()+1));
+		txtNombre.setText("");
+		txtCedula.setText("");
+		txtDireccion.setText("");
+		txtName.setText("");
+		dateChooserF.setDate(null);
+		txtIdContrato.setText("Contrato-"+(Contrato.getCantContratos()+1));
+		panelC.setVisible(false);
+		panelP.setVisible(true);
+		btnReg.setEnabled(false);
+		btnA.setEnabled(false);
+		btnEspecial.setEnabled(true);
 	}
 }

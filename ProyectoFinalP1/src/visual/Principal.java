@@ -117,10 +117,22 @@ public class Principal extends JFrame {
 		JMenuItem mntmProyecto_1 = new JMenuItem("Proyecto");
 		mntmProyecto_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				ListarProyecto pro = new ListarProyecto();
+				pro.setModal(true);
+				pro.setVisible(true);
 			}
 		});
 		mnListar.add(mntmProyecto_1);
+		
+		JMenuItem mntmContrato = new JMenuItem("Contrato");
+		mntmContrato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListarContrato contract = new ListarContrato();
+				contract.setModal(true);
+				contract.setVisible(true);
+			}
+		});
+		mnListar.add(mntmContrato);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

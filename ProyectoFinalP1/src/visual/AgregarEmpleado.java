@@ -284,6 +284,7 @@ public class AgregarEmpleado extends JDialog {
 							emp = new Jefe(id, nombre, direccion, sexo, edad, salario, cargo);
 						
 						Empresa.getInstance().insertEmpleado(emp);
+						RegistrarProyecto.agregarEmpDisp(emp);
 						clean();
 					}
 				});
