@@ -46,7 +46,10 @@ public class Principal extends JFrame {
 		dim = super.getToolkit().getScreenSize();
 		super.setSize(dim.width, (dim.height-50));
 		setLocationRelativeTo(null);
-		
+		setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		setUndecorated(false
+				);
+		setVisible(true);
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
