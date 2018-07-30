@@ -33,7 +33,7 @@ import javax.swing.border.EtchedBorder;
 @SuppressWarnings("rawtypes")
 public class ListarEmpleados extends JDialog {
 
-	
+	//comentario
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private static JTable table;
