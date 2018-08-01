@@ -23,6 +23,8 @@ import javax.swing.ListSelectionModel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -35,6 +37,8 @@ public class ListarContrato extends JDialog {
 	private String identificador;
 	private JButton btnProrrogar;
 	private JButton btnTerminar;
+	private Calendar c1 = Calendar.getInstance();
+	private Calendar c2 = new GregorianCalendar();
 
 	/**
 	 * Launch the application.
@@ -117,20 +121,27 @@ public class ListarContrato extends JDialog {
 					
 					int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea dar por Terminado el Contrato: " + contract.getId(),"Información",JOptionPane.WARNING_MESSAGE);
 					if(option == JOptionPane.OK_OPTION){
-					contract.setEstado(false);
-					contract.getCliente().setDisponibilidad(true);
-					System.out.println(contract.getMisEmps().get(0).isDisp()+" creo que ya esta resulto");
-					System.out.println(contract.getMisEmps().size()+" creo que ya esta resulto");
-					for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
+					 contract.setEstado(false);
+					 contract.getCliente().setDisponibilidad(true);
+					 //System.out.println(contract.getMisEmps().get(0).isDisp()+" creo que ya esta resulto");
+					 //System.out.println(contract.getMisEmps().size()+" creo que ya esta resulto");
+					 for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
 						contract.getMisEmps().get(i).setDisp(true);
 						Empresa.getInstance().ModificarEmpleado(contract.getMisEmps().get(i));
 						RegistrarProyecto.agregarEmpDisp(contract.getMisEmps().get(i));
 						System.out.println("listo");
+					 }
+					 Empresa.getInstance().ModificarContrato(contract);
+					 Empresa.getInstance().ModificarCliente(contract.getCliente());
+					 //aqui va trycatch
+					 if(contract.isProrroga() == true){
+						System.out.println("esta prorrogado");
+					 }else if(contract.isProrroga() == false){
+						System.out.println("no esta prorrogado");
+					 }
+					 loadTableContract();
 					}
-					Empresa.getInstance().ModificarContrato(contract);
-					Empresa.getInstance().ModificarCliente(contract.getCliente());
-					loadTableContract();
-					}
+					
 					}
 					btnProrrogar.setEnabled(false);
 					btnTerminar.setEnabled(false);

@@ -182,7 +182,11 @@ public class ListarEmpleados extends JDialog {
 				fila[0] = aux.getId();
 				fila[1] = aux.getNombre();
 				fila[2] = aux.getDisponibilidad();
-				fila[3] = aux.getEvaluacion();
+				if(aux.getProyectosTardios() == -1){
+					fila[3] = "No Evaluado";
+				}else if(aux.getProyectosTardios() >= 0){
+					fila[3] = aux.getEvaluacion();
+				}
 				if(aux instanceof Jefe)
 					fila[4] = "Jefe";
 				if(aux instanceof Programador)
@@ -202,7 +206,11 @@ public class ListarEmpleados extends JDialog {
  				fila[0] = aux.getId();
 				fila[1] = aux.getNombre();
 				fila[2] = aux.getDisponibilidad();
-				fila[3] = aux.getEvaluacion();
+				if(aux.getProyectosTardios() == -1){
+					fila[3] = "No Evaluado";
+				}else if(aux.getProyectosTardios() >= 0){
+					fila[3] = aux.getEvaluacion();
+				}
 				fila[4] = "Jefe";
  				tableModel.addRow(fila);
  			 }
@@ -213,12 +221,16 @@ public class ListarEmpleados extends JDialog {
 
          case 2:
         	 for (Empleado aux : Empresa.getInstance().getMisEmpleados()) {
-      			if(aux instanceof Planificador){
+      			if(aux instanceof Programador){
       				fila[0] = aux.getId();
      				fila[1] = aux.getNombre();
      				fila[2] = aux.getDisponibilidad();
-     				fila[3] = aux.getEvaluacion();
-     				fila[4] = "Planificador";
+     				if(aux.getProyectosTardios() == -1){
+    					fila[3] = "No Evaluado";
+    				}else if(aux.getProyectosTardios() >= 0){
+    					fila[3] = aux.getEvaluacion();
+    				}
+     				fila[4] = "Programador";
       				tableModel.addRow(fila);
       			}
       		}
@@ -231,8 +243,30 @@ public class ListarEmpleados extends JDialog {
     				fila[0] = aux.getId();
    				fila[1] = aux.getNombre();
    				fila[2] = aux.getDisponibilidad();
-   				fila[3] = aux.getEvaluacion();
+   				if(aux.getProyectosTardios() == -1){
+					fila[3] = "No Evaluado";
+				}else if(aux.getProyectosTardios() >= 0){
+					fila[3] = aux.getEvaluacion();
+				}
    				fila[4] = "Disenador";
+    				tableModel.addRow(fila);
+    			 }
+    			}
+ 			
+ 			break;
+ 			
+         case 4:
+        	 for (Empleado aux : Empresa.getInstance().getMisEmpleados()) {
+    			  if(aux instanceof Planificador){
+    				fila[0] = aux.getId();
+   				fila[1] = aux.getNombre();
+   				fila[2] = aux.getDisponibilidad();
+   				if(aux.getProyectosTardios() == -1){
+					fila[3] = "No Evaluado";
+				}else if(aux.getProyectosTardios() >= 0){
+					fila[3] = aux.getEvaluacion();
+				}
+   				fila[4] = "Planificador";
     				tableModel.addRow(fila);
     			 }
     			}

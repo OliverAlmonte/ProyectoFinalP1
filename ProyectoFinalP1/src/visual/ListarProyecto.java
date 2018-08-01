@@ -53,7 +53,7 @@ public class ListarProyecto extends JDialog {
 				{
 					table = new JTable();
 					scrollPane.setColumnHeaderView(table);
-					String[] columnNames = {"Identificador","Nombre","FechaInicial", "FechaEntrega"};
+					String[] columnNames = {"Identificador","Nombre","FechaInicial", "FechaEntrega","Tipo de proyeco"};
 					model = new DefaultTableModel();
 					model.setColumnIdentifiers(columnNames);
 					table.setModel(model);
@@ -86,6 +86,7 @@ public class ListarProyecto extends JDialog {
 			fila[1] = aux.getNombre();
 			fila[2] = Contrato.formatoFechaInicio(aux.getFechaInicial());
 			fila[3] = Contrato.formatoFechaInicio(aux.getFechaFinal());
+			fila[4] = aux.getTipoProyect();
 			model.addRow(fila);
 		}
 	}

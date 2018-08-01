@@ -4,15 +4,16 @@ public abstract class Empleado {
 	protected String id;
 	protected String nombre;
 	protected String direccion;
-	protected String evaluacion;
+	private String evaluacion;
 	protected char sexo;
 	protected int edad;
 	protected float salario;
 	//private Contrato contratoActual;
     private boolean disp =  true;
 	protected String cargo;
-	private int proyectosTardios;
+	private int proyectosTardios = -1;
 	private static int Idcount=0;
+	
 
 	public Empleado(String id, String nombre, String direccion, char sexo, int edad, float salario, String cargo) {
 		super();
@@ -25,7 +26,7 @@ public abstract class Empleado {
 		this.cargo = cargo;
 		Idcount++;
 	}
-
+    
     
 	/*public String getDisponibilidad() {
 		String Disponibilidad="";
@@ -41,7 +42,28 @@ public abstract class Empleado {
 		else Disponibilidad="Ocupado";
 		return Disponibilidad;
 	}
-
+	
+  public void revisarEvaluacion(boolean valoracion){
+	  if(this.proyectosTardios >= 0 && valoracion == false){
+		  this.proyectosTardios++;
+		  
+	  }
+	  if(this.proyectosTardios == -1 && valoracion == true){//true significa si consigui entregar el contrato sin retraso
+		  this.proyectosTardios = 0;
+		  this.evaluacion = "Destacado";
+	  }else if(this.proyectosTardios == -1 && valoracion == false){//false si lo entrego con dias de retraso
+		  this.proyectosTardios = 1;
+		  this.evaluacion = "Cumplidor";
+		  
+	  }
+	  if(this.proyectosTardios >= 1 && this.proyectosTardios <=5){
+		  this.evaluacion = "Cumplidor";
+	  }
+	  if(this.proyectosTardios > 5){
+		  this.evaluacion = "Incumplidor";
+	  }
+	  
+  }
 	
 
 	public String getNombre() {
@@ -159,5 +181,8 @@ public abstract class Empleado {
 	public void setDisp(boolean disp) {
 		this.disp = disp;
 	}
+
+
+	
 
 }

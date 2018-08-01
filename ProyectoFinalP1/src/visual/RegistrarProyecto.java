@@ -47,6 +47,7 @@ public class RegistrarProyecto extends JDialog {
 	private JButton btnDer;
 	private JButton btnIzq;
 	private JComboBox cbxEncargo;
+	private JComboBox cbxTipoProyect;
 	private JDateChooser dateChooserF;
 	private static JList<Object> listEmpDisp;
 	private static JList<Object> listEmpInv;
@@ -228,11 +229,6 @@ public class RegistrarProyecto extends JDialog {
 		lblFechaInicio.setBounds(20, 90, 107, 14);
 		panelP.add(lblFechaInicio);
 		
-		JLabel label_1 = new JLabel("*");
-		label_1.setForeground(Color.RED);
-		label_1.setBounds(10, 90, 11, 14);
-		panelP.add(label_1);
-		
 		JLabel lblNewLabel = new JLabel("Fecha Final:");
 		lblNewLabel.setBounds(20, 121, 111, 14);
 		panelP.add(lblNewLabel);
@@ -243,7 +239,7 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(label_2);
 		
 		cbxEncargo = new JComboBox();
-		cbxEncargo.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Programador", "Dise\u00F1ador", "Planificador"}));
+		cbxEncargo.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Jefe de Proyecto", "Programador", "Dise\u00F1ador", "Planificador"}));
 		cbxEncargo.setBounds(10, 188, 124, 20);
 		panelP.add(cbxEncargo);
 		
@@ -257,6 +253,20 @@ public class RegistrarProyecto extends JDialog {
 	    txtFechaI.setBounds(137, 87, 86, 20);
 	    panelP.add(txtFechaI);
 	    txtFechaI.setColumns(10);
+	    
+	    cbxTipoProyect = new JComboBox();
+	    cbxTipoProyect.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Video juego", "Escritorio", "Pagina web", "App para movil"}));
+	    cbxTipoProyect.setBounds(318, 118, 141, 20);
+	    panelP.add(cbxTipoProyect);
+	    
+	    JLabel lblTipoDeProyecto = new JLabel("Tipo de Proyecto:");
+	    lblTipoDeProyecto.setBounds(375, 90, 115, 14);
+	    panelP.add(lblTipoDeProyecto);
+	    
+	    JLabel label_3 = new JLabel("*");
+	    label_3.setForeground(Color.RED);
+	    label_3.setBounds(368, 90, 11, 14);
+	    panelP.add(label_3);
 	    
 	    panelC = new JPanel();
 	    panelC.setBounds(10, 25, 543, 237);
@@ -384,6 +394,8 @@ public class RegistrarProyecto extends JDialog {
                         	 cliente.setDisponibilidad(false);
                         	 Empresa.getInstance().ModificarCliente(cliente);
                         	 Proyecto proyect = new Proyecto(txtId.getText(), txtNombre.getText(), fechaInicial, fecha2);
+                        	 String tipo = cbxTipoProyect.getSelectedItem().toString();
+                        	 proyect.setTipoProyect(tipo);
 							Empresa.getInstance().insertProyecto(proyect);
 							Contrato contract = new Contrato(txtIdContrato.getText(), proyect, cliente);
 							for(int i = 0; i < empInvolucrados.size(); i++){//agrego los emps al contrato
@@ -396,6 +408,8 @@ public class RegistrarProyecto extends JDialog {
 							System.out.println(contract.getPrecioP());
 						}else{
 							 Proyecto proyect = new Proyecto(txtId.getText(), txtNombre.getText(), fechaInicial, fecha2);
+							 String tipo = cbxTipoProyect.getSelectedItem().toString();
+                        	 proyect.setTipoProyect(tipo);
 							Empresa.getInstance().insertProyecto(proyect);
 							cliente = new Cliente("Clien-"+(Cliente.getCantClien()+1), txtCedula.getText(), txtName.getText(), txtDireccion.getText());
 							cliente.setDisponibilidad(false);

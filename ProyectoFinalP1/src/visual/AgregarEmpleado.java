@@ -263,7 +263,7 @@ public class AgregarEmpleado extends JDialog {
 						String id=txtID.getText();
 						String nombre = txtNombre.getText();
 						String direccion = txtDireccion.getText();
-						String cargo="";
+						String cargo=cbxCargo.getSelectedItem().toString();
 						String lenguaje=(String) cbxLenguaje.getSelectedItem();
 						int edad = (int) spnEdad.getValue();
 						float salario = Float.valueOf(txtSalario.getText());

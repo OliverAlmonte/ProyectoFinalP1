@@ -53,6 +53,35 @@ public class Prove {
 		  for(int i = 0; i < losEmps.size(); i++){
 			  System.out.println(i);
 		  }*/
+	
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		 Date fechaInicial = null;
+		try {
+			fechaInicial = dateFormat.parse("31/08/2018");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 Date fechaFinal = null;
+		try {
+			fechaFinal = dateFormat.parse("31/08/2018");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Proyecto pro = new Proyecto("", "", fechaInicial, fechaFinal);
+		  
+	      System.out.println(Contrato.numeroDiasEntreDosFechas(pro.getFechaInicial(), pro.getFechaFinal()));
+	      
+	      Empleado emp = new Jefe("", "", "", 'm', 18, 1200, "jefe");
+	      
+	      if(emp.getProyectosTardios() == -1){
+	    	  System.out.println("Aun Sin evaluar");
+	      }
+	      if(emp.getProyectosTardios() >= 0){
+	    	  System.out.println(emp.getEvaluacion());
+	      }
+	      System.out.println("Proyectos tardios: "+emp.getProyectosTardios());
 	}
 
 }
