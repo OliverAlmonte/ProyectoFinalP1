@@ -11,7 +11,7 @@ public abstract class Empleado {
 	//private Contrato contratoActual;
     private boolean disp =  true;
 	protected String cargo;
-	protected int proyectosTardios;
+	private int proyectosTardios;
 	private static int Idcount=0;
 
 	public Empleado(String id, String nombre, String direccion, char sexo, int edad, float salario, String cargo) {

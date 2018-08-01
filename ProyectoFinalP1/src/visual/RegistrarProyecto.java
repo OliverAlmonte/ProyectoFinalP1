@@ -306,14 +306,17 @@ public class RegistrarProyecto extends JDialog {
 	    btnBuscar.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		cliente = Empresa.getInstance().findClienteByCedula(txtCedula.getText());
-	    		if(cliente != null){
+	    		if(cliente != null && cliente.isDisponibilidad() == true){
 	    			txtName.setText(cliente.getNombre());
 	    			txtDireccion.setText(cliente.getDireccion());
 	    			txtName.setEnabled(false);
 	    			txtDireccion.setEnabled(false);
 	
-	    		}else if(cliente == null || cliente.isDisponibilidad() == false){
-	    			txtNombre.setText("");
+	    		}else if(cliente != null && cliente.isDisponibilidad() == false){
+	    			JOptionPane.showMessageDialog(null, "Este cliente ya esta bajo contrato", "Información", JOptionPane.INFORMATION_MESSAGE);
+	    		} 
+	    		if(cliente == null){
+	    			txtName.setText("");
 					txtDireccion.setText("");
 					txtName.setEnabled(true);
 					txtDireccion.setEnabled(true);
@@ -380,6 +383,8 @@ public class RegistrarProyecto extends JDialog {
 						//System.out.println(Contrato.formatoFechaInicio(fecha2));
 						//System.out.println(Contrato.numeroDiasEntreDosFechas(fechaInicial, fecha2));
                          if(cliente != null){
+                        	 cliente.setDisponibilidad(false);
+                        	 Empresa.getInstance().ModificarCliente(cliente);
                         	Proyecto proyect = new Proyecto(txtId.getText(), txtNombre.getText(), empInvolucrados, fechaInicial, fecha2);
 							Empresa.getInstance().insertProyecto(proyect);
 							Contrato contract = new Contrato(txtIdContrato.getText(), Contrato.numeroDiasEntreDosFechas(fechaInicial, fecha2), proyect, cliente);
@@ -389,18 +394,22 @@ public class RegistrarProyecto extends JDialog {
 							//System.out.println(contract.precioProyecto(contract.getProyecto()));
 							System.out.println(contract.getPrecioP());
 						}else{
-							cliente = new Cliente("Clien-"+(Cliente.getCantClien()+1), txtCedula.getText(), txtName.getText(), txtDireccion.getText());
-							Empresa.getInstance().insertCliente(cliente);
 							Proyecto proyect = new Proyecto(txtId.getText(), txtNombre.getText(), empInvolucrados, fechaInicial, fecha2);
 							Empresa.getInstance().insertProyecto(proyect);
+							cliente = new Cliente("Clien-"+(Cliente.getCantClien()+1), txtCedula.getText(), txtName.getText(), txtDireccion.getText());
+							cliente.setDisponibilidad(false);
+							Empresa.getInstance().insertCliente(cliente);
 							Contrato contract = new Contrato(txtIdContrato.getText(), Contrato.numeroDiasEntreDosFechas(fechaInicial, fecha2), proyect, cliente);
+							contract.setPrecioP(contract.precioProyecto(contract.getProyecto()));
 							Empresa.getInstance().insertContrato(contract);
 							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 						}
                          
                          modeloInv.removeAllElements();
                          for(int i = 0; i < empInvolucrados.size(); i++){
-                        	 Empresa.getInstance().verificarDisponible(empInvolucrados.get(i));//para cambiar la disponibilidad de los empleados
+                        	 //Empresa.getInstance().verificarDisponible(empInvolucrados.get(i));//para cambiar la disponibilidad de los empleados
+                        	 empInvolucrados.get(i).setDisp(false);
+                        	 Empresa.getInstance().ModificarEmpleado(empInvolucrados.get(i));
                          }
                          for(int i = 0; i < empInvolucrados.size(); i++){
                         	 empInvolucrados.remove(i);

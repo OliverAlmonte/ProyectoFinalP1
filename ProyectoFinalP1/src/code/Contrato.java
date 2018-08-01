@@ -13,6 +13,7 @@ public class Contrato {
 	private static int cantContratos = 0;
 	private boolean estado = true;
 	private double precioP = 0;
+	private Date fechaProrroga;
 	//private double precio;
 	public Contrato(String id, int tiempoEntrega, Proyecto proyecto, Cliente cliente) {
 		super();
@@ -21,6 +22,13 @@ public class Contrato {
 		this.proyecto = proyecto;
 		this.cliente = cliente;
 		cantContratos++;
+	}
+	public String getEstadoActual() {
+		String Disponibilidad="";
+		if (this.estado == true)
+			Disponibilidad="Abierto";
+		else Disponibilidad="Terminado";
+		return Disponibilidad;
 	}
 	public static String formatoFechaInicio(Date inicio){
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -107,6 +115,12 @@ public class Contrato {
 	}
 	public void setPrecioP(double precioP) {
 		this.precioP = precioP;
+	}
+	public Date getFechaProrroga() {
+		return fechaProrroga;
+	}
+	public void setFechaProrroga(Date fechaProrroga) {
+		this.fechaProrroga = fechaProrroga;
 	}
 
 }

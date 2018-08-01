@@ -77,7 +77,7 @@ public class ListarCliente extends JDialog {
 					});
 					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 					scrollPane.setColumnHeaderView(table);
-					String[] columnNames = {"Identificador","Cedula","Nombre","Direccion",};
+					String[] columnNames = {"Identificador","Cedula","Nombre","Direccion","Estado"};
 					model = new DefaultTableModel();
 					model.setColumnIdentifiers(columnNames);
 					table.setModel(model);
@@ -148,6 +148,7 @@ public class ListarCliente extends JDialog {
 			fila[1] = aux.getCedula();
 			fila[2] = aux.getNombre();
 			fila[3] = aux.getDireccion();
+			fila[4] = aux.getDisponibilidad();
 			
 			model.addRow(fila);
 			

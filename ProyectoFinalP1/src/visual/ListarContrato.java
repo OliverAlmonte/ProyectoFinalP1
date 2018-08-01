@@ -73,7 +73,7 @@ public class ListarContrato extends JDialog {
 			});
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			scrollPane.setColumnHeaderView(table);
-			String[] columnNames = {"Identificador","Proyecto","Cliente","Precio"};
+			String[] columnNames = {"Identificador","Proyecto","Cliente","Precio","Estado"};
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(columnNames);
 			table.setModel(model);
@@ -124,6 +124,7 @@ public class ListarContrato extends JDialog {
 			fila[1] = aux.getProyecto().getId();
 			fila[2] = aux.getCliente().getId();
 			fila[3] = aux.getPrecioP();
+			fila[4] = aux.getEstadoActual();
 			model.addRow(fila);
 		}
 	}

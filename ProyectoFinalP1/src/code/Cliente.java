@@ -18,10 +18,15 @@ public class Cliente {
 		this.Cedula = cedula;
 		this.Nombre = nombre;
 		this.Direccion = direccion;
-		this.disponibilidad = disponibilidad;
 		cantClien++;
 	}
-
+	public String getDisponibilidad() {
+		String Disponibilidad="";
+		if (this.disponibilidad == true)
+			Disponibilidad="Disponible";
+		else Disponibilidad="Ocupado";
+		return Disponibilidad;
+	}
 	public String getId() {
 		return Id;
 	}
