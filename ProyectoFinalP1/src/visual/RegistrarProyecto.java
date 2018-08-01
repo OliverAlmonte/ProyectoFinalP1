@@ -410,13 +410,17 @@ public class RegistrarProyecto extends JDialog {
 						}
                          
                          modeloInv.removeAllElements();
+                         listEmpInv.setModel(modeloInv);
                          for(int i = 0; i < empInvolucrados.size(); i++){
                         	 empInvolucrados.get(i).setDisp(false);
                         	 Empresa.getInstance().ModificarEmpleado(empInvolucrados.get(i));
                          }
-                         for(int i = 0; i < empInvolucrados.size(); i++){
-                        	 empInvolucrados.remove(i);
-                         }
+                         /*for(int i = 0; i < empInvolucrados.size(); i++){
+                        	 //empInvolucrados.remove(i);
+                        	 empInvolucrados.remove(empInvolucrados.get(i));
+                         }*/
+                         empInvolucrados.clear();
+                         System.out.println(empInvolucrados.size()+ " deberia ser cero");
                          clean();
                          cliente = null;
 					}
@@ -470,9 +474,9 @@ public class RegistrarProyecto extends JDialog {
 	public static void loadEmpDisp(){
 		modeloDisp = new DefaultListModel<>();
 		for(Empleado aux : empDisponibles){
-			if(aux.isDisp() == true){
+			//if(aux.isDisp() == true){
 			modeloDisp.addElement(aux.getId()+" "+aux.getClass().getSimpleName());
-			}
+			//}
 		}
 		listEmpDisp.setModel(modeloDisp);
 	}

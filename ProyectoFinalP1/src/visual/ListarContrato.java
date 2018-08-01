@@ -114,6 +114,7 @@ public class ListarContrato extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					if(!identificador.equalsIgnoreCase("")){
 					Contrato contract = Empresa.getInstance().findContratoById(identificador);
+					
 					int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea dar por Terminado el Contrato: " + contract.getId(),"Información",JOptionPane.WARNING_MESSAGE);
 					if(option == JOptionPane.OK_OPTION){
 					contract.setEstado(false);
@@ -128,12 +129,12 @@ public class ListarContrato extends JDialog {
 					}
 					Empresa.getInstance().ModificarContrato(contract);
 					Empresa.getInstance().ModificarCliente(contract.getCliente());
-					
-					}
 					loadTableContract();
+					}
+					}
 					btnProrrogar.setEnabled(false);
 					btnTerminar.setEnabled(false);
-					}
+					
 				}
 			});
 			btnTerminar.setEnabled(false);
