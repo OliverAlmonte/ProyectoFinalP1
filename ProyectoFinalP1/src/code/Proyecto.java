@@ -10,19 +10,18 @@ public class Proyecto {
 	//private boolean status;
 	private Date fechaInicial;
 	private Date fechaFinal;
+	private Date fechaProrroga;
 	//nuevo comentario
 	private static int cantProyects = 0;
 
-	public Proyecto(String id, String nombre, ArrayList<Empleado> misEmpleados,  Date fechaInicial, Date fechaFinal) {
+	public Proyecto(String id, String nombre,   Date fechaInicial, Date fechaFinal) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.misEmpleados = misEmpleados;
 		this.fechaInicial = fechaInicial;
 		this.fechaFinal = fechaFinal;
 		cantProyects++;
 	}
-   
  	public String getId() {
 		return id;
 	}
@@ -71,6 +70,14 @@ public class Proyecto {
 
 	public static void setCantProyects(int cantProyects) {
 		Proyecto.cantProyects = cantProyects;
+	}
+
+	public Date getFechaProrroga() {
+		return fechaProrroga;
+	}
+
+	public void setFechaProrroga(Date fechaProrroga) {
+		this.fechaProrroga = fechaProrroga;
 	}
 
 	

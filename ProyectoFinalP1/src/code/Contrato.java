@@ -1,6 +1,7 @@
 package code;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Contrato {
@@ -13,16 +14,24 @@ public class Contrato {
 	private static int cantContratos = 0;
 	private boolean estado = true;
 	private double precioP = 0;
-	private Date fechaProrroga;
+	private Date fechaPro;
+	private int cantEmp;
 	//private double precio;
-	public Contrato(String id, int tiempoEntrega, Proyecto proyecto, Cliente cliente) {
+	private ArrayList<Empleado> misEmps;
+	
+	
+	public Contrato(String id, Proyecto proyecto, Cliente cliente) {
 		super();
 		this.id = id;
-		this.tiempoEntrega = tiempoEntrega;
+		misEmps = new ArrayList<>();
 		this.proyecto = proyecto;
 		this.cliente = cliente;
 		cantContratos++;
 	}
+	public void agregarArrays(Empleado emp){
+		misEmps.add(emp);
+	}
+	
 	public String getEstadoActual() {
 		String Disponibilidad="";
 		if (this.estado == true)
@@ -44,19 +53,20 @@ public class Contrato {
 	     return (int)diffDays;
 	}//se peude poner en cualquier parte esta funcion ya que es estatica
 	
-	private  int salarioEmpleados(Proyecto proyecto){
+	
+	private  int salarioEmpleados(){
 		int total = 0;
 		int i = 0;
-		while(i < proyecto.getMisEmpleados().size()){
-			total += proyecto.getMisEmpleados().get(i).getSalario();
+		while(i < misEmps.size()){
+			total += misEmps.get(i).getSalario();
 			i++;
 		}
 		return total;
 	}
-	public double precioProyecto(Proyecto proyecto){
+	public double precioProyectoR(Proyecto proyecto){
 		double aux1 = 0;
 		double aux2 = 0;
-		aux1 = (numeroDiasEntreDosFechas(proyecto.getFechaInicial(), proyecto.getFechaFinal()) * 8 * salarioEmpleados(proyecto));
+		aux1 = (numeroDiasEntreDosFechas(proyecto.getFechaInicial(), proyecto.getFechaFinal()) * 8 * salarioEmpleados());
 		aux2 = aux1 * 0.15;
 		aux1 += aux2;
 		return aux1;
@@ -116,11 +126,24 @@ public class Contrato {
 	public void setPrecioP(double precioP) {
 		this.precioP = precioP;
 	}
-	public Date getFechaProrroga() {
-		return fechaProrroga;
+	public Date getFechaPro() {
+		return fechaPro;
 	}
-	public void setFechaProrroga(Date fechaProrroga) {
-		this.fechaProrroga = fechaProrroga;
+	public void setFechaPro(Date fechaPro) {
+		this.fechaPro = fechaPro;
 	}
+	public int getCantEmp() {
+		return cantEmp;
+	}
+	public void setCantEmp(int cantEmp) {
+		this.cantEmp = cantEmp;
+	}
+	public ArrayList<Empleado> getMisEmps() {
+		return misEmps;
+	}
+	public void setMisEmps(ArrayList<Empleado> misEmps) {
+		this.misEmps = misEmps;
+	}
+	
 
 }

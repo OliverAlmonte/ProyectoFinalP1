@@ -42,15 +42,7 @@ public abstract class Empleado {
 		return Disponibilidad;
 	}
 
-	public String getID() {
-		return id;
-	}
-
 	
-
-	public void setID(String id) {
-		this.id = id;
-	}
 
 	public String getNombre() {
 		return nombre;
