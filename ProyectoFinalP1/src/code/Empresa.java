@@ -9,6 +9,8 @@ import java.util.Date;
 
 
 
+
+
 public class Empresa {
     private ArrayList<Proyecto> misProyectos;
     private ArrayList<Empleado> misEmpleados;
@@ -31,6 +33,29 @@ public class Empresa {
 		 
 		 return emp;
 	 }
+	
+	public int[] cantProyectoByTipo(){
+		int[] cant = new int[4];
+		for (int i = 0; i < cant.length; i++) {
+			cant[i]=0;
+		}
+		
+		for(Proyecto proyecto : misProyectos){
+			if(proyecto.getTipoProyect()=="Video juego"){
+				cant[0]++;
+			}
+			if(proyecto.getTipoProyect()=="Escritorio"){
+				cant[1]++;
+			}
+			if(proyecto.getTipoProyect()=="Pagina web"){
+				cant[2]++;
+			}
+			if(proyecto.getTipoProyect()=="App para movil"){
+				cant[3]++;
+			}
+		}
+		return cant;
+	}
 	public ArrayList<Proyecto> getMisProyectos() {
 		return misProyectos;
 	}

@@ -133,6 +133,19 @@ public class Principal extends JFrame {
 			}
 		});
 		mnListar.add(mntmContrato);
+		
+		JMenu mnInforme = new JMenu("Informe");
+		menuBar.add(mnInforme);
+		
+		JMenuItem mntmProyectosPorTipo = new JMenuItem("Proyectos Por Tipo");
+		mntmProyectosPorTipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GraficaPastel grafica1 = new GraficaPastel();
+				grafica1.setModal(true);
+				grafica1.setVisible(true);
+			}
+		});
+		mnInforme.add(mntmProyectosPorTipo);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
