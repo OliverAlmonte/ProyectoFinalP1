@@ -137,7 +137,7 @@ public class ListarContrato extends JDialog {
 					  SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");//aqui saco la fecha actual dle sistema aqui va txtfechai.gettext
 					    Date fechaInicial = null;
 						try {
-							fechaInicial = dateFormat.parse("04/8/2018");
+							fechaInicial = dateFormat.parse("4/08/2018");
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -156,7 +156,8 @@ public class ListarContrato extends JDialog {
 							dias = Contrato.numeroDiasEntreDosFechas(contract.getProyecto().getFechaFinal(), fechaInicial);
 							System.out.println(dias);
 						 }
-						if(dias <= 0){
+						
+						if(dias < 0){
 							System.out.println("Este proyecto se entrego a tiempo");
 							 for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
 									contract.getMisEmps().get(i).setDisp(true);
@@ -167,12 +168,26 @@ public class ListarContrato extends JDialog {
 								 }
 							
 							//aqui se gusrdara el precio de contrato
-						}else if(dias > 0){
-							//dias++;
-							System.out.println("Este proyecto se entrego con retraso");
+						}
+						if(Contrato.formatoFechaInicio(fechaInicial).equalsIgnoreCase(Contrato.formatoFechaInicio(contract.getProyecto().getFechaFinal()))&& dias == 0){
+							System.out.println("ambas son iguales");
+							System.out.println("Este proyecto se entrego a tiempo");
 							for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
 								contract.getMisEmps().get(i).setDisp(true);
-								contract.getMisEmps().get(i).revisarEvaluacion(false);
+								contract.getMisEmps().get(i).revisarEvaluacion(true); 
+								Empresa.getInstance().ModificarEmpleado(contract.getMisEmps().get(i));
+								RegistrarProyecto.agregarEmpDisp(contract.getMisEmps().get(i));
+								System.out.println("listo");
+							 }
+						}
+						if(dias >= 0 && !Contrato.formatoFechaInicio(fechaInicial).equalsIgnoreCase(Contrato.formatoFechaInicio(contract.getProyecto().getFechaFinal()))){
+							dias = dias +1;
+							System.out.println("ambas son diferentes");
+							System.out.println("Este proyecto se entrego con retraso");
+							System.out.println(dias);
+							for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
+								contract.getMisEmps().get(i).setDisp(true);
+								contract.getMisEmps().get(i).revisarEvaluacion(false); 
 								Empresa.getInstance().ModificarEmpleado(contract.getMisEmps().get(i));
 								RegistrarProyecto.agregarEmpDisp(contract.getMisEmps().get(i));
 								System.out.println("listo");
