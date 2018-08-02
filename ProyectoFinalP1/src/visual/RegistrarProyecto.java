@@ -406,7 +406,7 @@ public class RegistrarProyecto extends JDialog {
 							Empresa.getInstance().insertContrato(contract);
 							
 							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
-							System.out.println(contract.getPrecioP());
+							//System.out.println(contract.getPrecioP());
 						}else{
 							 Proyecto proyect = new Proyecto(txtId.getText(), txtNombre.getText(), fechaInicial, fecha2);
 							 String tipo = cbxTipoProyect.getSelectedItem().toString();

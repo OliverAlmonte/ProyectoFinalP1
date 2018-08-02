@@ -150,13 +150,72 @@ public class ListarContrato extends JDialog {
 						if(contract.isProrroga() == true){
 							System.out.println("esta prorrogado");
 							dias = Contrato.numeroDiasEntreDosFechas(contract.getFechaPro(), fechaInicial);
-							//System.out.println(Contrato.numeroDiasEntreDosFechas(contract.getFechaPro(), fechaInicial));
+							
+							 if(Contrato.formatoFechaInicio(fechaInicial).equalsIgnoreCase(Contrato.formatoFechaInicio(contract.getFechaPro()))&& dias == 0){
+								System.out.println(dias);
+								System.out.println("ambas son iguales");
+								System.out.println("Este proyecto se entrego a tiempo");
+								for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
+									contract.getMisEmps().get(i).setDisp(true);
+									contract.getMisEmps().get(i).revisarEvaluacion(true); 
+									Empresa.getInstance().ModificarEmpleado(contract.getMisEmps().get(i));
+									RegistrarProyecto.agregarEmpDisp(contract.getMisEmps().get(i));
+									System.out.println("listo");
+								 }
+								//aqui se gusrda el precio de contrato
+							 }
+							 if(dias >= 0 && !Contrato.formatoFechaInicio(fechaInicial).equalsIgnoreCase(Contrato.formatoFechaInicio(contract.getFechaPro()))){
+								//dias = dias +1;//esto lohago por uqe simpre me da un nmero por debajo de lo esperado
+								System.out.println("ambas son diferentes");
+								System.out.println("Este proyecto se entrego con retraso");
+								System.out.println("dias de retraso: "+dias);
+								for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
+									contract.getMisEmps().get(i).setDisp(true);
+									contract.getMisEmps().get(i).revisarEvaluacion(false); 
+									Empresa.getInstance().ModificarEmpleado(contract.getMisEmps().get(i));
+									RegistrarProyecto.agregarEmpDisp(contract.getMisEmps().get(i));
+									System.out.println("listo");
+								 }
+								System.out.println("Debido al retraso se ha modificado el precio original del proyecto");
+								//aqui se modificara el precio del contrato por la penalizacion
+								contract.setPrecioP(contract.precioPenalizado(contract.getPrecioP(), dias));
+							}
+							
 						 }else if(contract.isProrroga() == false){
 							System.out.println("no esta prorrogado");
 							dias = Contrato.numeroDiasEntreDosFechas(contract.getProyecto().getFechaFinal(), fechaInicial);
-							//System.out.println(dias);
+							
+							 if(Contrato.formatoFechaInicio(fechaInicial).equalsIgnoreCase(Contrato.formatoFechaInicio(contract.getProyecto().getFechaFinal()))&& dias == 0){
+								System.out.println(dias);
+								System.out.println("ambas son iguales");
+								System.out.println("Este proyecto se entrego a tiempo");
+								for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
+									contract.getMisEmps().get(i).setDisp(true);
+									contract.getMisEmps().get(i).revisarEvaluacion(true); 
+									Empresa.getInstance().ModificarEmpleado(contract.getMisEmps().get(i));
+									RegistrarProyecto.agregarEmpDisp(contract.getMisEmps().get(i));
+									System.out.println("listo");
+								 }
+								//aqui se gusrda el precio de contrato
+							 }
+							 if(dias >= 0 && !Contrato.formatoFechaInicio(fechaInicial).equalsIgnoreCase(Contrato.formatoFechaInicio(contract.getProyecto().getFechaFinal()))){
+								dias = dias +1;//esto lohago por uqe simpre me da un nmero por debajo de lo esperado
+								System.out.println("ambas son diferentes");
+								System.out.println("Este proyecto se entrego con retraso");
+								System.out.println("dias de retraso: "+dias);
+								for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
+									contract.getMisEmps().get(i).setDisp(true);
+									contract.getMisEmps().get(i).revisarEvaluacion(false); 
+									Empresa.getInstance().ModificarEmpleado(contract.getMisEmps().get(i));
+									RegistrarProyecto.agregarEmpDisp(contract.getMisEmps().get(i));
+									System.out.println("listo");
+								 }
+								System.out.println("Debido al retraso se ha modificado el precio original del proyecto");
+								//aqui se modificara el precio del contrato por la penalizacion
+								contract.setPrecioP(contract.precioPenalizado(contract.getPrecioP(), dias));
+							}
+							
 						 }
-						
 						if(dias < 0){
 							System.out.println(dias);
 							System.out.println("Este proyecto se entrego a tiempo");
@@ -169,36 +228,8 @@ public class ListarContrato extends JDialog {
 								 }
 							
 							//aqui se gusrdara el precio de contrato
-						}
-						if(Contrato.formatoFechaInicio(fechaInicial).equalsIgnoreCase(Contrato.formatoFechaInicio(contract.getProyecto().getFechaFinal()))&& dias == 0){
-							System.out.println(dias);
-							System.out.println("ambas son iguales");
-							System.out.println("Este proyecto se entrego a tiempo");
-							for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
-								contract.getMisEmps().get(i).setDisp(true);
-								contract.getMisEmps().get(i).revisarEvaluacion(true); 
-								Empresa.getInstance().ModificarEmpleado(contract.getMisEmps().get(i));
-								RegistrarProyecto.agregarEmpDisp(contract.getMisEmps().get(i));
-								System.out.println("listo");
-							 }
-							//aqui se gusrda el precio de contrato
-						}
-						if(dias >= 0 && !Contrato.formatoFechaInicio(fechaInicial).equalsIgnoreCase(Contrato.formatoFechaInicio(contract.getProyecto().getFechaFinal()))){
-							dias = dias +1;//esto lohago por uqe simpre me da un nmero por debajo de lo esperado
-							System.out.println("ambas son diferentes");
-							System.out.println("Este proyecto se entrego con retraso");
-							System.out.println("dias de retraso: "+dias);
-							for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
-								contract.getMisEmps().get(i).setDisp(true);
-								contract.getMisEmps().get(i).revisarEvaluacion(false); 
-								Empresa.getInstance().ModificarEmpleado(contract.getMisEmps().get(i));
-								RegistrarProyecto.agregarEmpDisp(contract.getMisEmps().get(i));
-								System.out.println("listo");
-							 }
-							System.out.println("Debido al retraso se ha modificado el precio original del proyecto");
-							//aqui se modificara el precio del contrato por la penalizacion
-							contract.setPrecioP(contract.precioPenalizado(contract.getPrecioP(), dias));
-						}
+						 }
+						
 					 
 					 
 					 Empresa.getInstance().ModificarContrato(contract);
