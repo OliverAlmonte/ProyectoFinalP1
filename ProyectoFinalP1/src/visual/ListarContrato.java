@@ -149,7 +149,7 @@ public class ListarContrato extends JDialog {
 						
 						if(contract.isProrroga() == true){
 							System.out.println("esta prorrogado");
-							dias = Contrato.numeroDiasEntreDosFechas(contract.getProyecto().getFechaFinal(), fechaInicial);
+							dias = Contrato.numeroDiasEntreDosFechas(contract.getFechaPro(), fechaInicial);
 							System.out.println(Contrato.numeroDiasEntreDosFechas(contract.getProyecto().getFechaFinal(), fechaInicial));
 						 }else if(contract.isProrroga() == false){
 							System.out.println("no esta prorrogado");
@@ -181,10 +181,10 @@ public class ListarContrato extends JDialog {
 							 }
 						}
 						if(dias >= 0 && !Contrato.formatoFechaInicio(fechaInicial).equalsIgnoreCase(Contrato.formatoFechaInicio(contract.getProyecto().getFechaFinal()))){
-							dias = dias +1;
+							dias = dias +1;//esto lohago por uqe simpre me da un nmero por debajo de lo esperado
 							System.out.println("ambas son diferentes");
 							System.out.println("Este proyecto se entrego con retraso");
-							System.out.println(dias);
+							System.out.println("dias de retraso: "+dias);
 							for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
 								contract.getMisEmps().get(i).setDisp(true);
 								contract.getMisEmps().get(i).revisarEvaluacion(false); 
