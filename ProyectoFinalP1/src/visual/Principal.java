@@ -158,6 +158,13 @@ public class Principal extends JFrame {
 		mnInforme.add(mntmGananciasPorTipo);
 		
 		JMenuItem mntmDineroFacturadoPor = new JMenuItem("Dinero Facturado por la Empresa");
+		mntmDineroFacturadoPor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GraficaGananciaMensual grafica2 = new GraficaGananciaMensual();
+				grafica2.setModal(true);
+				grafica2.setVisible(true);
+			}
+		});
 		mnInforme.add(mntmDineroFacturadoPor);
 		
 		JMenuItem mntmListaDeEmpleados = new JMenuItem("Lista de Empleados Destacados");

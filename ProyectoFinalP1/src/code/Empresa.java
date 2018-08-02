@@ -57,6 +57,52 @@ public class Empresa {
 		}
 		return cant;
 	}
+	
+	public double[] gananciasByMes(){
+		double[] cant = new double[12];
+		for (int i = 0; i < cant.length; i++) {
+			cant[i]=0;
+		}
+		for(Contrato contrato : misContratos){
+			if(contrato.getMiMes() == 1){
+				cant[0] = cant[0] + contrato.getPrecioP();
+			}
+			if(contrato.getMiMes() == 2){
+				cant[1] = cant[1] + contrato.getPrecioP();
+			}
+			if(contrato.getMiMes() == 3){
+				cant[2] = cant[2] + contrato.getPrecioP();
+			}
+			if(contrato.getMiMes() == 4){
+				cant[3] = cant[3] + contrato.getPrecioP();
+			}
+			if(contrato.getMiMes() == 5){
+				cant[4] = cant[4] + contrato.getPrecioP();
+			}
+			if(contrato.getMiMes() == 6){
+				cant[5] = cant[5] + contrato.getPrecioP();
+			}
+			if(contrato.getMiMes() == 7){
+				cant[6] = cant[6] + contrato.getPrecioP();
+			}
+			if(contrato.getMiMes() == 8){
+				cant[7] = cant[7] + contrato.getPrecioP();
+			}
+			if(contrato.getMiMes() == 9){
+				cant[8] = cant[8] + contrato.getPrecioP();
+			}
+			if(contrato.getMiMes() == 10){
+				cant[9] = cant[9] + contrato.getPrecioP();
+			}
+			if(contrato.getMiMes() == 11){
+				cant[10] = cant[10] + contrato.getPrecioP();
+			}
+			if(contrato.getMiMes() == 12){
+				cant[11] = cant[11] + contrato.getPrecioP();
+			}
+		}
+		return cant;
+	}
 	public double[] cantGananciasJuegos(){
 		double[] cant = new double[2];
 		double acum1 = 0, acum2 = 0;
@@ -73,6 +119,7 @@ public class Empresa {
 		cant[1] = acum2;
 		return cant;
 	}
+	
 	public double[] cantGananciasEscritorio(){
 		double[] cant = new double[2];
 		double acum1 = 0, acum2 = 0;

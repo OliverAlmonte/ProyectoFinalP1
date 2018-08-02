@@ -396,6 +396,7 @@ public class RegistrarProyecto extends JDialog {
                         	 Proyecto proyect = new Proyecto(txtId.getText(), txtNombre.getText(), fechaInicial, fecha2);
                         	 String tipo = cbxTipoProyect.getSelectedItem().toString();
                         	 proyect.setTipoProyect(tipo);
+      
 							Empresa.getInstance().insertProyecto(proyect);
 							Contrato contract = new Contrato(txtIdContrato.getText(), proyect, cliente);
 							for(int i = 0; i < empInvolucrados.size(); i++){//agrego los emps al contrato
@@ -403,8 +404,12 @@ public class RegistrarProyecto extends JDialog {
 							}
 							contract.setPrecioP(contract.precioProyectoR(contract.getProyecto()));
 							contract.setPrecioOriginal(contract.precioProyectoR(contract.getProyecto()));//conservo el precio original en caso de retraso
-							Empresa.getInstance().insertContrato(contract);
 							
+							int mon = c2.get(Calendar.MONTH)+1;
+							contract.setMiMes(mon);
+							System.out.println("este es mi mes: " +contract.getMiMes());
+							Empresa.getInstance().insertContrato(contract);
+							//aqui va le trycatch
 							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 							//System.out.println(contract.getPrecioP());
 						}else{
@@ -421,6 +426,10 @@ public class RegistrarProyecto extends JDialog {
 							}
 							contract.setPrecioP(contract.precioProyectoR(contract.getProyecto()));
 							contract.setPrecioOriginal(contract.precioProyectoR(contract.getProyecto()));//conservo el precio original en caso de retraso
+							
+							int mon = c2.get(Calendar.MONTH)+1;
+							contract.setMiMes(mon);
+							System.out.println("este es mi mes: " +contract.getMiMes());
 							Empresa.getInstance().insertContrato(contract);
 							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 						}
@@ -458,6 +467,7 @@ public class RegistrarProyecto extends JDialog {
 				btnEspecial = new JButton("Siguiente");
 				btnEspecial.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
 						btnEspecial.setEnabled(false);
 						btnA.setEnabled(true);
 						panelP.setVisible(false);

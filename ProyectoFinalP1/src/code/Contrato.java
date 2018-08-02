@@ -19,7 +19,7 @@ public class Contrato {
 	private int cantEmp;
 	//private double precio;
 	private ArrayList<Empleado> misEmps;
-	
+	private int miMes;
 	
 	public Contrato(String id, Proyecto proyecto, Cliente cliente) {
 		super();
@@ -149,6 +149,13 @@ public class Contrato {
 	}
 	public void setPrecioOriginal(double precioOriginal) {
 		this.precioOriginal = precioOriginal;
+	}
+	
+	public int getMiMes() {
+		return miMes;
+	}
+	public void setMiMes(int miMes) {
+		this.miMes = miMes;
 	}
 	public void setCantEmp(int cantEmp) {
 		this.cantEmp = cantEmp;

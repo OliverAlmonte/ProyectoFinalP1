@@ -104,9 +104,10 @@ public class Prove {
 		 Contrato contract = new Contrato("", pro, clien);
 		 contract.setPrecioP(5000);
 		 contract.setPrecioOriginal(4000);
+		 contract.setMiMes(1);
 		 emp.insertContrato(contract);
 		 emp.insertProyecto(pro);
-		 double[] cant = emp.cantGananciasJuegos();
+		 double[] cant = emp.gananciasByMes();
 		 System.out.println(cant[0]);
 	      /*double monto = 5000;
 	      double dinero = monto;

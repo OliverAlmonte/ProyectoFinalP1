@@ -14,6 +14,7 @@ public class Proyecto {
 	//nuevo comentario
 	private static int cantProyects = 0;
 	private String tipoProyect;
+	
 
 	public Proyecto(String id, String nombre,   Date fechaInicial, Date fechaFinal) {
 		super();
@@ -86,6 +87,7 @@ public class Proyecto {
 	public void setTipoProyect(String tipoProyect) {
 		this.tipoProyect = tipoProyect;
 	}
+	
 
 	
 
