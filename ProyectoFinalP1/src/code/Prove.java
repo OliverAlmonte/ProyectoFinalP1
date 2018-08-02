@@ -57,14 +57,14 @@ public class Prove {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		 Date fechaInicial = null;
 		try {
-			fechaInicial = dateFormat.parse("31/08/2018");
+			fechaInicial = dateFormat.parse("3/08/2018");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		 Date fechaFinal = null;
 		try {
-			fechaFinal = dateFormat.parse("31/08/2018");
+			fechaFinal = dateFormat.parse("2/08/2018");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,7 +73,7 @@ public class Prove {
 		  
 	      System.out.println(Contrato.numeroDiasEntreDosFechas(pro.getFechaInicial(), pro.getFechaFinal()));
 	      
-	      Empleado emp = new Jefe("", "", "", 'm', 18, 1200, "jefe");
+	      /*Empleado emp = new Jefe("", "", "", 'm', 18, 1200, "jefe");
 	      
 	      if(emp.getProyectosTardios() == -1){
 	    	  System.out.println("Aun Sin evaluar");
@@ -81,7 +81,7 @@ public class Prove {
 	      if(emp.getProyectosTardios() >= 0){
 	    	  System.out.println(emp.getEvaluacion());
 	      }
-	      System.out.println("Proyectos tardios: "+emp.getProyectosTardios());
+	      System.out.println("Proyectos tardios: "+emp.getProyectosTardios());*/
 	}
 
 }

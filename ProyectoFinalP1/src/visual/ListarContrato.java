@@ -23,11 +23,14 @@ import javax.swing.ListSelectionModel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import java.util.Date;
+import javax.swing.JTextField;
 public class ListarContrato extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
@@ -39,6 +42,7 @@ public class ListarContrato extends JDialog {
 	private JButton btnTerminar;
 	private Calendar c1 = Calendar.getInstance();
 	private Calendar c2 = new GregorianCalendar();
+	private JTextField txtFechaI;
 
 	/**
 	 * Launch the application.
@@ -110,6 +114,12 @@ public class ListarContrato extends JDialog {
 					}
 				}
 			});
+			
+			txtFechaI = new JTextField();
+			txtFechaI.setVisible(false);
+			txtFechaI.setText(Integer.toString(c2.get(Calendar.DATE))+"/"+Integer.toString(c2.get(Calendar.MONTH)+1)+"/"+Integer.toString(c2.get(Calendar.YEAR)));
+			buttonPane.add(txtFechaI);
+			txtFechaI.setColumns(10);
 			btnProrrogar.setEnabled(false);
 			buttonPane.add(btnProrrogar);
 			
@@ -118,27 +128,68 @@ public class ListarContrato extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					if(!identificador.equalsIgnoreCase("")){
 					Contrato contract = Empresa.getInstance().findContratoById(identificador);
-					
+	
 					int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea dar por Terminado el Contrato: " + contract.getId(),"Información",JOptionPane.WARNING_MESSAGE);
-					if(option == JOptionPane.OK_OPTION){
-					 contract.setEstado(false);
-					 contract.getCliente().setDisponibilidad(true);
-					 //System.out.println(contract.getMisEmps().get(0).isDisp()+" creo que ya esta resulto");
-					 //System.out.println(contract.getMisEmps().size()+" creo que ya esta resulto");
-					 for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
+					 if(option == JOptionPane.OK_OPTION){
+					  //Date fechaIni;	
+					  contract.setEstado(false);
+					  contract.getCliente().setDisponibilidad(true);
+					  SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");//aqui saco la fecha actual dle sistema aqui va txtfechai.gettext
+					    Date fechaInicial = null;
+						try {
+							fechaInicial = dateFormat.parse("04/8/2018");
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+							System.out.println(Contrato.formatoFechaInicio(fechaInicial));
+							System.out.println(Contrato.formatoFechaInicio(contract.getProyecto().getFechaFinal()));
+						int dias = 0;
+						
+						if(contract.isProrroga() == true){
+							System.out.println("esta prorrogado");
+							dias = Contrato.numeroDiasEntreDosFechas(contract.getProyecto().getFechaFinal(), fechaInicial);
+							System.out.println(Contrato.numeroDiasEntreDosFechas(contract.getProyecto().getFechaFinal(), fechaInicial));
+						 }else if(contract.isProrroga() == false){
+							System.out.println("no esta prorrogado");
+							dias = Contrato.numeroDiasEntreDosFechas(contract.getProyecto().getFechaFinal(), fechaInicial);
+							System.out.println(dias);
+						 }
+						if(dias <= 0){
+							System.out.println("Este proyecto se entrego a tiempo");
+							 for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
+									contract.getMisEmps().get(i).setDisp(true);
+									contract.getMisEmps().get(i).revisarEvaluacion(true);
+									Empresa.getInstance().ModificarEmpleado(contract.getMisEmps().get(i));
+									RegistrarProyecto.agregarEmpDisp(contract.getMisEmps().get(i));
+									System.out.println("listo");
+								 }
+							
+							//aqui se gusrdara el precio de contrato
+						}else if(dias > 0){
+							//dias++;
+							System.out.println("Este proyecto se entrego con retraso");
+							for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
+								contract.getMisEmps().get(i).setDisp(true);
+								contract.getMisEmps().get(i).revisarEvaluacion(false);
+								Empresa.getInstance().ModificarEmpleado(contract.getMisEmps().get(i));
+								RegistrarProyecto.agregarEmpDisp(contract.getMisEmps().get(i));
+								System.out.println("listo");
+							 }
+							//aqui se guardara le precio de contrato peor con la penalizacion
+						}
+					 /*for(int i = 0; i < contract.getMisEmps().size(); i++){//aqui cambio la disponiblilidad de lso emosps y lo los agrego al jlist de RegProyect
 						contract.getMisEmps().get(i).setDisp(true);
 						Empresa.getInstance().ModificarEmpleado(contract.getMisEmps().get(i));
 						RegistrarProyecto.agregarEmpDisp(contract.getMisEmps().get(i));
 						System.out.println("listo");
-					 }
+					 }*/
+					 
 					 Empresa.getInstance().ModificarContrato(contract);
 					 Empresa.getInstance().ModificarCliente(contract.getCliente());
 					 //aqui va trycatch
-					 if(contract.isProrroga() == true){
-						System.out.println("esta prorrogado");
-					 }else if(contract.isProrroga() == false){
-						System.out.println("no esta prorrogado");
-					 }
+					 
 					 loadTableContract();
 					}
 					

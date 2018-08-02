@@ -522,6 +522,8 @@ public class RegistrarProyecto extends JDialog {
 	}
 	private void clean(){
 		txtId.setText("Proyecto-"+(Proyecto.getCantProyects()+1));
+		cbxTipoProyect.setSelectedIndex(0);
+		cbxEncargo.setSelectedIndex(0);
 		txtNombre.setText("");
 		txtCedula.setText("");
 		txtDireccion.setText("");
