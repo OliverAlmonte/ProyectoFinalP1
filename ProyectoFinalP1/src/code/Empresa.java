@@ -57,7 +57,70 @@ public class Empresa {
 		}
 		return cant;
 	}
-	
+	public double[] cantGananciasJuegos(){
+		double[] cant = new double[2];
+		double acum1 = 0, acum2 = 0;
+		for (int i = 0; i < cant.length; i++) {
+			cant[i]=0;
+		}
+		for(Contrato contrato : misContratos){
+			if(contrato.getProyecto().getTipoProyect() == "Video juego"){
+				acum1 = acum1 + contrato.getPrecioP();
+				acum2 = acum2 + contrato.getPrecioOriginal();
+			}
+		}
+		cant[0] = acum1;
+		cant[1] = acum2;
+		return cant;
+	}
+	public double[] cantGananciasEscritorio(){
+		double[] cant = new double[2];
+		double acum1 = 0, acum2 = 0;
+		for (int i = 0; i < cant.length; i++) {
+			cant[i]=0;
+		}
+		for(Contrato contrato : misContratos){
+			if(contrato.getProyecto().getTipoProyect() == "Escritorio"){
+				acum1 = acum1 + contrato.getPrecioP();
+				acum2 = acum2 + contrato.getPrecioOriginal();
+			}
+		}
+		cant[0] = acum1;
+		cant[1] = acum2;
+		return cant;
+	}
+	public double[] cantGananciasWeb(){
+		double[] cant = new double[2];
+		double acum1 = 0, acum2 = 0;
+		for (int i = 0; i < cant.length; i++) {
+			cant[i]=0;
+		}
+		for(Contrato contrato : misContratos){
+			if(contrato.getProyecto().getTipoProyect() == "Pagina web"){
+				acum1 = acum1 + contrato.getPrecioP();
+				acum2 = acum2 + contrato.getPrecioOriginal();
+			}
+		}
+		cant[0] = acum1;
+		cant[1] = acum2;
+		return cant;
+	}
+	public double[] cantGananciasAppsMoviles(){
+		double[] cant = new double[2];
+		double acum1 = 0, acum2 = 0;
+		for (int i = 0; i < cant.length; i++) {
+			cant[i]=0;
+		}
+		for(Contrato contrato : misContratos){
+			if(contrato.getProyecto().getTipoProyect() == "App para movil"){
+				acum1 = acum1 + contrato.getPrecioP();
+				acum2 = acum2 + contrato.getPrecioOriginal();
+			}
+		}
+		cant[0] = acum1;
+		cant[1] = acum2;
+		return cant;
+	}
 	public ArrayList<Proyecto> getMisProyectos() {
 		return misProyectos;
 	}

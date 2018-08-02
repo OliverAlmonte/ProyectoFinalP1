@@ -97,10 +97,17 @@ public class Prove {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		Empresa emp = new Empresa();
 		Proyecto pro = new Proyecto("", "", fechaInicial, fechaFinal);
+		pro.setTipoProyect("Video juego");
 		 Cliente clien = new Cliente("12", "ddd", "fer", "direc");
 		 Contrato contract = new Contrato("", pro, clien);
-		 System.out.println(contract.precioPenalizado(5000, 10));
+		 contract.setPrecioP(5000);
+		 contract.setPrecioOriginal(4000);
+		 emp.insertContrato(contract);
+		 emp.insertProyecto(pro);
+		 double[] cant = emp.cantGananciasJuegos();
+		 System.out.println(cant[0]);
 	      /*double monto = 5000;
 	      double dinero = monto;
 			double descuento;

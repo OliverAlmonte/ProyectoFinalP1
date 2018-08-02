@@ -150,7 +150,9 @@ public class Principal extends JFrame {
 		JMenuItem mntmGananciasPorTipo = new JMenuItem("Ganancias Por tipo de Proyecto");
 		mntmGananciasPorTipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				GraficaBarra grafica = new GraficaBarra();
+				grafica.setModal(true);
+				grafica.setVisible(true);
 			}
 		});
 		mnInforme.add(mntmGananciasPorTipo);
