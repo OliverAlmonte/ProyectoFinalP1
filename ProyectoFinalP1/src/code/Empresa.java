@@ -16,6 +16,7 @@ public class Empresa {
     private ArrayList<Empleado> misEmpleados;
     private ArrayList<Contrato> misContratos;
     private ArrayList<Cliente> misClientes;
+    private double dineroFacturado = 0;
     private static Empresa emp = null;
 	public Empresa() {
 		// TODO Auto-generated constructor stub
@@ -228,6 +229,12 @@ public class Empresa {
 		}
 		
 		return index;
+	}
+	public double getDineroFacturado() {
+		return dineroFacturado;
+	}
+	public void setDineroFacturado(double dineroFacturado) {
+		this.dineroFacturado = dineroFacturado;
 	}
 	public void ModificarEmpleado(Empleado emp){
 		int index = buscarIndexEmpleadp(emp);

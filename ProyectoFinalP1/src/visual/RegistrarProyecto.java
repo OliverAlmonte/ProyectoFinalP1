@@ -402,6 +402,7 @@ public class RegistrarProyecto extends JDialog {
 								contract.getMisEmps().add(empInvolucrados.get(i));
 							}
 							contract.setPrecioP(contract.precioProyectoR(contract.getProyecto()));
+							contract.setPrecioOriginal(contract.precioProyectoR(contract.getProyecto()));//conservo el precio original en caso de retraso
 							Empresa.getInstance().insertContrato(contract);
 							
 							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
@@ -419,6 +420,7 @@ public class RegistrarProyecto extends JDialog {
 								contract.getMisEmps().add(empInvolucrados.get(i));
 							}
 							contract.setPrecioP(contract.precioProyectoR(contract.getProyecto()));
+							contract.setPrecioOriginal(contract.precioProyectoR(contract.getProyecto()));//conservo el precio original en caso de retraso
 							Empresa.getInstance().insertContrato(contract);
 							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 						}

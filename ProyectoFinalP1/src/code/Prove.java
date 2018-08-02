@@ -54,7 +54,7 @@ public class Prove {
 			  System.out.println(i);
 		  }*/
 	
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		/*SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		 Date fechaInicial = null;
 		try {
 			fechaInicial = dateFormat.parse("3/08/2018");
@@ -71,7 +71,7 @@ public class Prove {
 		}
 		Proyecto pro = new Proyecto("", "", fechaInicial, fechaFinal);
 		  
-	      System.out.println(Contrato.numeroDiasEntreDosFechas(pro.getFechaInicial(), pro.getFechaFinal()));
+	      System.out.println(Contrato.numeroDiasEntreDosFechas(pro.getFechaInicial(), pro.getFechaFinal()));*/
 	      
 	      /*Empleado emp = new Jefe("", "", "", 'm', 18, 1200, "jefe");
 	      
@@ -82,6 +82,35 @@ public class Prove {
 	    	  System.out.println(emp.getEvaluacion());
 	      }
 	      System.out.println("Proyectos tardios: "+emp.getProyectosTardios());*/
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		 Date fechaInicial = null;
+		try {
+			fechaInicial = dateFormat.parse("29/07/2018");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 Date fechaFinal = null;
+		try {
+			fechaFinal = dateFormat.parse("31/08/2018");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Proyecto pro = new Proyecto("", "", fechaInicial, fechaFinal);
+		 Cliente clien = new Cliente("12", "ddd", "fer", "direc");
+		 Contrato contract = new Contrato("", pro, clien);
+		 System.out.println(contract.precioPenalizado(5000, 10));
+	      /*double monto = 5000;
+	      double dinero = monto;
+			double descuento;
+			descuento = 10/100.0;
+			monto = monto * descuento;
+			dinero = dinero - monto;
+		System.out.println(dinero);*/
+		
+		
 	}
+	
 
 }

@@ -27,40 +27,7 @@ public class GraficaPastel extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			GraficaPastel dialog = new GraficaPastel();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	
-	
-	private void init() {
-        panel = new JPanel();
-        getContentPane().add(panel);
-        // Fuente de Datos
-        int[] cantProyecto=Empresa.getInstance().cantProyectoByTipo();
-        DefaultPieDataset data = new DefaultPieDataset();
-        data.setValue("Video Juego", cantProyecto[0]);
-        data.setValue("Escritorio", cantProyecto[1]);
-        data.setValue("Página Web", cantProyecto[2]);
-        data.setValue("App Para Móvil", cantProyecto[3]);
-        // Creando el Grafico
-        JFreeChart chart = ChartFactory.createPieChart(
-         "Proyectos Por Tipo", 
-         data, 
-         true, 
-         true, 
-         false);
- 
-        // Crear el Panel del Grafico con ChartPanel
-        ChartPanel chartPanel = new ChartPanel(chart);
-        panel.add(chartPanel);
-    }
 	/**
 	 * Create the dialog.
 	 */
@@ -88,5 +55,27 @@ public class GraficaPastel extends JDialog {
 		}
 		init();
 	}
+	private void init() {
+        panel = new JPanel();
+        getContentPane().add(panel);
+        // Fuente de Datos
+        int[] cantProyecto=Empresa.getInstance().cantProyectoByTipo();
+        DefaultPieDataset data = new DefaultPieDataset();
+        data.setValue("Video Juego", cantProyecto[0]);
+        data.setValue("Escritorio", cantProyecto[1]);
+        data.setValue("Página Web", cantProyecto[2]);
+        data.setValue("App Para Móvil", cantProyecto[3]);
+        // Creando el Grafico
+        JFreeChart chart = ChartFactory.createPieChart(
+         "Proyectos Por Tipo", 
+         data, 
+         true, 
+         true, 
+         false);
+ 
+        // Crear el Panel del Grafico con ChartPanel
+        ChartPanel chartPanel = new ChartPanel(chart);
+        panel.add(chartPanel);
+    }
 
 }

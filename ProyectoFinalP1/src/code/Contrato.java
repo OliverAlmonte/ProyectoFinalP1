@@ -14,6 +14,7 @@ public class Contrato {
 	private static int cantContratos = 0;
 	private boolean estado = true;
 	private double precioP = 0;
+	private double precioOriginal = 0;
 	private Date fechaPro;
 	private int cantEmp;
 	//private double precio;
@@ -70,6 +71,14 @@ public class Contrato {
 		aux2 = aux1 * 0.15;
 		aux1 += aux2;
 		return aux1;
+	}
+	public double precioPenalizado(double monto, int diasRetraso){
+		double dinero = monto;
+		double descuento;
+		descuento = diasRetraso/100.0;
+		monto = monto * descuento;
+		dinero = dinero - monto;
+		return dinero;
 	}
 	public String getId() {
 		return id;
@@ -134,6 +143,12 @@ public class Contrato {
 	}
 	public int getCantEmp() {
 		return cantEmp;
+	}
+	public double getPrecioOriginal() {
+		return precioOriginal;
+	}
+	public void setPrecioOriginal(double precioOriginal) {
+		this.precioOriginal = precioOriginal;
 	}
 	public void setCantEmp(int cantEmp) {
 		this.cantEmp = cantEmp;
