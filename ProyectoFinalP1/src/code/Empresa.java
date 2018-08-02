@@ -57,6 +57,7 @@ public class Empresa {
 		}
 		return cant;
 	}
+	
 	public ArrayList<Proyecto> getMisProyectos() {
 		return misProyectos;
 	}

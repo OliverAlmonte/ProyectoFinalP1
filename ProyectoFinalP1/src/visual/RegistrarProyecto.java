@@ -360,7 +360,7 @@ public class RegistrarProyecto extends JDialog {
 	    label_6.setBounds(11, 25, 11, 14);
 	    panel.add(label_6);
 	    
-	    JLabel lblNewLabel_1 = new JLabel("Dias para Entregar:");
+	    JLabel lblNewLabel_1 = new JLabel("Precio:");
 	    lblNewLabel_1.setBounds(361, 24, 124, 14);
 	    panelC.add(lblNewLabel_1);
 	    

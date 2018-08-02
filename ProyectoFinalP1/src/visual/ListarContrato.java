@@ -165,7 +165,7 @@ public class ListarContrato extends JDialog {
 								//aqui se gusrda el precio de contrato
 							 }
 							 if(dias >= 0 && !Contrato.formatoFechaInicio(fechaInicial).equalsIgnoreCase(Contrato.formatoFechaInicio(contract.getFechaPro()))){
-								//dias = dias +1;//esto lohago por uqe simpre me da un nmero por debajo de lo esperado
+								//dias = dias +1;//por alguna razon ya no fue necesario usar esta parte si es prorrogado el contrato
 								System.out.println("ambas son diferentes");
 								System.out.println("Este proyecto se entrego con retraso");
 								System.out.println("dias de retraso: "+dias);

@@ -146,6 +146,20 @@ public class Principal extends JFrame {
 			}
 		});
 		mnInforme.add(mntmProyectosPorTipo);
+		
+		JMenuItem mntmGananciasPorTipo = new JMenuItem("Ganancias Por tipo de Proyecto");
+		mntmGananciasPorTipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		mnInforme.add(mntmGananciasPorTipo);
+		
+		JMenuItem mntmDineroFacturadoPor = new JMenuItem("Dinero Facturado por la Empresa");
+		mnInforme.add(mntmDineroFacturadoPor);
+		
+		JMenuItem mntmListaDeEmpleados = new JMenuItem("Lista de Empleados Destacados");
+		mnInforme.add(mntmListaDeEmpleados);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
