@@ -30,6 +30,7 @@ import java.awt.Toolkit;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Color;
 import javax.swing.border.EtchedBorder;
+import visual.DetallesEmpleado;
 @SuppressWarnings("rawtypes")
 public class ListarEmpleados extends JDialog {
 
@@ -41,6 +42,7 @@ public class ListarEmpleados extends JDialog {
 	private static DefaultTableModel tableModel;
 	private static JButton btnDetalles;
 	private static JButton btnEliminar;
+	private static int filaSeleccionada;
 	private String code;
 	JComboBox cbxTipo;
 	/**
@@ -86,6 +88,7 @@ public class ListarEmpleados extends JDialog {
 							btnEliminar.setEnabled(true);
 							btnDetalles.setEnabled(true);
 							int index = table.getSelectedRow();
+							filaSeleccionada= table.getSelectedRow();
 							code = (String)table.getModel().getValueAt(index, 0);
 						}
 					}
@@ -131,10 +134,10 @@ public class ListarEmpleados extends JDialog {
 				btnDetalles.setForeground(Color.BLACK);
 				btnDetalles.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//Empleado aux = Empresa.getInstance().findQuesoById(code);
-						//RegistrarQueso Empleado = new RegistrarQueso(0, aux);
-						//Empleado.setModal(true);
-						//Empleado.setVisible(true);
+						DetallesEmpleado detalles = new DetallesEmpleado();
+						detalles.VerDetalles(filaSeleccionada);
+						detalles.setModal(true);
+						detalles.setVisible(true);
 						btnEliminar.setEnabled(false);
 						btnDetalles.setEnabled(false);
 					}
@@ -283,6 +286,12 @@ public class ListarEmpleados extends JDialog {
 		columnModel.getColumn(2).setPreferredWidth(100);
 		columnModel.getColumn(3).setPreferredWidth(90);
 		columnModel.getColumn(4).setPreferredWidth(110);
+	}
+	public static int getFilaSeleccionada() {
+		return filaSeleccionada;
+	}
+	public static void setFilaSeleccionada(int filaSeleccionada) {
+		ListarEmpleados.filaSeleccionada = filaSeleccionada;
 	}
 	
 	
