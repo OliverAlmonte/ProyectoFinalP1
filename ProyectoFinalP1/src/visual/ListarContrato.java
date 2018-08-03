@@ -23,6 +23,7 @@ import javax.swing.ListSelectionModel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -235,7 +236,12 @@ public class ListarContrato extends JDialog {
 					 Empresa.getInstance().ModificarContrato(contract);
 					 Empresa.getInstance().ModificarCliente(contract.getCliente());
 					 //aqui va trycatch
-					 
+					 try {
+							Principal.guardar(Empresa.getInstance());
+						} catch (ClassNotFoundException | IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					 loadTableContract();
 					}
 	               }else if(contract.getEstadoActual() == "Terminado"){

@@ -8,10 +8,17 @@ import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import code.ArchiEmp;
+import code.Empresa;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
@@ -31,6 +38,11 @@ public class Principal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					/*ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("software.obj"));
+					salida.writeObject(Empresa.getInstance());
+					salida.close();*/
+					Empresa emp = recuperar();
+					Empresa.getInstance().rellenar(emp);
 					Principal frame = new Principal();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -200,6 +212,17 @@ public class Principal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+	}
+	public static void guardar(Empresa ob)throws IOException, ClassNotFoundException{
+		ArchiEmp per = new ArchiEmp();
+		per.guardar(ob);
+		System.out.println("Almacenamiento correcto");
+	}
+	public static Empresa recuperar()throws IOException,ClassNotFoundException{
+		ArchiEmp per = new ArchiEmp();
+		Empresa recuperar = per.recuperar();
+		System.out.println("recuperacion correcta");
+		return recuperar;
 	}
 
 }

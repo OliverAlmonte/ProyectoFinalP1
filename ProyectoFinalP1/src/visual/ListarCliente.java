@@ -22,6 +22,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.ListSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -117,6 +118,12 @@ public class ListarCliente extends JDialog {
 							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar al Cliente: " + cliente.getNombre(),"Información",JOptionPane.WARNING_MESSAGE);
 							if(option == JOptionPane.OK_OPTION){
 								Empresa.getInstance().getMisClientes().remove(cliente);
+								try {
+									Principal.guardar(Empresa.getInstance());
+								} catch (ClassNotFoundException | IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 								loadTable();
 								btnEliminar.setEnabled(false);
 								btnModificar.setEnabled(false);

@@ -23,6 +23,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -150,6 +151,12 @@ public class ListarEmpleadosDestacados extends JDialog {
 						int delete = JOptionPane.showConfirmDialog(null, "Realmente desea Eliminar el Empleado: " + aux.getId(), null, JOptionPane.YES_NO_OPTION);
 						if(delete == JOptionPane.YES_OPTION){
 							Empresa.getInstance().getMisEmpleados().remove(aux);
+							try {
+								Principal.guardar(Empresa.getInstance());
+							} catch (ClassNotFoundException | IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 							loadTableEmpleados(0);
 						}
 					}

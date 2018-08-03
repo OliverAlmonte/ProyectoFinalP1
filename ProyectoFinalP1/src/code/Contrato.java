@@ -1,11 +1,16 @@
 package code;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Contrato {
+public class Contrato implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3538106157463062553L;
 	private String id;
 	private int tiempoEntrega;
 	private Proyecto proyecto;
@@ -72,6 +77,7 @@ public class Contrato {
 		aux1 += aux2;
 		return aux1;
 	}
+	
 	public double precioPenalizado(double monto, int diasRetraso){
 		double dinero = monto;
 		double descuento;

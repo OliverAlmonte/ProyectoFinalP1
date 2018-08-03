@@ -1,10 +1,12 @@
 package code;
 
+import java.io.Serializable;
 
-
-
-
-public class Cliente {
+public class Cliente implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6353602638273262236L;
 	private String Id;
 	  private String Nombre;
 	  private String Direccion;

@@ -1,8 +1,13 @@
 package code;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Proyecto {
+public class Proyecto implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6962413840165474165L;
 	//private Cliente miCliente;
 	private String id;
 	private ArrayList<Empleado> misEmpleados;

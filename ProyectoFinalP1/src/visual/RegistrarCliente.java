@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.UIManager;
@@ -105,7 +106,7 @@ public class RegistrarCliente extends JDialog {
 		textId.setColumns(10);
 		
 		if(cliente == null){
-			textId.setText("Clien-"+(Cliente.getCantClien()+1));
+			textId.setText("Clien-"+(Empresa.getInstance().getCantClients()+1));
 		}else{
 			textId.setText(cliente.getId());
 		}
@@ -151,8 +152,14 @@ public class RegistrarCliente extends JDialog {
 							String nombre = txtNombre.getText();
 							String direccion = txtDireccion.getText();
 							Cliente cliente = new Cliente(Id, cedula, nombre, direccion);
+							Empresa.getInstance().aumentarcantClients();
 							Empresa.getInstance().insertCliente(cliente);
-							
+							try {
+								Principal.guardar(Empresa.getInstance());
+							} catch (ClassNotFoundException | IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 							clean();
 						}else{
@@ -160,6 +167,12 @@ public class RegistrarCliente extends JDialog {
 							cliente.setNombre(txtNombre.getText());
 							cliente.setDireccion(txtDireccion.getText());
 							Empresa.getInstance().ModificarCliente(cliente);
+							try {
+								Principal.guardar(Empresa.getInstance());
+							} catch (ClassNotFoundException | IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 							ListarCliente.loadTable();
 							dispose();
@@ -205,7 +218,7 @@ public class RegistrarCliente extends JDialog {
 	}
 	private void clean(){
 		txtCedula.setText("");
-		textId.setText("Clien-"+(Cliente.getCantClien()+1));
+		textId.setText("Clien-"+(Empresa.getInstance().getCantClients()+1));
 		txtNombre.setText("");
 		txtDireccion.setText("");
 		

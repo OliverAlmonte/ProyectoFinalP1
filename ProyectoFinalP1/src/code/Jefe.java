@@ -1,6 +1,10 @@
 package code;
 
 public class Jefe extends Empleado {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5470656760971974477L;
 	private int cantTrabajadores;
 
 

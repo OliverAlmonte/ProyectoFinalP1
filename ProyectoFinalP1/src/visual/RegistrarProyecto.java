@@ -38,6 +38,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class RegistrarProyecto extends JDialog {
 
@@ -117,7 +118,7 @@ public class RegistrarProyecto extends JDialog {
 		
 		txtId = new JTextField();
 		txtId.setEnabled(false);
-		txtId.setText("Proyecto-"+(Proyecto.getCantProyects()+1));
+		txtId.setText("Proyecto-"+(Empresa.getInstance().getCantProyects()+1));
 		txtId.setColumns(10);
 		txtId.setBounds(97, 21, 145, 20);
 		panelP.add(txtId);
@@ -281,7 +282,7 @@ public class RegistrarProyecto extends JDialog {
 	    
 	    txtIdContrato = new JTextField();
 	    txtIdContrato.setEnabled(false);
-	    txtIdContrato.setText("Contrato-"+(Contrato.getCantContratos()+1));
+	    txtIdContrato.setText("Contrato-"+(Empresa.getInstance().getCantContracts()+1));
 	    txtIdContrato.setColumns(10);
 	    txtIdContrato.setBounds(97, 21, 145, 20);
 	    panelC.add(txtIdContrato);
@@ -394,11 +395,13 @@ public class RegistrarProyecto extends JDialog {
                         	 cliente.setDisponibilidad(false);
                         	 Empresa.getInstance().ModificarCliente(cliente);
                         	 Proyecto proyect = new Proyecto(txtId.getText(), txtNombre.getText(), fechaInicial, fecha2);
+                        	 Empresa.getInstance().aumentarcantProyects();
                         	 String tipo = cbxTipoProyect.getSelectedItem().toString();
                         	 proyect.setTipoProyect(tipo);
       
 							Empresa.getInstance().insertProyecto(proyect);
 							Contrato contract = new Contrato(txtIdContrato.getText(), proyect, cliente);
+							Empresa.getInstance().aumentarcantContracts();
 							for(int i = 0; i < empInvolucrados.size(); i++){//agrego los emps al contrato
 								contract.getMisEmps().add(empInvolucrados.get(i));
 							}
@@ -409,18 +412,27 @@ public class RegistrarProyecto extends JDialog {
 							contract.setMiMes(mon);
 							System.out.println("este es mi mes: " +contract.getMiMes());
 							Empresa.getInstance().insertContrato(contract);
+							try {
+								Principal.guardar(Empresa.getInstance());
+							} catch (ClassNotFoundException | IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 							//aqui va le trycatch
 							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 							//System.out.println(contract.getPrecioP());
 						}else{
 							 Proyecto proyect = new Proyecto(txtId.getText(), txtNombre.getText(), fechaInicial, fecha2);
+							 Empresa.getInstance().aumentarcantProyects();
 							 String tipo = cbxTipoProyect.getSelectedItem().toString();
                         	 proyect.setTipoProyect(tipo);
 							Empresa.getInstance().insertProyecto(proyect);
 							cliente = new Cliente("Clien-"+(Cliente.getCantClien()+1), txtCedula.getText(), txtName.getText(), txtDireccion.getText());
+							Empresa.getInstance().aumentarcantClients();
 							cliente.setDisponibilidad(false);
 							Empresa.getInstance().insertCliente(cliente);
 							Contrato contract = new Contrato(txtIdContrato.getText(), proyect, cliente);
+							Empresa.getInstance().aumentarcantContracts();
 							for(int i = 0; i < empInvolucrados.size(); i++){
 								contract.getMisEmps().add(empInvolucrados.get(i));
 							}
@@ -431,6 +443,12 @@ public class RegistrarProyecto extends JDialog {
 							contract.setMiMes(mon);
 							System.out.println("este es mi mes: " +contract.getMiMes());
 							Empresa.getInstance().insertContrato(contract);
+							try {
+								Principal.guardar(Empresa.getInstance());
+							} catch (ClassNotFoundException | IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Información", JOptionPane.INFORMATION_MESSAGE);
 						}
                          
@@ -440,6 +458,12 @@ public class RegistrarProyecto extends JDialog {
                         	 empInvolucrados.get(i).setDisp(false);
                         	 Empresa.getInstance().ModificarEmpleado(empInvolucrados.get(i));
                          }
+                         try {
+								Principal.guardar(Empresa.getInstance());
+							} catch (ClassNotFoundException | IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
                          /*for(int i = 0; i < empInvolucrados.size(); i++){
                         	 //empInvolucrados.remove(i);
                         	 empInvolucrados.remove(empInvolucrados.get(i));
@@ -533,7 +557,7 @@ public class RegistrarProyecto extends JDialog {
 		return emp;
 	}
 	private void clean(){
-		txtId.setText("Proyecto-"+(Proyecto.getCantProyects()+1));
+		txtId.setText("Proyecto-"+(Empresa.getInstance().getCantProyects()+1));
 		cbxTipoProyect.setSelectedIndex(0);
 		cbxEncargo.setSelectedIndex(0);
 		txtNombre.setText("");

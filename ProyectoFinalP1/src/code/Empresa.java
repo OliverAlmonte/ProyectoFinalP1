@@ -1,5 +1,6 @@
 package code;
 
+import java.io.Serializable;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.text.ParseException;
@@ -11,13 +12,21 @@ import java.util.Date;
 
 
 
-public class Empresa {
-    private ArrayList<Proyecto> misProyectos;
+public class Empresa implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8011965037374755950L;
+	private ArrayList<Proyecto> misProyectos;
     private ArrayList<Empleado> misEmpleados;
     private ArrayList<Contrato> misContratos;
     private ArrayList<Cliente> misClientes;
     private double dineroFacturado = 0;
     private static Empresa emp = null;
+    private int cantEmps = 0;
+    private int cantClients = 0;
+    private int cantContracts = 0;
+    private int cantProyects = 0;
 	public Empresa() {
 		// TODO Auto-generated constructor stub
 		// TODO Auto-generated constructor stub
@@ -34,7 +43,21 @@ public class Empresa {
 		 
 		 return emp;
 	 }
-	
+	public void rellenar(Empresa aux){
+		emp = aux;
+	}
+	public void aumentarcantClients(){
+		   this.cantClients++;
+	   }
+	public void aumentarcantEmps(){
+		   this.cantEmps++;
+	   }
+	public void aumentarcantContracts(){
+		   this.cantClients++;
+	   }
+	public void aumentarcantProyects(){
+		   this.cantClients++;
+	   }
 	public int[] cantProyectoByTipo(){
 		int[] cant = new int[4];
 		for (int i = 0; i < cant.length; i++) {
@@ -284,6 +307,30 @@ public class Empresa {
 		}
 		
 		return index;
+	}
+	public int getCantEmps() {
+		return cantEmps;
+	}
+	public void setCantEmps(int cantEmps) {
+		this.cantEmps = cantEmps;
+	}
+	public int getCantClients() {
+		return cantClients;
+	}
+	public void setCantClients(int cantClients) {
+		this.cantClients = cantClients;
+	}
+	public int getCantContracts() {
+		return cantContracts;
+	}
+	public void setCantContracts(int cantContracts) {
+		this.cantContracts = cantContracts;
+	}
+	public int getCantProyects() {
+		return cantProyects;
+	}
+	public void setCantProyects(int cantProyects) {
+		this.cantProyects = cantProyects;
 	}
 	public void ModificarCliente(Cliente clien){
 		int index = buscarIndexClien(clien);

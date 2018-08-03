@@ -1,6 +1,12 @@
 package code;
 
-public abstract class Empleado {
+import java.io.Serializable;
+
+public abstract class Empleado implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -427520720011176072L;
 	protected String id;
 	protected String nombre;
 	protected String direccion;

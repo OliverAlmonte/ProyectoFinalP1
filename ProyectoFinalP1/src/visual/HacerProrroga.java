@@ -12,6 +12,7 @@ import code.Contrato;
 import code.Empresa;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -85,6 +86,12 @@ public class HacerProrroga extends JDialog {
 						contract.setProrroga(true);
 						
 						Empresa.getInstance().ModificarContrato(contract);
+						try {
+							Principal.guardar(Empresa.getInstance());
+						} catch (ClassNotFoundException | IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						JOptionPane.showMessageDialog(null, "Operación satisfactoria el contrato ha sido Prorrogado", "Información", JOptionPane.INFORMATION_MESSAGE);
 						System.out.println(Contrato.formatoFechaInicio(contract.getFechaPro()));
 						dispose();

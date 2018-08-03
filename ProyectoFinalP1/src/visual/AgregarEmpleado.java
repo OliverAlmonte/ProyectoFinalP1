@@ -24,6 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
@@ -89,7 +90,7 @@ public class AgregarEmpleado extends JDialog {
 		txtID.setFont(new Font("Dialog", Font.BOLD, 13));
 		txtID.setForeground(Color.BLACK);
 		txtID.setBackground(Color.WHITE);
-		txtID.setText("EMP-"+(Empleado.getIdcount()+1));
+		txtID.setText("EMP-"+(Empresa.getInstance().getCantEmps()+1));
 		txtID.setEditable(false);
 		txtID.setBounds(83, 29, 86, 20);
 		contentPanel.add(txtID);
@@ -281,8 +282,14 @@ public class AgregarEmpleado extends JDialog {
 							emp = new Planificador(id, nombre, direccion, sexo, edad, salario, cargo);
 						if(cbxCargo.getSelectedItem()=="Jefe de Proyecto")
 							emp = new Jefe(id, nombre, direccion, sexo, edad, salario, cargo);
-						
+						Empresa.getInstance().aumentarcantEmps();
 						Empresa.getInstance().insertEmpleado(emp);
+						try {
+							Principal.guardar(Empresa.getInstance());
+						} catch (ClassNotFoundException | IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						RegistrarProyecto.agregarEmpDisp(emp);
 						clean();
 					}
@@ -308,7 +315,7 @@ public class AgregarEmpleado extends JDialog {
 		}
 	}
 	public void clean(){
-		txtID.setText("EMP-"+(Empleado.getIdcount()+1));
+		txtID.setText("EMP-"+(Empresa.getInstance().getCantEmps()+1));
 		txtNombre.setText("");
 		txtDireccion.setText("");
 		txtSalario.setText("");

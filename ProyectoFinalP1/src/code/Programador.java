@@ -1,6 +1,10 @@
 package code;
 
 public class Programador extends Empleado {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6643250874371891007L;
 	private String lenguaje;
 
 

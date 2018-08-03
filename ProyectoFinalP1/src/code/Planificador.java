@@ -1,6 +1,10 @@
 package code;
 
 public class Planificador extends Empleado {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9186468876008173066L;
 	private int frecuencia;
 
 
