@@ -41,21 +41,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 public class RegistrarProyecto extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtId;
 	private JTextField txtNombre;
 	private JButton btnDer;
 	private JButton btnIzq;
+	@SuppressWarnings("rawtypes")
 	private JComboBox cbxEncargo;
+	@SuppressWarnings("rawtypes")
 	private JComboBox cbxTipoProyect;
 	private JDateChooser dateChooserF;
 	private static JList<Object> listEmpDisp;
 	private static JList<Object> listEmpInv;
 	private static DefaultListModel<Object> modeloDisp = new DefaultListModel<>();
 	private static DefaultListModel<Object> modeloInv = new DefaultListModel<>();
+	@SuppressWarnings("unused")
 	private static float precioContrato = 0;
 	private String datos;
 	private static ArrayList<Empleado> empInvolucrados = new ArrayList<>();
@@ -77,6 +86,7 @@ public class RegistrarProyecto extends JDialog {
 	private JTextField txtCedula;
 	private JTextField txtFechaI;
 	
+	@SuppressWarnings("unused")
 	private Calendar c1 = Calendar.getInstance();
 	private Calendar c2 = new GregorianCalendar();
   //
@@ -88,9 +98,13 @@ public class RegistrarProyecto extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public RegistrarProyecto() {
+		setTitle("Registrar Proyecto");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarProyecto.class.getResource("/visual/project.png")));
 		setBounds(100, 100, 579, 542);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.LIGHT_GRAY);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -111,16 +125,20 @@ public class RegistrarProyecto extends JDialog {
 		contentPanel.add(label_15);
 		
 		panelP = new JPanel();
+		panelP.setBackground(Color.LIGHT_GRAY);
 		panelP.setBounds(10, 25, 543, 416);
 		contentPanel.add(panelP);
 		panelP.setLayout(null);
 		panelP.setBorder(new TitledBorder(null, "Informaci\u00F3n General", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		JLabel lblIdProyecto = new JLabel("Id Proyecto:");
+		lblIdProyecto.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblIdProyecto.setBounds(10, 24, 77, 14);
 		panelP.add(lblIdProyecto);
 		
 		txtId = new JTextField();
+		txtId.setForeground(Color.BLACK);
+		txtId.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtId.setEnabled(false);
 		txtId.setText("Proyecto-"+(Empresa.getInstance().getCantProyects()+1));
 		txtId.setColumns(10);
@@ -128,14 +146,19 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(txtId);
 		
 		JLabel lblEmpleadosDisp = new JLabel("Empleados Disponibles:");
+		lblEmpleadosDisp.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblEmpleadosDisp.setBounds(20, 164, 151, 14);
 		panelP.add(lblEmpleadosDisp);
 		
 		JLabel lblEmpleadosInvolucrados = new JLabel("Empleados involucrados:");
+		lblEmpleadosInvolucrados.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblEmpleadosInvolucrados.setBounds(318, 164, 172, 14);
 		panelP.add(lblEmpleadosInvolucrados);
 		
 		btnDer = new JButton(">>");
+		btnDer.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnDer.setForeground(Color.BLACK);
+		btnDer.setBackground(Color.GRAY);
 		btnDer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!datos.equalsIgnoreCase("")){
@@ -159,10 +182,13 @@ public class RegistrarProyecto extends JDialog {
 			}
 		});
 		btnDer.setEnabled(false);
-		btnDer.setBounds(239, 227, 49, 23);
+		btnDer.setBounds(239, 227, 59, 23);
 		panelP.add(btnDer);
 		
 		btnIzq = new JButton("<<");
+		btnIzq.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnIzq.setForeground(Color.BLACK);
+		btnIzq.setBackground(Color.GRAY);
 		btnIzq.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!datos.equalsIgnoreCase("")){
@@ -187,7 +213,7 @@ public class RegistrarProyecto extends JDialog {
 			}
 		});
 		btnIzq.setEnabled(false);
-		btnIzq.setBounds(236, 263, 51, 23);
+		btnIzq.setBounds(239, 263, 59, 23);
 		panelP.add(btnIzq);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -195,6 +221,7 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(scrollPane);
 		
 		listEmpDisp = new JList<Object>();
+		listEmpDisp.setFont(new Font("Tahoma", Font.BOLD, 12));
 		listEmpDisp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -209,6 +236,7 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(scrollPane_1);
 		
 		listEmpInv = new JList<Object>();
+		listEmpInv.setFont(new Font("Tahoma", Font.BOLD, 12));
 		listEmpInv.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -229,10 +257,13 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(label_13);
 		
 		JLabel lblNombreDelProyect = new JLabel("Nombre:");
+		lblNombreDelProyect.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNombreDelProyect.setBounds(20, 54, 111, 14);
 		panelP.add(lblNombreDelProyect);
 		
 		txtNombre = new JTextField();
+		txtNombre.setForeground(Color.BLACK);
+		txtNombre.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtNombre.setBounds(137, 52, 242, 20);
 		panelP.add(txtNombre);
 		txtNombre.setColumns(10);
@@ -243,10 +274,12 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(label);
 		
 		JLabel lblFechaInicio = new JLabel("Fecha Inicio:");
+		lblFechaInicio.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblFechaInicio.setBounds(20, 90, 107, 14);
 		panelP.add(lblFechaInicio);
 		
 		JLabel lblNewLabel = new JLabel("Fecha Final:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel.setBounds(20, 121, 111, 14);
 		panelP.add(lblNewLabel);
 		
@@ -256,15 +289,19 @@ public class RegistrarProyecto extends JDialog {
 		panelP.add(label_2);
 		
 		cbxEncargo = new JComboBox();
+		cbxEncargo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cbxEncargo.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Jefe de Proyecto", "Programador", "Dise\u00F1ador", "Planificador"}));
 		cbxEncargo.setBounds(10, 188, 124, 20);
 		panelP.add(cbxEncargo);
 		
 		dateChooserF = new JDateChooser();
+		dateChooserF.setForeground(Color.BLACK);
 		dateChooserF.setBounds(137, 115, 87, 20);
 		panelP.add(dateChooserF);
 	    
 	    txtFechaI = new JTextField();
+	    txtFechaI.setForeground(Color.BLACK);
+	    txtFechaI.setFont(new Font("Tahoma", Font.BOLD, 12));
 	    txtFechaI.setEnabled(false);
 	    txtFechaI.setText(Integer.toString(c2.get(Calendar.DATE))+"/"+Integer.toString(c2.get(Calendar.MONTH)+1)+"/"+Integer.toString(c2.get(Calendar.YEAR)));
 	    txtFechaI.setBounds(137, 87, 86, 20);
@@ -272,11 +309,13 @@ public class RegistrarProyecto extends JDialog {
 	    txtFechaI.setColumns(10);
 	    
 	    cbxTipoProyect = new JComboBox();
+	    cbxTipoProyect.setFont(new Font("Tahoma", Font.BOLD, 12));
 	    cbxTipoProyect.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Video juego", "Escritorio", "Pagina web", "App para movil"}));
 	    cbxTipoProyect.setBounds(318, 118, 141, 20);
 	    panelP.add(cbxTipoProyect);
 	    
 	    JLabel lblTipoDeProyecto = new JLabel("Tipo de Proyecto:");
+	    lblTipoDeProyecto.setFont(new Font("Tahoma", Font.BOLD, 12));
 	    lblTipoDeProyecto.setBounds(375, 90, 115, 14);
 	    panelP.add(lblTipoDeProyecto);
 	    
@@ -387,10 +426,13 @@ public class RegistrarProyecto extends JDialog {
 	    txtEntrega.setColumns(10);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.controlHighlight);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnReg = new JButton("Registrar");
+				btnReg.setBackground(Color.GRAY);
+				btnReg.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnReg.setEnabled(false);
 				btnReg.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -492,6 +534,8 @@ public class RegistrarProyecto extends JDialog {
 				});
 				
 				btnA = new JButton("Atras");
+				btnA.setBackground(Color.GRAY);
+				btnA.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnA.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						btnA.setEnabled(false);
@@ -505,6 +549,8 @@ public class RegistrarProyecto extends JDialog {
 				buttonPane.add(btnA);
 				
 				btnEspecial = new JButton("Siguiente");
+				btnEspecial.setBackground(Color.GRAY);
+				btnEspecial.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnEspecial.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(cantJefes == 1 && cantProg == 2){
@@ -526,6 +572,8 @@ public class RegistrarProyecto extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBackground(Color.GRAY);
+				cancelButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

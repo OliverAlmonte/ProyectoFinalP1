@@ -26,13 +26,20 @@ import javax.swing.JOptionPane;
 
 public class HacerProrroga extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-    private Contrato contract;
+    @SuppressWarnings("unused")
+	private Contrato contract;
     private JButton btnFinish;
     private JDateChooser dateChooserPro;
     private JTextField txtFechaActual;
-    private Calendar c1 = Calendar.getInstance();
-   	private Calendar c2 = new GregorianCalendar();
+    @SuppressWarnings("unused")
+	private Calendar c1 = Calendar.getInstance();
+   	@SuppressWarnings("unused")
+	private Calendar c2 = new GregorianCalendar();
        /**
         * @wbp.nonvisual location=111,389
         */
