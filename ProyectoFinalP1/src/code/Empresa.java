@@ -49,10 +49,10 @@ public class Empresa implements Serializable{
 		   this.cantEmps++;
 	   }
 	public void aumentarcantContracts(){
-		   this.cantClients++;
+		   this.cantContracts++;
 	   }
 	public void aumentarcantProyects(){
-		   this.cantClients++;
+		   this.cantProyects++;
 	   }
 	public int[] cantProyectoByTipo(){
 		int[] cant = new int[4];
