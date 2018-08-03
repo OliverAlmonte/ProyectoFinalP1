@@ -168,6 +168,12 @@ public class Principal extends JFrame {
 		mnInforme.add(mntmDineroFacturadoPor);
 		
 		JMenuItem mntmListaDeEmpleados = new JMenuItem("Lista de Empleados Destacados");
+		mntmListaDeEmpleados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListarEmpleadosDestacados empDestacado = new ListarEmpleadosDestacados();
+				empDestacado.setModal(true);
+				empDestacado.setVisible(true);}
+		});
 		mnInforme.add(mntmListaDeEmpleados);
 
 		contentPane = new JPanel();
