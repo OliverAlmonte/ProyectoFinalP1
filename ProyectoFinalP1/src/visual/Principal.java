@@ -38,9 +38,9 @@ public class Principal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					/*ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("software.obj"));
+					ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("software.obj"));
 					salida.writeObject(Empresa.getInstance());
-					salida.close();*/
+					salida.close();
 					Empresa emp = recuperar();
 					Empresa.getInstance().rellenar(emp);
 					Principal frame = new Principal();

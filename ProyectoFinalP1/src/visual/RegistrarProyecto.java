@@ -554,6 +554,18 @@ public class RegistrarProyecto extends JDialog {
 				btnEspecial.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(cantJefes == 1 && cantProg == 2){
+							SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+							Date  fecha2;
+							Date fechaInicial = null;
+							try {
+								fechaInicial = dateFormat.parse(txtFechaI.getText());
+							} catch (ParseException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+							fecha2 = dateChooserF.getDate();
+							txtEntrega.setText(Double.toString(Contrato.salarioEstimado(fechaInicial, fecha2, empInvolucrados)));
 						btnEspecial.setEnabled(false);
 						btnA.setEnabled(true);
 						panelP.setVisible(false);

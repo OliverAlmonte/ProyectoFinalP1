@@ -86,6 +86,20 @@ public class Contrato implements Serializable{
 		dinero = dinero - monto;
 		return dinero;
 	}
+public static double salarioEstimado(Date fecha1, Date fecha2, ArrayList<Empleado> emps){
+		
+		double total = 0;
+		double aux1 = 0;
+		double aux2 = 0;
+		for(int i = 0; i < emps.size(); i++){
+			total = total + emps.get(i).getSalario();
+		}
+		aux1 = (numeroDiasEntreDosFechas(fecha1, fecha2) * 8 * total);
+		
+		aux2 = aux1 * 0.15;
+		aux1 += aux2;
+		return aux1;
+	}
 	public String getId() {
 		return id;
 	}
