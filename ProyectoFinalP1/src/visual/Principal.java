@@ -22,6 +22,7 @@ import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class Principal extends JFrame {
 
@@ -69,9 +70,11 @@ public class Principal extends JFrame {
 	
 		setVisible(true);
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(Color.LIGHT_GRAY);
 		setJMenuBar(menuBar);
 		
 		JMenu mnRegistrar = new JMenu("Registrar");
+		mnRegistrar.setForeground(Color.BLACK);
 		mnRegistrar.setIcon(new ImageIcon(Principal.class.getResource("/visual/employe2(1).png")));
 		menuBar.add(mnRegistrar);
 		
@@ -112,6 +115,7 @@ public class Principal extends JFrame {
 		mnRegistrar.add(mntmProyecto);
 		
 		JMenu mnListar = new JMenu("Listar");
+		mnListar.setForeground(Color.BLACK);
 		mnListar.setIcon(new ImageIcon(Principal.class.getResource("/visual/list2.png")));
 		menuBar.add(mnListar);
 		
@@ -162,6 +166,7 @@ public class Principal extends JFrame {
 		mnListar.add(mntmContrato);
 		
 		JMenu mnInforme = new JMenu("Informe");
+		mnInforme.setForeground(Color.BLACK);
 		mnInforme.setIcon(new ImageIcon(Principal.class.getResource("/visual/contract2.png")));
 		menuBar.add(mnInforme);
 		
@@ -209,6 +214,7 @@ public class Principal extends JFrame {
 		mnInforme.add(mntmListaDeEmpleados);
 
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);

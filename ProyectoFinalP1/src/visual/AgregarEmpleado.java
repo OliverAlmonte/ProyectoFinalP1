@@ -31,6 +31,7 @@ import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.border.EtchedBorder;
 import javax.swing.UIManager;
+import java.awt.SystemColor;
 
 @SuppressWarnings("rawtypes")
 public class AgregarEmpleado extends JDialog {
@@ -63,6 +64,7 @@ public class AgregarEmpleado extends JDialog {
 	 */
 	@SuppressWarnings("unchecked")
 	public AgregarEmpleado() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarEmpleado.class.getResource("/visual/employee.png")));
 		getContentPane().setBackground(new Color(51, 153, 255));
 		setBackground(new Color(51, 153, 255));
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -71,7 +73,7 @@ public class AgregarEmpleado extends JDialog {
 		setTitle("Registrar Nuevo Empleado");
 		setBounds(100, 100, 505, 360);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(51, 153, 255));
+		contentPanel.setBackground(Color.LIGHT_GRAY);
 		contentPanel.setForeground(Color.BLACK);
 		
 		contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -134,7 +136,7 @@ public class AgregarEmpleado extends JDialog {
 		contentPanel.add(lblEdad);
 		rdbtnM.setFont(new Font("Dialog", Font.BOLD, 13));
 		rdbtnM.setForeground(Color.BLACK);
-		rdbtnM.setBackground(new Color(51, 153, 255));
+		rdbtnM.setBackground(Color.LIGHT_GRAY);
 		rdbtnM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(rdbtnM.isSelected())
@@ -153,7 +155,7 @@ public class AgregarEmpleado extends JDialog {
 		});
 		rdbtnF.setFont(new Font("Dialog", Font.BOLD, 13));
 		rdbtnF.setForeground(Color.BLACK);
-		rdbtnF.setBackground(new Color(51, 153, 255));
+		rdbtnF.setBackground(Color.LIGHT_GRAY);
 		
 		
 		
@@ -183,7 +185,7 @@ public class AgregarEmpleado extends JDialog {
 		lblCargo.setBounds(310, 193, 46, 20);
 		contentPanel.add(lblCargo);
 		panelInfo.setForeground(Color.BLACK);
-		panelInfo.setBackground(new Color(51, 153, 255));
+		panelInfo.setBackground(Color.LIGHT_GRAY);
 		
 		
 		panelInfo.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n Espec\u00EDfica", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
@@ -250,12 +252,12 @@ public class AgregarEmpleado extends JDialog {
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			buttonPane.setBackground(new Color(51, 153, 255));
+			buttonPane.setBackground(SystemColor.controlHighlight);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				okButton.setFont(new Font("Dialog", Font.BOLD, 13));
-				okButton.setBackground(Color.WHITE);
+				okButton.setBackground(Color.GRAY);
 				okButton.setForeground(Color.BLACK);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -302,7 +304,7 @@ public class AgregarEmpleado extends JDialog {
 			{
 				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.setFont(new Font("Dialog", Font.BOLD, 13));
-				cancelButton.setBackground(Color.WHITE);
+				cancelButton.setBackground(Color.GRAY);
 				cancelButton.setForeground(Color.BLACK);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
