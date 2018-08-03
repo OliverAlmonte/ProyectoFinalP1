@@ -54,7 +54,6 @@ public class ListarEmpleados extends JDialog {
 	 */
 	@SuppressWarnings({ "unchecked"})
 	public ListarEmpleados() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ListarEmpleados.class.getResource("/visual/lista.png")));
 		this.code = "";
 		setResizable(false);
 		setTitle("Listado de Empleados");

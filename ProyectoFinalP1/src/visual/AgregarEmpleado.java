@@ -64,7 +64,6 @@ public class AgregarEmpleado extends JDialog {
 	public AgregarEmpleado() {
 		getContentPane().setBackground(new Color(51, 153, 255));
 		setBackground(new Color(51, 153, 255));
-		setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarEmpleado.class.getResource("/visual/empleado.png")));
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setFont(new Font("Dialog", Font.PLAIN, 14));
 		setForeground(Color.BLACK);

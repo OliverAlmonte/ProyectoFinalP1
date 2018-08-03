@@ -52,7 +52,6 @@ public class ListarEmpleadosDestacados extends JDialog {
 	 */
 	@SuppressWarnings({ "unchecked"})
 	public ListarEmpleadosDestacados() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ListarEmpleados.class.getResource("/visual/lista.png")));
 		this.code = "";
 		setResizable(false);
 		setTitle("Empleados Destacados");
