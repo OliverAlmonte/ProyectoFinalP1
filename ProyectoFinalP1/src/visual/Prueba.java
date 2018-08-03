@@ -15,8 +15,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.awt.event.ActionEvent;
-import com.toedter.calendar.JYearChooser;
-
 import code.Contrato;
 
 import com.toedter.calendar.JDateChooser;
@@ -24,15 +22,21 @@ import javax.swing.JTextField;
 
 public class Prueba extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
     private JDateChooser dateChooser;
     private JDateChooser dateChooser2;
-    private Calendar c1 = Calendar.getInstance();
+    @SuppressWarnings("unused")
+	private Calendar c1 = Calendar.getInstance();
 	private Calendar c2 = new GregorianCalendar();
     /**
      * @wbp.nonvisual location=111,389
      */
-    private final JCalendar calendar = new JCalendar();
+    @SuppressWarnings("unused")
+	private final JCalendar calendar = new JCalendar();
     private JTextField txtFechaI;
 	/**
 	 * Launch the application.
@@ -80,6 +84,7 @@ public class Prueba extends JDialog {
 			{
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
+					@SuppressWarnings("unused")
 					public void actionPerformed(ActionEvent e) {
 						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 						Date fecha, fecha2;

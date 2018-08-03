@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
-import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,9 +15,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
@@ -170,7 +167,7 @@ public class Principal extends JFrame {
 		mnInforme.setIcon(new ImageIcon(Principal.class.getResource("/visual/contract2.png")));
 		menuBar.add(mnInforme);
 		
-		JMenuItem mntmProyectosPorTipo = new JMenuItem("Proyectos Por Tipo");
+		JMenuItem mntmProyectosPorTipo = new JMenuItem("Proyectos por Tipo");
 		mntmProyectosPorTipo.setIcon(new ImageIcon(Principal.class.getResource("/visual/chart.png")));
 		mntmProyectosPorTipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -181,7 +178,7 @@ public class Principal extends JFrame {
 		});
 		mnInforme.add(mntmProyectosPorTipo);
 		
-		JMenuItem mntmGananciasPorTipo = new JMenuItem("Ganancias Por tipo de Proyecto");
+		JMenuItem mntmGananciasPorTipo = new JMenuItem("Ganancias por Tipo de Proyecto");
 		mntmGananciasPorTipo.setIcon(new ImageIcon(Principal.class.getResource("/visual/chart3.png")));
 		mntmGananciasPorTipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

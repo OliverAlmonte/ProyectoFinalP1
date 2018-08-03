@@ -8,14 +8,10 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import code.Contrato;
 import code.Empresa;
-import code.Proyecto;
-
-import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -32,8 +28,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Date;
 import javax.swing.JTextField;
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
 public class ListarContrato extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
 	private static DefaultTableModel model;
@@ -41,6 +44,7 @@ public class ListarContrato extends JDialog {
 	private String identificador;
 	private JButton btnProrrogar;
 	private JButton btnTerminar;
+	@SuppressWarnings("unused")
 	private Calendar c1 = Calendar.getInstance();
 	private Calendar c2 = new GregorianCalendar();
 	private JTextField txtFechaI;
@@ -54,14 +58,17 @@ public class ListarContrato extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListarContrato() {
+		setTitle("Listado de Contratos");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListarContrato.class.getResource("/visual/contract.png")));
 		setBounds(100, 100, 526, 359);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.LIGHT_GRAY);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado de Contratos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			panel.setBackground(Color.LIGHT_GRAY);
 			panel.setBounds(10, 11, 490, 276);
 			contentPanel.add(panel);
 			panel.setLayout(new BorderLayout(0, 0));
@@ -70,6 +77,7 @@ public class ListarContrato extends JDialog {
 			panel.add(scrollPane, BorderLayout.CENTER);
 			
 			table = new JTable();
+			table.setBackground(Color.LIGHT_GRAY);
 			table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -92,10 +100,14 @@ public class ListarContrato extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.controlHighlight);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			
 			btnProrrogar = new JButton("Prorrogar");
+			btnProrrogar.setBackground(Color.GRAY);
+			btnProrrogar.setForeground(Color.BLACK);
+			btnProrrogar.setFont(new Font("Tahoma", Font.BOLD, 12));
 			btnProrrogar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(!identificador.equalsIgnoreCase("")){
@@ -117,6 +129,7 @@ public class ListarContrato extends JDialog {
 			});
 			
 			txtFechaI = new JTextField();
+			txtFechaI.setFont(new Font("Tahoma", Font.BOLD, 12));
 			txtFechaI.setVisible(false);
 			txtFechaI.setText(Integer.toString(c2.get(Calendar.DATE))+"/"+Integer.toString(c2.get(Calendar.MONTH)+1)+"/"+Integer.toString(c2.get(Calendar.YEAR)));
 			buttonPane.add(txtFechaI);
@@ -125,6 +138,9 @@ public class ListarContrato extends JDialog {
 			buttonPane.add(btnProrrogar);
 			
 			btnTerminar = new JButton("Terminar");
+			btnTerminar.setBackground(Color.GRAY);
+			btnTerminar.setForeground(Color.BLACK);
+			btnTerminar.setFont(new Font("Tahoma", Font.BOLD, 12));
 			btnTerminar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(!identificador.equalsIgnoreCase("")){
@@ -260,6 +276,9 @@ public class ListarContrato extends JDialog {
 			buttonPane.add(btnTerminar);
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBackground(Color.GRAY);
+				cancelButton.setForeground(Color.BLACK);
+				cancelButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

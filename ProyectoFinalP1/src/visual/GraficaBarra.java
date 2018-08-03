@@ -17,8 +17,17 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import code.Empresa;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 public class GraficaBarra extends JDialog {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JPanel panel;
 	private final JPanel contentPanel = new JPanel();
 
@@ -31,6 +40,7 @@ public class GraficaBarra extends JDialog {
 	 * Create the dialog.
 	 */
 	public GraficaBarra() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GraficaBarra.class.getResource("/visual/chart3.png")));
 		setBounds(100, 100, 817, 495);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
@@ -38,16 +48,18 @@ public class GraficaBarra extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.controlHighlight);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Salir");
+				cancelButton.setBackground(Color.GRAY);
+				cancelButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+				cancelButton.setForeground(Color.BLACK);
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -57,6 +69,7 @@ public class GraficaBarra extends JDialog {
 	}
 	 private void init() {
 	        panel = new JPanel();
+	        panel.setBackground(Color.LIGHT_GRAY);
 	        getContentPane().add(panel);
 	        // Fuente de Datos
 	        double[] cantVj = Empresa.getInstance().cantGananciasJuegos();
@@ -68,14 +81,14 @@ public class GraficaBarra extends JDialog {
 	        dataset.setValue(cantVj[0], "Reales", "Video juego");
 	        dataset.setValue(cantEscriotio[1], "Esperadas", "Escritorio");
 	        dataset.setValue(cantEscriotio[0], "Reales", "Escritorio");
-	        dataset.setValue(cantWeb[1], "Esperadas", "Paginas web");
-	        dataset.setValue(cantWeb[0], "Reales", "Paginas web");
-	        dataset.setValue(cantMoviles[1], "Esperadas", "App para moviles");
-	        dataset.setValue(cantMoviles[0], "Reales", "App para moviles");
+	        dataset.setValue(cantWeb[1], "Esperadas", "Páginas web");
+	        dataset.setValue(cantWeb[0], "Reales", "Páginas web");
+	        dataset.setValue(cantMoviles[1], "Esperadas", "App para móviles");
+	        dataset.setValue(cantMoviles[0], "Reales", "App para móviles");
 	        
 	        // Creando el Grafico
 	        JFreeChart chart = ChartFactory.createBarChart3D
-	        ("Comparacion de ganacias","Ganancias", "Escala", 
+	        ("Comparación de Ganancias","Ganancias", "Escala", 
 	        dataset, PlotOrientation.VERTICAL, true,true, false);
 	        chart.setBackgroundPaint(Color.cyan);
 	        chart.getTitle().setPaint(Color.black); 

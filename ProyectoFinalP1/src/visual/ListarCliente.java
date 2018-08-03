@@ -3,7 +3,6 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -11,12 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
-
 import code.Cliente;
 import code.Empresa;
-
-import javax.swing.border.TitledBorder;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ListSelectionModel;
@@ -25,9 +20,17 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 public class ListarCliente extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private static JTable table;
 	private static DefaultTableModel model;
@@ -45,16 +48,20 @@ public class ListarCliente extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListarCliente() {
+		setForeground(Color.BLACK);
+		setTitle("Listado de Clientes");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListarCliente.class.getResource("/visual/1046400.png")));
 		setResizable(false);
 		setBounds(100, 100, 497, 349);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.LIGHT_GRAY);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Listado de Clientes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBackground(Color.LIGHT_GRAY);
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			{
@@ -64,6 +71,7 @@ public class ListarCliente extends JDialog {
 				panel.add(scrollPane);
 				{
 					table = new JTable();
+					table.setBackground(Color.WHITE);
 					table.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(MouseEvent e) {
@@ -89,10 +97,13 @@ public class ListarCliente extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.controlHighlight);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnModificar = new JButton("Modificar");
+				btnModificar.setBackground(Color.GRAY);
+				btnModificar.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(!identificador.equalsIgnoreCase("")){
@@ -111,6 +122,8 @@ public class ListarCliente extends JDialog {
 			}
 			{
 				btnEliminar = new JButton("Eliminar");
+				btnEliminar.setBackground(Color.GRAY);
+				btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(!identificador.equalsIgnoreCase("")){
@@ -137,6 +150,8 @@ public class ListarCliente extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBackground(Color.GRAY);
+				cancelButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

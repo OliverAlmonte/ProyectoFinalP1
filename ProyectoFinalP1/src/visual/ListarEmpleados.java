@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import code.Disenador;
@@ -32,6 +31,7 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.Color;
 import javax.swing.border.EtchedBorder;
 import visual.DetallesEmpleado;
+import java.awt.SystemColor;
 @SuppressWarnings("rawtypes")
 public class ListarEmpleados extends JDialog {
 
@@ -55,19 +55,20 @@ public class ListarEmpleados extends JDialog {
 	 */
 	@SuppressWarnings({ "unchecked"})
 	public ListarEmpleados() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListarEmpleados.class.getResource("/visual/employee.png")));
 		this.code = "";
 		setResizable(false);
 		setTitle("Listado de Empleados");
 		setBounds(100, 100, 628, 370);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(51, 153, 204));
+		contentPanel.setBackground(Color.LIGHT_GRAY);
 		contentPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		setLocationRelativeTo(null);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
 			JPanel panel = new JPanel();
-			panel.setBackground(new Color(51, 153, 204));
+			panel.setBackground(Color.LIGHT_GRAY);
 			panel.setLayout(null);
 			panel.setBounds(0, 11, 622, 293);
 			contentPanel.add(panel);
@@ -79,8 +80,8 @@ public class ListarEmpleados extends JDialog {
 				
 				table = new JTable();
 				table.setForeground(Color.BLACK);
-				table.setBackground(new Color(51, 153, 204));
-				table.setFont(new Font("Tahoma", Font.PLAIN, 12));
+				table.setBackground(SystemColor.controlHighlight);
+				table.setFont(new Font("Tahoma", Font.BOLD, 12));
 				table.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
@@ -111,7 +112,7 @@ public class ListarEmpleados extends JDialog {
 			{
 				cbxTipo = new JComboBox();
 				cbxTipo.setForeground(Color.BLACK);
-				cbxTipo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+				cbxTipo.setFont(new Font("Tahoma", Font.BOLD, 12));
 				cbxTipo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						int selection = cbxTipo.getSelectedIndex();
@@ -126,11 +127,13 @@ public class ListarEmpleados extends JDialog {
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			buttonPane.setBackground(new Color(51, 153, 204));
+			buttonPane.setBackground(Color.LIGHT_GRAY);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnDetalles = new JButton("Detalles");
+				btnDetalles.setBackground(Color.GRAY);
+				btnDetalles.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnDetalles.setForeground(Color.BLACK);
 				btnDetalles.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -147,6 +150,8 @@ public class ListarEmpleados extends JDialog {
 			}
 			{
 				btnEliminar = new JButton("Eliminar");
+				btnEliminar.setBackground(Color.GRAY);
+				btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnEliminar.setForeground(Color.BLACK);
 				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -170,6 +175,8 @@ public class ListarEmpleados extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBackground(Color.GRAY);
+				cancelButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 				cancelButton.setForeground(Color.BLACK);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {

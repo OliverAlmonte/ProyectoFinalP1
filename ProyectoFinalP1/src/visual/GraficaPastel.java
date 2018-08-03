@@ -14,6 +14,11 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 
 import code.Empresa;
+import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Toolkit;
 
 public class GraficaPastel extends JDialog {
 
@@ -32,6 +37,7 @@ public class GraficaPastel extends JDialog {
 	 * Create the dialog.
 	 */
 	public GraficaPastel() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GraficaPastel.class.getResource("/visual/chart.png")));
 		setBounds(100, 100, 800, 600);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
@@ -39,17 +45,14 @@ public class GraficaPastel extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.controlHighlight);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
+				JButton cancelButton = new JButton("Salir");
+				cancelButton.setBackground(Color.GRAY);
+				cancelButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+				cancelButton.setVerticalAlignment(SwingConstants.TOP);
 				buttonPane.add(cancelButton);
 			}
 		}
@@ -57,6 +60,7 @@ public class GraficaPastel extends JDialog {
 	}
 	private void init() {
         panel = new JPanel();
+        panel.setBackground(Color.LIGHT_GRAY);
         getContentPane().add(panel);
         // Fuente de Datos
         int[] cantProyecto=Empresa.getInstance().cantProyectoByTipo();
@@ -67,7 +71,7 @@ public class GraficaPastel extends JDialog {
         data.setValue("App Para Móvil", cantProyecto[3]);
         // Creando el Grafico
         JFreeChart chart = ChartFactory.createPieChart(
-         "Proyectos Por Tipo", 
+         "Proyectos por Tipo", 
          data, 
          true, 
          true, 
