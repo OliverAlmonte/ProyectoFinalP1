@@ -32,6 +32,8 @@ import code.Cliente;
 import code.Contrato;
 import code.Empleado;
 import code.Empresa;
+import code.Jefe;
+import code.Programador;
 import code.Proyecto;
 
 import java.awt.event.ActionListener;
@@ -59,6 +61,8 @@ public class RegistrarProyecto extends JDialog {
 	private static ArrayList<Empleado> empInvolucrados = new ArrayList<>();
 	private static ArrayList<Empleado> empDisponibles = new ArrayList<>();
 	
+	private int cantJefes = 0;
+	private int cantProg = 0;
 	private Cliente cliente = null;
 	private JButton btnReg;
 	private JButton btnEspecial;
@@ -139,6 +143,12 @@ public class RegistrarProyecto extends JDialog {
 					empDisponibles.remove(emp);
 					loadEmpDisp();
 					empInvolucrados.add(emp);
+					if(emp instanceof Jefe){
+						cantJefes++;
+					}
+					if(emp instanceof Programador){
+						cantProg++;
+					}
 					modeloInv.addElement(emp.getId()+" "+emp.getClass().getSimpleName());
 					listEmpInv.setModel(modeloInv);
 					btnDer.setEnabled(false);
@@ -159,6 +169,12 @@ public class RegistrarProyecto extends JDialog {
 					Empleado emp = buscarEmpInv(listEmpInv.getSelectedIndex());
 					empInvolucrados.remove(emp);
 					modeloInv.removeElement(emp.getId()+" "+emp.getClass().getSimpleName());
+					if(emp instanceof Jefe){
+						cantJefes = cantJefes - 1;
+					}
+					if(emp instanceof Programador){
+						cantProg = cantProg - 1;
+					}
 					listEmpInv.setModel(modeloInv);
 					empDisponibles.add(emp);
 					loadEmpDisp();
@@ -491,13 +507,16 @@ public class RegistrarProyecto extends JDialog {
 				btnEspecial = new JButton("Siguiente");
 				btnEspecial.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						if(cantJefes == 1 && cantProg == 2){
 						btnEspecial.setEnabled(false);
 						btnA.setEnabled(true);
 						panelP.setVisible(false);
 						panelC.setVisible(true);
 						btnReg.setEnabled(true);
 						//btnReg.setEnabled(true);
+						}else{
+							JOptionPane.showMessageDialog(null, "Se necesita un solo jefe de proyecto y almenos 2 programadores", "Información", JOptionPane.INFORMATION_MESSAGE);
+						}
 					}
 				});
 				buttonPane.add(btnEspecial);
